@@ -1,11 +1,16 @@
+//規定一定要放最上面，不能亂動
+import 'react-native-gesture-handler';
+//---------------------------------------
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+//引入導航
+import Navigator from './resource/navigator/navigator';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Navigator></Navigator>
     </View>
   );
 }
