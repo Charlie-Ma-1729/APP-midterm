@@ -5,13 +5,11 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 //引入導航
-import Navigator from './resource/navigator/navigator';
+import Navigator from './resource/Navigator';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Navigator></Navigator>
-    </View>
+    <Navigator />
   );
 }
 
