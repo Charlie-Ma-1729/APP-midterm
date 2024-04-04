@@ -21,3 +21,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+//小筆記
+
+//你可以使用
+//import {useTheme } from 'react-native-paper';
+//const theme = useTheme();
+//來實現所有顏色的使用ex:theme.colors.secondary

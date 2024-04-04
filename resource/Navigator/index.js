@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Stack = createStackNavigator();;
 const Tab = createBottomTabNavigator();
 //導入素材
-import { Text, BottomNavigation } from 'react-native-paper';
+import { Text, BottomNavigation, useTheme } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 //導入頁面
 import HomeTopScreen from '../screen/HomeTopScreen';
@@ -18,32 +18,80 @@ import DeckInsideScreen from '../screen/DeckInsideScreen';
 import ConfigTopScreen from '../screen/ConfigTopScreen';
 //各頁面的堆疊
 const HomeStack = () => {
+    const theme = useTheme();//引入主題以使用主題
     return (
-        <Stack.Navigator screenOptions={{ headerShown: true }} initialRouteName="home">
-            <Stack.Screen name='home' component={HomeTopScreen} />
+        <Stack.Navigator screenOptions={{
+            headerStyle: {
+                backgroundColor: theme.colors.secondary, // 标题栏背景颜色
+            },
+            headerTintColor: theme.colors.onSecondary, // 标题栏文字颜色
+            headerTitleStyle: {
+                fontSize: 20,
+            },
+            headerTitleStyle: {
+                fontWeight: 'bold', // 标题栏文字样式
+            },
+        }} initialRouteName="home">
+            <Stack.Screen name='主頁' component={HomeTopScreen} />
         </Stack.Navigator>
     );
 }
 const SearchStack = () => {
+    const theme = useTheme();//引入主題以使用主題
     return (
-        <Stack.Navigator screenOptions={{ headerShown: true }} initialRouteName="search">
-            <Stack.Screen name='search' component={SearchTopScreen} />
-            <Stack.Screen name='filter' component={SearchFilterScreen} />
+        <Stack.Navigator screenOptions={{
+            headerStyle: {
+                backgroundColor: theme.colors.secondary, // 标题栏背景颜色
+            },
+            headerTintColor: theme.colors.onSecondary, // 标题栏文字颜色
+            headerTitleStyle: {
+                fontSize: 20,
+            },
+            headerTitleStyle: {
+                fontWeight: 'bold', // 标题栏文字样式
+            },
+        }} initialRouteName="search">
+            <Stack.Screen name='搜尋' component={SearchTopScreen} />
+            <Stack.Screen name='篩選' component={SearchFilterScreen} />
         </Stack.Navigator>
     );
 }
 const DeckStack = () => {
+    const theme = useTheme();//引入主題以使用主題
     return (
-        <Stack.Navigator screenOptions={{ headerShown: true }} initialRouteName="deck">
-            <Stack.Screen name='deck' component={DeckTopScreen} />
-            <Stack.Screen name='inside' component={DeckInsideScreen} />
+        <Stack.Navigator screenOptions={{
+            headerStyle: {
+                backgroundColor: theme.colors.secondary, // 标题栏背景颜色
+            },
+            headerTintColor: theme.colors.onSecondary, // 标题栏文字颜色
+            headerTitleStyle: {
+                fontSize: 20,
+            },
+            headerTitleStyle: {
+                fontWeight: 'bold', // 标题栏文字样式
+            },
+        }} initialRouteName="deck">
+            <Stack.Screen name='牌組' component={DeckTopScreen} />
+            <Stack.Screen name='牌組詳細' component={DeckInsideScreen} />
         </Stack.Navigator>
     );
 }
 const ConfigStack = () => {
+    const theme = useTheme();//引入主題以使用主題
     return (
-        <Stack.Navigator screenOptions={{ headerShown: true }} initialRouteName="config">
-            <Stack.Screen name='config' component={ConfigTopScreen} />
+        <Stack.Navigator screenOptions={{
+            headerStyle: {
+                backgroundColor: theme.colors.secondary, // 标题栏背景颜色
+            },
+            headerTintColor: theme.colors.onSecondary, // 标题栏文字颜色
+            headerTitleStyle: {
+                fontSize: 20,
+            },
+            headerTitleStyle: {
+                fontWeight: 'bold', // 标题栏文字样式
+            },
+        }} initialRouteName="config">
+            <Stack.Screen name='設置' component={ConfigTopScreen} />
         </Stack.Navigator>
     );
 }
@@ -120,7 +168,7 @@ function Navigator() {
                     }} />
                 <Tab.Screen name="Config" component={ConfigStack}
                     options={{
-                        tabBarLabel: '搜尋',
+                        tabBarLabel: '設置',
                         tabBarIcon: ({ color, size }) => {
                             return <Icon name="cog" size={size} color={color} />;
                         },
