@@ -1,7 +1,7 @@
 //規定一定要放最上面，不能亂動
 import 'react-native-gesture-handler';
 //---------------------------------------
-//
+//test
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 //引入導航
