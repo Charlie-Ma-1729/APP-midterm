@@ -7,17 +7,24 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
   },
   cover: {
-    width: 22,
-    flex: 0.65,
+    width: 66,
   },
   ChartCard: {
-    paddingVertical: 8,
-    paddingHorizontal: 4,
-    height: 150,
+    flex: 1,
     borderRadius: 10,
-    backgroundColor: "#fff",
-    flex: 2,
     flexDirection: "row",
-    alignItems: "right",
+  },
+  container: {
+    flexDirection: "row",
+    height: 100,
+  },
+  leftContainer: {
+    flex: 2,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  rightContainer: {
+    flex: 5,
+    justifyContent: "center",
   },
 });

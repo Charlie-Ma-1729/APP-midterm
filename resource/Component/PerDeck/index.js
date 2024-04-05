@@ -21,7 +21,6 @@ const PerDeck = () => {
     attr: {
       marginHorizontal: 2,
       flex: 1,
-      width: 1,
       padding: 0,
     },
   };
@@ -39,49 +38,53 @@ const PerDeck = () => {
       <Card.Content>
         <Text variant="titleLarge">殘機</Text>
         <Text style={inlinestyle.Line} />
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image source={cardImg} style={style.cover} />
-          <Card mode="outlined" style={style.ChartCard}>
-            <BarChart
-              data={data}
-              barWidth={12}
-              height={100}
-              xAxisLabelsVerticalShift={-8}
-              yAxisLabelWidth={30}
-              spacing={12}
-              maxValue={10}
-              dashGap={0}
-              noOfSections={5}
-              yAxisLabelTexts={yLabel}
-              formatYLabel={(yLabel) => {
-                const labelVal = Number(yLabel);
-                if (labelVal >= 10) return "10+";
-                return yLabel;
-              }}
-              style={{ flex: 1 }}
-            />
-            <View
-              style={{
-                flexDirection: "column",
-                justifyContent: "center",
-                flex: 0.1,
-                width: 1,
-              }}
-            >
-              <Button icon="camera" mode="contained" style={style.attr}>
-                10
-              </Button>
-              <Button icon="camera" mode="contained" style={style.attr}>
-                5
-              </Button>
-              <Button icon="camera" mode="contained" style={style.attr}>
-                0
-              </Button>
-              <Button icon="camera" mode="contained" style={style.attr}>
-                5
-              </Button>
-            </View>
-          </Card>
+        <View style={style.container}>
+          <View style={style.leftContainer}>
+            <Image source={cardImg} style={style.cover} />
+          </View>
+          <View style={style.rightContainer}>
+            <Card mode="outlined" style={style.ChartCard}>
+              <View style={{ flex: 4, justifyContent: "center" }}>
+                <BarChart
+                  data={data}
+                  barWidth={12}
+                  height={100}
+                  xAxisLabelsVerticalShift={-8}
+                  yAxisLabelWidth={30}
+                  spacing={12}
+                  maxValue={10}
+                  dashGap={0}
+                  noOfSections={5}
+                  yAxisLabelTexts={yLabel}
+                  formatYLabel={(yLabel) => {
+                    const labelVal = Number(yLabel);
+                    if (labelVal >= 10) return "10+";
+                    return yLabel;
+                  }}
+                />
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Button icon="camera" mode="contained" style={inlinestyle.attr}>
+                  10
+                </Button>
+                <Button icon="camera" mode="contained" style={inlinestyle.attr}>
+                  5
+                </Button>
+                <Button icon="camera" mode="contained" style={inlinestyle.attr}>
+                  0
+                </Button>
+                <Button icon="camera" mode="contained" style={inlinestyle.attr}>
+                  5
+                </Button>
+              </View>
+            </Card>
+          </View>
         </View>
       </Card.Content>
     </Card>
