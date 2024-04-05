@@ -35,11 +35,12 @@ const darkTheme = {
 export default function Main() {
     const colorMode = useSelector(selectcolorMode);
     let Theme = darkTheme;
-    if (colorMode === "light") {
+    console.log(colorMode);
+    if (colorMode.colorMode === "light") {
         console.log("light now");
         Theme = lightTheme;
     }
-    else if (colorMode === "dark") {
+    else if (colorMode.colorMode === "dark") {
         console.log("dark now");
         Theme = darkTheme;
     }

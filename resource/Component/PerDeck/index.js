@@ -20,7 +20,6 @@ const PerDeck = () => {
     },
     attr: {
       marginHorizontal: 2,
-      flex: 1,
       padding: 0,
     },
   };
@@ -44,11 +43,11 @@ const PerDeck = () => {
           </View>
           <View style={style.rightContainer}>
             <Card mode="outlined" style={style.ChartCard}>
-              <View style={{ flex: 4, justifyContent: "center" }}>
+              <View style={{ justifyContent: "center" }}>
                 <BarChart
                   data={data}
-                  barWidth={12}
-                  height={100}
+                  barWidth={5}
+                  height={80}
                   xAxisLabelsVerticalShift={-8}
                   yAxisLabelWidth={30}
                   spacing={12}
@@ -65,13 +64,12 @@ const PerDeck = () => {
               </View>
               <View
                 style={{
-                  flex: 1,
                   justifyContent: "center",
                   alignItems: "center",
                 }}
               >
-                <Button icon="camera" mode="contained" style={inlinestyle.attr}>
-                  10
+                <Button icon="camera" mode="contained" sizestyle={inlinestyle.attr}>
+                  1000
                 </Button>
                 <Button icon="camera" mode="contained" style={inlinestyle.attr}>
                   5
