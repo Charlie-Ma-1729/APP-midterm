@@ -9,7 +9,7 @@ import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-nat
 const DeckInsideScreen = ({ navigation }) => {
     return (
         <PaperProvider>
-            <Text>Open up App.js to start working on your app!</Text>
+            <Text>Opeup App.js to start working on your app!</Text>
             <StatusBar style="auto" />
         </PaperProvider>
     );
