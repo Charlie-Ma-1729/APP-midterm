@@ -1,15 +1,21 @@
 //規定一定要放最上面，不能亂動
 import 'react-native-gesture-handler';
 //---------------------------------------
-//test
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 //引入導航
-import Navigator from './resource/Navigator';
+import Main from './Main';
+//引入全域變數
+import { Provider } from "react-redux";
+import { store } from './resource/redux/store';
+
 
 export default function App() {
   return (
-    <Navigator />
+    <Provider store={store}>
+      <Main />
+    </Provider>
+
   );
 }
 

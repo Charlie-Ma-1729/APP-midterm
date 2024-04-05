@@ -9,10 +9,10 @@ import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-nat
 
 const SearchTopScreen = ({ navigation }) => {
     return (
-        <PaperProvider>
+        <View>
             <Text>Open up App.js to start working on your app!</Text>
             <StatusBar style="auto" />
-        </PaperProvider>
+        </View>
     );
 }
 

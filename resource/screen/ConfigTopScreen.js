@@ -5,13 +5,15 @@ import { IconButton, Appbar } from 'react-native-paper';
 
 //普通宣告
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-native';
+//引入自訂物件
+import ColorModeSwich from '../component/ColorModeSwich';
 
 const ConfigTopScreen = ({ navigation }) => {
     return (
-        <PaperProvider>
-            <Text>Open up App.js to start working on your app!</Text>
+        <View style={styles.container}>
+            <ColorModeSwich />
             <StatusBar style="auto" />
-        </PaperProvider>
+        </View>
     );
 }
 
@@ -19,6 +21,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        alignItems: "center"
     },
 });
 
