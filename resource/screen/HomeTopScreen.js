@@ -7,12 +7,17 @@ import { IconButton, Appbar, useTheme } from 'react-native-paper';
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button, Image } from 'react-native';
 //宣告自己的物件
 import HomeButton from '../component/HomeButton';
+//引入store函式
+import { useDispatch, useSelector } from 'react-redux';
+import { selectcolorMode } from '../redux/colorModeSlice';
 
 const HomeTopScreen = ({ navigation }) => {
     const theme = useTheme();//引入主題以使用主題
+    const colorMode = useSelector(selectcolorMode);
+    let StatusBarMode = colorMode.colorMode === "dark" ? "dark-content" : "light-content";
     return (
         <View style={{ ...styles.container, backgroundColor: theme.colors.surface }}>
-            <StatusBar backgroundColor={theme.colors.secondary} barStyle={theme.colors.onSecondary} style="auto" />
+            <StatusBar backgroundColor={theme.colors.secondary} barStyle={StatusBarMode} style="auto" />
             <Image style={{ width: 328, height: 164, marginTop: 20 }} source={require("../../assets/images/news.jpg")} />
             <View style={styles.buttonContainer}>
                 <HomeButton type={"big"} color={theme.colors.primary} icon={"gamepad-square"} label={"遊戲工具"} />
