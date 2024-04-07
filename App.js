@@ -15,7 +15,6 @@ export default function App() {
     <Provider store={store}>
       <Main />
     </Provider>
-
   );
 }
 
