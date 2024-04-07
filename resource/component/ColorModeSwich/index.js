@@ -23,12 +23,13 @@ const ColorModeSwich = () => {
         <View style={styles.box}>
             <Text style={styles.text}>顏色主題</Text>
             <View style={styles.switchBox}>
-                <IconButton icon={"star-four-points"} size={40} color={theme.colors.onSurface} />
+                <IconButton icon={"star-four-points"} size={40} iconColor={theme.colors.onSurface} />
                 <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color={theme.colors.primary} />
-                <IconButton icon={"weather-sunny"} size={40} color={theme.colors.onSurface} />
+                <IconButton icon={"weather-sunny"} size={40} iconColor={theme.colors.onSurface} />
             </View>
         </View>
     );
 }
 
 export default ColorModeSwich;
+//本物件位於設置頁，是調控顏色主題的開關

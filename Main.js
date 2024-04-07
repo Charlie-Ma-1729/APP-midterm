@@ -6,7 +6,7 @@ import costomColor from './resource/theme/material-theme.json'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectcolorMode } from './resource/redux/colorModeSlice';
 
-//修改原有主題以自建新主題(暫時沒有dark)
+//修改原有主題以自建新主題
 const lightTheme = {
     ...MD3LightTheme,
     roundness: 2,
@@ -35,13 +35,10 @@ const darkTheme = {
 export default function Main() {
     const colorMode = useSelector(selectcolorMode);
     let Theme = darkTheme;
-    console.log(colorMode);
     if (colorMode.colorMode === "light") {
-        console.log("light now");
         Theme = lightTheme;
     }
     else if (colorMode.colorMode === "dark") {
-        console.log("dark now");
         Theme = darkTheme;
     }
     return (
