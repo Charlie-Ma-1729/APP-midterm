@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+//此變數用於調控顏色模式
 //定義起始變數(state)
 const initialState = {
     colorMode: "dark"
