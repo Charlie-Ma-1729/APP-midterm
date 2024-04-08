@@ -6,7 +6,7 @@ import { IconButton, Appbar, useTheme } from 'react-native-paper';
 //普通宣告
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button, Image } from 'react-native';
 //宣告自己的物件
-import HomeButton from '../component/HomeButton';
+import HomeButton from '../Component/HomeButton';
 //引入store函式
 import { useDispatch, useSelector } from 'react-redux';
 import { selectcolorMode } from '../redux/colorModeSlice';

@@ -8,11 +8,15 @@ import Main from './Main';
 //引入全域變數
 import { Provider } from "react-redux";
 import { store } from './resource/redux/store';
+//導入語言
+import { useTranslation } from "react-i18next";
+import i18next from "./i18next";
 
 
 export default function App() {
+  const { t } = useTranslation();
   return (
-    <Provider store={store}>
+    <Provider store={store} >
       <Main />
     </Provider>
   );

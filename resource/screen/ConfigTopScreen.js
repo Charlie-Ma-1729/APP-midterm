@@ -6,7 +6,7 @@ import { IconButton, Appbar } from 'react-native-paper';
 //普通宣告
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-native';
 //引入自訂物件
-import ColorModeSwich from '../component/ColorModeSwich';
+import ColorModeSwich from '../Component/ColorModeSwich';
 
 const ConfigTopScreen = ({ navigation }) => {
     return (

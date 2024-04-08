@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Avatar, Button, Card, Text } from "react-native-paper";
 
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigator } from "@react-navigation/stack";
 import { BarChart } from "react-native-gifted-charts";
 import { Image, View } from "react-native";
 import style from "./style.js";
@@ -10,6 +12,7 @@ const cardImg = require("../../../assets/images/Card.png");
 
 const PerDeck = () => {
   const theme = useTheme();
+  const navigation = useNavigation();
   const inlinestyle = {
     Line: {
       borderBottomColor: theme.colors.outlineVariant,
@@ -33,7 +36,7 @@ const PerDeck = () => {
   ];
   const yLabel = ["0", "2", "4", "6", "8", "10"];
   return (
-    <Card mode="outlined" style={style.Card}>
+    <Card mode="outlined" style={style.Card} onPress={()=>navigation.navigate('牌組詳細')}>
       <Card.Content>
         <Text variant="titleLarge">殘機</Text>
         <Text style={inlinestyle.Line} />
