@@ -37,3 +37,4 @@ const InfoCard = ({ packId, picture, name, type, element }) => {
 }
 
 export default InfoCard;
+//此物件位於搜尋頁，代表單一張卡片

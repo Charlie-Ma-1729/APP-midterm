@@ -31,3 +31,4 @@ const InfoCardList = () => {
 }
 
 export default InfoCardList;
+//此物件用於渲染大量info Card
