@@ -8,7 +8,7 @@ import { Image, View } from "react-native";
 import style from "./style.js";
 import { useTheme } from "react-native-paper";
 
-const cardImg = require("../../../assets/images/Card.png");
+const cardImg = require("../../../assets/images/AATW-001.png");
 
 const PerDeck = () => {
   const theme = useTheme();
@@ -36,7 +36,7 @@ const PerDeck = () => {
   ];
   const yLabel = ["0", "2", "4", "6", "8", "10"];
   return (
-    <Card mode="outlined" style={style.Card} onPress={()=>navigation.navigate('牌組詳細')}>
+    <Card mode="outlined" style={style.Card} onPress={() => navigation.navigate('牌組詳細')}>
       <Card.Content>
         <Text variant="titleLarge">殘機</Text>
         <Text style={inlinestyle.Line} />

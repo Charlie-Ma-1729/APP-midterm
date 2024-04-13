@@ -4,6 +4,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: 154,
         height: 390,
+        marginTop: 20,
+        marginRight: 20,
         borderRadius: 12,
         //影(ios)
         shadowOffset: { width: 2, height: 4 },

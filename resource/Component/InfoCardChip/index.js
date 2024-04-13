@@ -18,3 +18,4 @@ const InfoCardChip = ({ label, num }) => {
 }
 
 export default InfoCardChip;
+//此物件是infoCard的子物件，用於表示一個數值
