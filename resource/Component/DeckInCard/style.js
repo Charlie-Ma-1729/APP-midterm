@@ -10,6 +10,6 @@ export default StyleSheet.create({
     width: 154,
     height: 215,
     marginHorizontal: 4,
-    marginVertical: 4,
+    marginVertical: 16,
   },
 });

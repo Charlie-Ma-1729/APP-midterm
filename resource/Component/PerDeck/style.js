@@ -4,7 +4,6 @@ export default StyleSheet.create({
   Card: {
     margin: 16,
     borderRadius: 10,
-    backgroundColor: "#fff",
   },
   cover: {
     width: 66,
@@ -14,6 +13,7 @@ export default StyleSheet.create({
     flex: 1,
     borderRadius: 10,
     flexDirection: "row",
+    
   },
   container: {
     flexDirection: "row",
