@@ -12,9 +12,7 @@ import CardDataList from "../../json/demoCardList.json";
 const DeckInCard = ({picture}) => {
   const theme = useTheme();
   return (
-    <View>
       <Image style={style.pic} source={{uri: picture}} />
-    </View>
   );
 };
 

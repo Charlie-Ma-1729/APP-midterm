@@ -11,7 +11,7 @@ const DeckIn = () => {
   const theme = useTheme();
   const inlinestyle = {
     Line: {
-      borderBottomColor: theme.colors.onPrimary,
+      borderBottomColor: theme.colors.onSurface,
       borderBottomWidth: 1,
       marginVertical: 4,
       marginHorizontal: 16,
@@ -23,17 +23,17 @@ const DeckIn = () => {
       fontWeight: "bold",
       marginVertical: 4,
       marginHorizontal: 16,
-      color: theme.colors.onPrimary,
+      color: theme.colors.onSurface,
     },
   };
   return (
-    <View>
+    <View style={[{backgroundColor:theme.colors.surface},{paddingHorizontal:8}]}>
       <Text style={inlinestyle.Title}>需能0</Text>
       <Text style={inlinestyle.Line} /> 
       <FlatList
         data={CardDataList}
         renderItem={({ item }) => (
-          <DeckInCard />
+          <DeckInCard picture={item.picture}/>
         )}
         horizontal={true}
         keyExtractor={(item) => item.packId}
