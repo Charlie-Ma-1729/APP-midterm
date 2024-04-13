@@ -12,7 +12,7 @@ import DeckIn from "../Component/DeckIn"
 const DeckInsideScreen = ({ navigation }) => {
     return (
         <View>
-            <DeckIn/>
+            <DeckIn />
             <StatusBar style="auto" />
         </View>
     );
