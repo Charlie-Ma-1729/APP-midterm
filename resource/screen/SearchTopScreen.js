@@ -7,7 +7,7 @@ import { IconButton, Appbar, useTheme, FAB } from 'react-native-paper';
 //普通宣告
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-native';
 //宣告自製物件
-import InfoCardList from '../component/InfoCardList';
+import InfoCardList from '../Component/InfoCardList';
 
 const SearchTopScreen = ({ navigation }) => {
     const theme = useTheme();

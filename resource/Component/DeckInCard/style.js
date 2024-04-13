@@ -9,5 +9,6 @@ export default StyleSheet.create({
   pic: {
     width: 154,
     height: 215,
+    marginHorizontal: 4,
   },
 });

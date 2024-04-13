@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Avatar, Button, Card, Text } from "react-native-paper";
 
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigator } from "@react-navigation/stack";
-import { Image, View, FlatList   } from "react-native";
+import { Image, View, FlatList } from "react-native";
 import style from "./style.js";
 import { useTheme } from "react-native-paper";
+import DeckInCard from "../DeckInCard";
+import CardDataList from "../../json/demoCardList.json";
 
 const DeckIn = () => {
   const theme = useTheme();
@@ -29,13 +29,14 @@ const DeckIn = () => {
   return (
     <View>
       <Text style={inlinestyle.Title}>需能0</Text>
-      <Text style={inlinestyle.Line} />
+      <Text style={inlinestyle.Line} /> 
       <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        extraData={selectedId}
+        data={CardDataList}
+        renderItem={({ item }) => (
+          <DeckInCard />
+        )}
         horizontal={true}
+        keyExtractor={(item) => item.packId}
       />
     </View>
   );

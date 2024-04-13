@@ -6,7 +6,7 @@ import { IconButton, Appbar } from 'react-native-paper';
 //普通宣告
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-native';
 //宣告自己的物件
-import Filter from '../component/Filter';
+import Filter from '../Component/Filter';
 
 const SearchFilterScreen = ({ navigation }) => {
     return (

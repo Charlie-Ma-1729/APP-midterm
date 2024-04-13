@@ -6,7 +6,7 @@ import { IconButton, Appbar } from 'react-native-paper';
 //普通宣告
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-native';
 
-import PerDeck from "../component/PerDeck"
+import PerDeck from "../Component/PerDeck"
 
 const DeckTopScreen = ({ navigation }) => {
     return (
