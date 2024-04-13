@@ -8,6 +8,7 @@ export default StyleSheet.create({
   },
   cover: {
     width: 66,
+    height: 92,
   },
   ChartCard: {
     flex: 1,
@@ -27,4 +28,17 @@ export default StyleSheet.create({
     flex: 5,
     justifyContent: "center",
   },
+  chart: {
+    justifyContent: "center",
+    width: 1000,
+    flexDirection: "row",
+  },
+  barchart: {
+    width: 100,
+    flex: 1,
+  },
+  buts: {
+    width: 20,
+    flex:2
+  }
 });

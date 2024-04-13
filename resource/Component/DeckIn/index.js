@@ -33,7 +33,7 @@ const DeckIn = () => {
       <FlatList
         data={CardDataList}
         renderItem={({ item }) => (
-          <DeckInCard />
+          <DeckInCard picture={item.picture}/>
         )}
         horizontal={true}
         keyExtractor={(item) => item.packId}

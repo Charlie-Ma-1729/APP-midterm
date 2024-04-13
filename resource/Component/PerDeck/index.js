@@ -46,7 +46,7 @@ const PerDeck = () => {
           </View>
           <View style={style.rightContainer}>
             <Card mode="outlined" style={style.ChartCard}>
-              <View style={{ justifyContent: "center" }}>
+              <View style={style.chart}>
                 <BarChart
                   data={data}
                   barWidth={5}
@@ -63,13 +63,11 @@ const PerDeck = () => {
                     if (labelVal >= 10) return "10+";
                     return yLabel;
                   }}
+                  style={style.barchart}
                 />
               </View>
               <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
+                style={style.buts}
               >
                 <Button icon="camera" mode="contained" sizestyle={inlinestyle.attr}>
                   1000
