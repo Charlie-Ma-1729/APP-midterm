@@ -1,4 +1,4 @@
-import { PaperProvider, useTheme } from 'react-native-paper';
+import { PaperProvider } from 'react-native-paper';
 
 //react-native-paper提供的物件
 import { IconButton, Appbar, useTheme } from 'react-native-paper';
@@ -11,11 +11,7 @@ import PerDeck from "../Component/PerDeck"
 const DeckTopScreen = ({ navigation }) => {
     const theme = useTheme();
     return (
-<<<<<<< HEAD
-        <View style={{ backgroundColor: theme.colors.surface }}>
-=======
-        <View style={{ ...styles.container,backgroundColor:theme.colors.surface}}>
->>>>>>> 6981e9f6f10c19d9bf665077fb2ffdff3014a975
+        <View style={{ ...styles.container, backgroundColor: theme.colors.surface }}>
             <PerDeck />
             <StatusBar style="auto" />
         </View>
