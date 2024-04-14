@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
     cardNameBlock: {
         width: 328,
-        height: 56
+        height: 56,
     },
     typeBlock: {
         width: 328,

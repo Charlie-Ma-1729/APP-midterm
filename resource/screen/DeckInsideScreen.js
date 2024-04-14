@@ -1,4 +1,4 @@
-import { PaperProvider } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 //react-native-paper提供的物件
 import { IconButton, Appbar } from 'react-native-paper';
@@ -10,6 +10,7 @@ import DeckIn from "../Component/DeckIn"
 
 
 const DeckInsideScreen = ({ navigation }) => {
+    const theme = useTheme();
     return (
 
         <View style={{ backgroundColor: theme.colors.surface }}>

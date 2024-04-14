@@ -70,7 +70,7 @@ const FilterItem = ({ size, label, placeHolder = "---", menuList }) => {
                         <View style={{ ...type, backgroundColor: theme.colors.surface, borderWidth: borderWidth, borderColor: colorType }}>
                             <Text style={{ ...styles.lable, backgroundColor: theme.colors.surface, color: colorType }}>{label}
                             </Text>
-                            <Text style={styles.placeHolder}>{content}</Text>
+                            <Text style={{ ...styles.placeHolder, color: theme.colors.onSurface }}>{content}</Text>
                         </View>
                     </Pressable>}>
                 <ScrollView style={styles.scroll}>

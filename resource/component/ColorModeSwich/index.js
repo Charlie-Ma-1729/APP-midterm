@@ -25,7 +25,7 @@ const ColorModeSwich = () => {
     };
     return (
         <View style={styles.box}>
-            <Text style={styles.text}>顏色主題</Text>
+            <Text style={{ ...styles.text, color: theme.colors.onSurface }}>顏色主題</Text>
             <View style={styles.switchBox}>
                 <IconButton icon={"star-four-points"} size={40} iconColor={theme.colors.onSurface} />
                 <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color={theme.colors.primary} />

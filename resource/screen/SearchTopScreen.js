@@ -1,3 +1,4 @@
+import React from 'react';
 //react自帶的material disign
 import { PaperProvider } from 'react-native-paper';
 
@@ -8,9 +9,24 @@ import { IconButton, Appbar, useTheme, FAB } from 'react-native-paper';
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-native';
 //宣告自製物件
 import InfoCardList from '../Component/InfoCardList';
+import MyBottomSheet from '../Component/MyBottomSheet';
+//宣告bottom sheet'
+import BottomSheet, { BottomSheetView, useBottomSheet } from '@gorhom/bottom-sheet';
+
 
 const SearchTopScreen = ({ navigation }) => {
     const theme = useTheme();
+    //使用參照以開啟與關閉bottomSheet
+    const bottomSheetRef = React.useRef(null);
+
+    const openBottomSheet = () => {
+        bottomSheetRef.current?.expand();
+    };
+
+    const closeBottomSheet = () => {
+        bottomSheetRef.current?.close();
+    };
+
     return (
         <View style={{ ...styles.container, backgroundColor: theme.colors.surface }}>
             <StatusBar style="auto" />
@@ -21,6 +37,7 @@ const SearchTopScreen = ({ navigation }) => {
                 icon="filter"
                 onPress={() => navigation.navigate("篩選")} />
             <InfoCardList />
+            <MyBottomSheet />
         </View>
     );
 }

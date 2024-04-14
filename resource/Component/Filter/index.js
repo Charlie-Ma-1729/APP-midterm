@@ -12,7 +12,6 @@ import { selectcolorMode } from '../../redux/colorModeSlice';
 import { toggleColorMode } from '../../redux/colorModeSlice';
 //引入自己的元素
 import FilterItem from '../FilterItem';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const Filter = () => {
     //宣告導航
