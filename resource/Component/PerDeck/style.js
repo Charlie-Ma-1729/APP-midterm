@@ -29,13 +29,10 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   chart: {
-    justifyContent: "center",
     width: 1000,
-    flexDirection: "row",
   },
   barchart: {
-    width: 100,
-    flex: 1,
+    width: 200,
   },
   buts: {
     width: 20,

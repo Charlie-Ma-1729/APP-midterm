@@ -15,6 +15,7 @@ import i18next from "./i18next";
 
 export default function App() {
   const { t } = useTranslation();
+  
   return (
     <Provider store={store} >
       <Main />

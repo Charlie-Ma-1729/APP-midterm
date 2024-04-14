@@ -61,11 +61,11 @@ const PerDeck = () => {
               <View style={style.chart}>
                 <BarChart
                   data={data}
-                  barWidth={5}
+                  barWidth={10}
                   height={80}
                   xAxisLabelsVerticalShift={-8}
                   yAxisLabelWidth={30}
-                  spacing={12}
+                  spacing={20}
                   maxValue={10}
                   dashGap={0}
                   noOfSections={5}
@@ -82,7 +82,7 @@ const PerDeck = () => {
                   yAxisTextStyle={{color: theme.colors.primary}}
                 />
               </View>
-              <View style={style.buts}>
+              {/* <View style={style.buts}>
                 <Button
                   icon="camera"
                   mode="contained"
@@ -99,7 +99,7 @@ const PerDeck = () => {
                 <Button icon="camera" mode="contained" style={inlinestyle.attr}>
                   5
                 </Button>
-              </View>
+              </View> */}
             </Card>
           </View>
         </View>
