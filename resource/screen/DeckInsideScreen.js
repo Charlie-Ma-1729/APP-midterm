@@ -11,7 +11,8 @@ import DeckIn from "../Component/DeckIn"
 
 const DeckInsideScreen = ({ navigation }) => {
     return (
-        <View>
+
+        <View style={{ backgroundColor: theme.colors.surface }}>
             <DeckIn />
             <StatusBar style="auto" />
         </View>

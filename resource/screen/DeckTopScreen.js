@@ -10,7 +10,7 @@ import PerDeck from "../Component/PerDeck"
 
 const DeckTopScreen = ({ navigation }) => {
     return (
-        <View>
+        <View style={{backgroundColor:theme.colors.surface}}>
             <PerDeck />
             <StatusBar style="auto" />
         </View>
