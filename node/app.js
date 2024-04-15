@@ -8,7 +8,7 @@ const mongoDB = process.env.DB;
 require("./cardSchema");
 const Card = mongoose.model("Card");
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB);
 
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
