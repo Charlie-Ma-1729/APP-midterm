@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mid",
-    "slug": "mid",
+    "name": "mid_13_ZUTOMAYOapp",
+    "slug": "mid_13_ZUTOMAYOapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "594d9e66-cba2-4fc7-b8b3-302510428b54"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/594d9e66-cba2-4fc7-b8b3-302510428b54"
     }
   }
 }
