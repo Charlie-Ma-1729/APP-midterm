@@ -2,6 +2,8 @@ import React from 'react';
 //react自帶的material disign
 import { PaperProvider } from 'react-native-paper';
 
+import { useState } from "react";
+
 //react-native-paper提供的物件
 import { IconButton, Appbar, useTheme, FAB } from 'react-native-paper';
 
