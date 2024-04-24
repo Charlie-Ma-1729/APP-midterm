@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-between",
-        alignContent: "space-between",
         width: 134,
         height: 92,
         marginTop: 15

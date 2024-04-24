@@ -2,7 +2,7 @@ import * as React from "react";
 //引入物件
 import { Text, View, ScrollView, FlatList } from "react-native";
 import { Switch, useTheme, IconButton } from "react-native-paper";
-import axios from "axios";
+//import axios from "axios";
 //引入自訂物件
 import InfoCard from "../InfoCard";
 //引入風格
@@ -14,8 +14,8 @@ import CardDataList from "../../../node/data.json";
 const InfoCardList = () => {
   //使用theme
   const theme = useTheme();
-  axios
-    .get("http://10.199.12.234:3000/data.json")
+  // axios
+  //   .get("http://192.168.1.187:3000/data.json")
   return (
     <View style={styles.box}>
       <FlatList

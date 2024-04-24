@@ -11,18 +11,33 @@ import styles from './styles';
 const InfoCard = ({ packId, picture, name, type, element }) => {
     //使用theme
     const theme = useTheme();
+    //非角色卡沒有攻擊力，移除日月
+    let chipArr
+    if (type == "角色") {
+        chipArr = [
+            <InfoCardChip key={"cost"} label={"需能"} num={element.cost} />,
+            <InfoCardChip key={"charge"} label={"充能"} num={element.charge} />,
+            <InfoCardChip key={"time"} label={"走時"} num={element.time} />,
+            <InfoCardChip key={"attribute"} label={"屬性"} num={element.attribute} />,
+            <InfoCardChip key={"night"} label={"夜"} num={element.night} />,
+            <InfoCardChip key={"day"} label={"日"} num={element.day} />
+        ]
+    } else {
+        chipArr = [
+            <InfoCardChip key={"cost"} label={"需能"} num={element.cost} />,
+            <InfoCardChip key={"charge"} label={"充能"} num={element.charge} />,
+            <InfoCardChip key={"time"} label={"走時"} num={element.time} />,
+            <InfoCardChip key={"attribute"} label={"屬性"} num={element.attribute} />,
+        ]
+    }
+
     return (
         <View style={{ ...styles.box, backgroundColor: theme.colors.surfaceContainer }}>
             <Image style={styles.pic} source={{ uri: picture }} />
             <View style={styles.infoBox}>
                 <Text style={{ ...styles.cardName, color: theme.colors.onSurface }}>{name}</Text>
                 <View style={styles.chipBox}>
-                    <InfoCardChip label={"需能"} num={element.cost} />
-                    <InfoCardChip label={"充能"} num={element.charge} />
-                    <InfoCardChip label={"走時"} num={element.time} />
-                    <InfoCardChip label={"屬性"} num={element.attribute} />
-                    <InfoCardChip label={"夜"} num={element.night} />
-                    <InfoCardChip label={"日"} num={element.day} />
+                    {chipArr}
                 </View>
                 <View style={styles.bottomBox}>
                     <View>

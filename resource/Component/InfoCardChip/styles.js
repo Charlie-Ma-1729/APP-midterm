@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: 63,
         height: 22,
+        marginBottom: 14
     },
     labelBox: {
         alignItems: "center",

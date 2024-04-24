@@ -1,7 +1,8 @@
 [
     {
         "packId": "AATW-001",
-        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW-001.png",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-001.png",
         "name": "妮菈醬(殘機)",
         "type": "角色",
         "element": {
@@ -18,7 +19,8 @@
     },
     {
         "packId": "AATW-002",
-        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW-002.png",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-002.png",
         "name": "妮菈醬(踢飛的毛毯)",
         "type": "角色",
         "element": {
@@ -35,7 +37,8 @@
     },
     {
         "packId": "AATW-003",
-        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW-003.png",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-003.png",
         "name": "妮菈醬(袖中棉絨)",
         "type": "角色",
         "element": {
@@ -52,7 +55,8 @@
     },
     {
         "packId": "AATW-004",
-        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW-004.png",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-004.png",
         "name": "妮菈醬(對鏡曲)",
         "type": "角色",
         "element": {
@@ -69,19 +73,450 @@
     },
     {
         "packId": "AATW-005",
-        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW-005.png",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-005.png",
         "name": "灰狗的歇息",
         "type": "魔陣",
         "element": {
             "cost": 5,
             "charge": 0,
             "time": 1,
-            "attribute": "暗",
-            "night": 0,
-            "day": 0
+            "attribute": "暗"
         },
         "effect": "對手角色卡的時計無效，晝夜變換的回合結束時此卡送去深淵",
         "rare": "UR",
         "illustrator": "Shino"
+    },
+    {
+        "packId": "AATW-006",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-006.png",
+        "name": "有頭那時的他",
+        "type": "魔咒",
+        "element": {
+            "cost": 2,
+            "charge": 0,
+            "time": 2,
+            "attribute": "炎"
+        },
+        "effect": "同時打出的角色卡需能-2",
+        "rare": "UR",
+        "illustrator": "革蟬"
+    },
+    {
+        "packId": "AATW-007",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-007.png",
+        "name": "集風",
+        "type": "魔陣",
+        "element": {
+            "cost": 3,
+            "charge": 0,
+            "time": 1,
+            "attribute": "電氣"
+        },
+        "effect": "自己的攻擊力以早上計算，對手使用魔陣卡的回合結束時此卡送去深淵",
+        "rare": "UR",
+        "illustrator": "Shino"
+    },
+    {
+        "packId": "AATW-008",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-008.png",
+        "name": "閃耀女僕出動",
+        "type": "魔咒",
+        "element": {
+            "cost": 3,
+            "charge": 1,
+            "time": 0,
+            "attribute": "風"
+        },
+        "effect": "自己的角色卡是電氣屬性時，選對手充能區合計最多2充能的卡回到牌組底",
+        "rare": "UR",
+        "illustrator": "こむぎこ2000"
+    },
+    {
+        "packId": "AATW-009",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-009.png",
+        "name": "妮菈醬(去學習吧)",
+        "type": "角色",
+        "element": {
+            "cost": 0,
+            "charge": 1,
+            "time": 1,
+            "attribute": "暗",
+            "night": 30,
+            "day": 20
+        },
+        "effect": "對手的角色卡若是風屬性時，攻擊力+20",
+        "rare": "SR",
+        "illustrator": "saziko"
+    },
+    {
+        "packId": "AATW-010",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-010.png",
+        "name": "妮菈醬(殘機)",
+        "type": "角色",
+        "element": {
+            "cost": 1,
+            "charge": 1,
+            "time": 0,
+            "attribute": "暗",
+            "night": 40,
+            "day": 20
+        },
+        "effect": "上個回合使用的角色卡若為炎屬性時，攻擊力+20",
+        "rare": "SR",
+        "illustrator": "Sasemi"
+    },
+    {
+        "packId": "AATW-011",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-011.png",
+        "name": "妮菈醬(直覺敏銳令我後悔)",
+        "type": "角色",
+        "element": {
+            "cost": 2,
+            "charge": 1,
+            "time": 3,
+            "attribute": "暗",
+            "night": 50,
+            "day": 20
+        },
+        "effect": "上個回合使用的角色卡若為炎屬性時，再額外追加0~5時計前進",
+        "rare": "SR",
+        "illustrator": "ryuMA"
+    },
+    {
+        "packId": "AATW-012",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-012.png",
+        "name": "妮菈醬(那些傢伙全員同學會)",
+        "type": "角色",
+        "element": {
+            "cost": 3,
+            "charge": 0,
+            "time": 1,
+            "attribute": "暗",
+            "night": 90,
+            "day": 50
+        },
+        "effect": "",
+        "rare": "SR",
+        "illustrator": "aoino"
+    },
+    {
+        "packId": "AATW-013",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-013.png",
+        "name": "爆炸頭武士(綺羅殺手)",
+        "type": "角色",
+        "element": {
+            "cost": 4,
+            "charge": 0,
+            "time": 1,
+            "attribute": "炎",
+            "night": 60,
+            "day": 100
+        },
+        "effect": "",
+        "rare": "SR",
+        "illustrator": "OSAkechan"
+    },
+    {
+        "packId": "AATW-014",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-014.png",
+        "name": "真夜泡麵號",
+        "type": "角色",
+        "element": {
+            "cost": 6,
+            "charge": 0,
+            "time": 4,
+            "attribute": "炎",
+            "night": 90,
+            "day": 100
+        },
+        "effect": "深淵的暗屬性卡牌兩張以上時，回復20HP",
+        "rare": "SR",
+        "illustrator": "yucachi"
+    },
+    {
+        "packId": "AATW-015",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-015.png",
+        "name": "垂頭鯊遊具",
+        "type": "角色",
+        "element": {
+            "cost": 5,
+            "charge": 1,
+            "time": 0,
+            "attribute": "炎",
+            "night": 50,
+            "day": 70
+        },
+        "effect": "上個回合使用的角色為暗屬性，且時間為早上時，追加使用一張卡，那之後，抽一張卡。",
+        "rare": "SR",
+        "illustrator": "skmaru"
+    },
+    {
+        "packId": "AATW-016",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-016.png",
+        "name": "妮菈中國(去學習吧)",
+        "type": "角色",
+        "element": {
+            "cost": 7,
+            "charge": 0,
+            "time": 2,
+            "attribute": "炎",
+            "night": 110,
+            "day": 150
+        },
+        "effect": "",
+        "rare": "SR",
+        "illustrator": "mike"
+    },
+    {
+        "packId": "AATW-017",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-017.png",
+        "name": "妮菈醬(袖中棉絨)",
+        "type": "角色",
+        "element": {
+            "cost": 1,
+            "charge": 0,
+            "time": 2,
+            "attribute": "電氣",
+            "night": 20,
+            "day": 80
+        },
+        "effect": "",
+        "rare": "SR",
+        "illustrator": "ToruKirishima"
+    },
+    {
+        "packId": "AATW-018",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-018.png",
+        "name": "博士(低血螺栓)",
+        "type": "角色",
+        "element": {
+            "cost": 1,
+            "charge": 1,
+            "time": 0,
+            "attribute": "電氣",
+            "night": 30,
+            "day": 30
+        },
+        "effect": "前一個回合使用的角色卡為風屬性時，攻擊力+20",
+        "rare": "SR",
+        "illustrator": "to/garashi"
+    },
+    {
+        "packId": "AATW-019",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-019.png",
+        "name": "灰(對鏡曲)",
+        "type": "角色",
+        "element": {
+            "cost": 2,
+            "charge": 1,
+            "time": 1,
+            "attribute": "電氣",
+            "night": 20,
+            "day": 40
+        },
+        "effect": "前一個回合使用的角色卡為風屬性時，選對手充能區最多1充能的卡回到對手牌組底",
+        "rare": "SR",
+        "illustrator": "enen"
+    },
+    {
+        "packId": "AATW-020",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-020.png",
+        "name": "妮菈醬[電視台攝影人員](貓重製)",
+        "type": "角色",
+        "element": {
+            "cost": 6,
+            "charge": 0,
+            "time": 0,
+            "attribute": "電氣",
+            "night": 90,
+            "day": 130
+        },
+        "effect": "",
+        "rare": "SR",
+        "illustrator": "skmaru"
+    },
+    {
+        "packId": "AATW-021",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-021.png",
+        "name": "妮菈醬(咬住秒針)",
+        "type": "角色",
+        "element": {
+            "cost": 0,
+            "charge": 1,
+            "time": 2,
+            "attribute": "風",
+            "night": 30,
+            "day": 20
+        },
+        "effect": "對手的角色卡為暗屬性時，攻擊力+20",
+        "rare": "SR",
+        "illustrator": "nezumi"
+    },
+    {
+        "packId": "AATW-022",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-022.png",
+        "name": "妮菈女僕·娜娜西·殺手醬",
+        "type": "角色",
+        "element": {
+            "cost": 1,
+            "charge": 1,
+            "time": 1,
+            "attribute": "風",
+            "night": 50,
+            "day": 10
+        },
+        "effect": "前一個回合使用的角色卡為電氣屬性時，攻擊力+20",
+        "rare": "SR",
+        "illustrator": "nijimaarc"
+    },
+    {
+        "packId": "AATW-023",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-023.png",
+        "name": "妮菈醬(綺羅殺手)",
+        "type": "角色",
+        "element": {
+            "cost": 2,
+            "charge": 0,
+            "time": 3,
+            "attribute": "風",
+            "night": 60,
+            "day": 40
+        },
+        "effect": "前一個回合使用的角色卡為電氣屬性，且對手的角色卡為炎或暗屬性時，攻擊力+40",
+        "rare": "SR",
+        "illustrator": "BAWA"
+    },
+    {
+        "packId": "AATW-024",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-024.png",
+        "name": "妮菈醬(對鏡曲)",
+        "type": "角色",
+        "element": {
+            "cost": 2,
+            "charge": 1,
+            "time": 1,
+            "attribute": "風",
+            "night": 50,
+            "day": 20
+        },
+        "effect": "前一個回合使用的角色卡為電氣屬性，且時間為夜晚時，選對手充能區最多充能1的卡回到牌組底",
+        "rare": "SR",
+        "illustrator": "gacha"
+    },
+    {
+        "packId": "AATW-025",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-025.png",
+        "name": "震天之聲滌淨耳際",
+        "type": "魔咒",
+        "element": {
+            "cost": 3,
+            "charge": 0,
+            "time": 3,
+            "attribute": "暗"
+        },
+        "effect": "夜晚時，攻擊力+50",
+        "rare": "SR",
+        "illustrator": "SHIKIDA"
+    },
+    {
+        "packId": "AATW-026",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-026.png",
+        "name": "灰版電機工業株式會社的幹部們",
+        "type": "魔咒",
+        "element": {
+            "cost": 1,
+            "charge": 1,
+            "time": 2,
+            "attribute": "暗"
+        },
+        "effect": "夜晚時，與此卡一起打出的角色卡攻擊力+30",
+        "rare": "SR",
+        "illustrator": "KazuKing"
+    },
+    {
+        "packId": "AATW-027",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-027.png",
+        "name": "刺蝟君拿坡里義大利麵",
+        "type": "魔咒",
+        "element": {
+            "cost": 0,
+            "charge": 0,
+            "time": 3,
+            "attribute": "炎"
+        },
+        "effect": "手牌兩張卡洗回牌庫底，抽兩張卡",
+        "rare": "SR",
+        "illustrator": "Cherry"
+    },
+    {
+        "packId": "AATW-028",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-028.png",
+        "name": "浴缸中的慶功宴",
+        "type": "魔咒",
+        "element": {
+            "cost": 4,
+            "charge": 1,
+            "time": 3,
+            "attribute": "炎"
+        },
+        "effect": "自己的角色卡和對手需能相同時，攻擊力+40",
+        "rare": "SR",
+        "illustrator": "IKATUME"
+    },
+    {
+        "packId": "AATW-029",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-029.png",
+        "name": "熬夜",
+        "type": "魔咒",
+        "element": {
+            "cost": 5,
+            "charge": 1,
+            "time": 4,
+            "attribute": "電氣"
+        },
+        "effect": "對手的角色卡需能6以上時，攻擊力+50",
+        "rare": "SR",
+        "illustrator": "shimakuma"
+    },
+    {
+        "packId": "AATW-030",
+        "pack": "AATW",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-030.png",
+        "name": "刺蝟君培養中",
+        "type": "魔咒",
+        "element": {
+            "cost": 3,
+            "charge": 0,
+            "time": 3,
+            "attribute": "電氣"
+        },
+        "effect": "白天時，攻擊力+50",
+        "rare": "SR",
+        "illustrator": "ironiga"
     }
 ]
