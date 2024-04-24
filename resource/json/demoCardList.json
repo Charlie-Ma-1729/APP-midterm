@@ -12,7 +12,9 @@
             "night": 140,
             "day": 80
         },
-        "effect": ""
+        "effect": "",
+        "rare": "UR",
+        "illustrator": "TV♡CHANY"
     },
     {
         "packId": "AATW-002",
@@ -27,7 +29,9 @@
             "night": 140,
             "day": 140
         },
-        "effect": ""
+        "effect": "",
+        "rare": "UR",
+        "illustrator": "革蟬"
     },
     {
         "packId": "AATW-003",
@@ -42,7 +46,9 @@
             "night": 110,
             "day": 150
         },
-        "effect": ""
+        "effect": "",
+        "rare": "UR",
+        "illustrator": "G子"
     },
     {
         "packId": "AATW-004",
@@ -57,6 +63,25 @@
             "night": 100,
             "day": 60
         },
-        "effect": ""
+        "effect": "",
+        "rare": "UR",
+        "illustrator": "TV♡CHANY"
+    },
+    {
+        "packId": "AATW-005",
+        "picture": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW-005.png",
+        "name": "灰狗的歇息",
+        "type": "魔陣",
+        "element": {
+            "cost": 5,
+            "charge": 0,
+            "time": 1,
+            "attribute": "暗",
+            "night": 0,
+            "day": 0
+        },
+        "effect": "對手角色卡的時計無效，晝夜變換的回合結束時此卡送去深淵",
+        "rare": "UR",
+        "illustrator": "Shino"
     }
 ]
