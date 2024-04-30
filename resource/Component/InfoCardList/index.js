@@ -14,8 +14,8 @@ import CardDataList from "../../../node/data.json";
 const InfoCardList = () => {
   //使用theme
   const theme = useTheme();
-  axios
-    .get("http://imatw.org:3300/data.json")
+  // axios
+  //   .get("http://imatw.org:3300/data.json")
   return (
     <View style={styles.box}>
       <FlatList
