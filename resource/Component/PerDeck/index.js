@@ -8,7 +8,7 @@ import { Image, View } from "react-native";
 import style from "./style.js";
 import { useTheme } from "react-native-paper";
 
-const cardImg = require("../../../assets/images/AATW-001.png");
+const cardImg = require("../../../assets/images/AATW/AATW-001.png");
 
 const PerDeck = () => {
   const theme = useTheme();

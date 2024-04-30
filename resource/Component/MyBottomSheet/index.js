@@ -39,7 +39,7 @@ const MyBottomSheet = () => {
             }}
         >
             <BottomSheetView style={{ ...styles.box }}>
-                <Image style={styles.card} source={require("../../../assets/images/AATW-001.png")} />
+                <Image style={styles.card} source={require("../../../assets/images/AATW/AATW-001.png")} />
                 <View style={styles.detailBox}>
                     <View style={styles.chipBox}>
                         <MyBottomSheetChip lable={"需能"} num={6} />
