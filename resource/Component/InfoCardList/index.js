@@ -1,8 +1,9 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 //引入物件
 import { Text, View, ScrollView, FlatList } from "react-native";
 import { Switch, useTheme, IconButton } from "react-native-paper";
-//import axios from "axios";
+import axios from "axios";
 //引入自訂物件
 import InfoCard from "../InfoCard";
 //引入風格
@@ -11,11 +12,15 @@ import styles from "./styles";
 
 //測試用資料
 import CardDataList from "../../../node/data.json";
+import { use } from "i18next";
 const InfoCardList = () => {
   //使用theme
   const theme = useTheme();
-  // axios
-  //   .get("http://imatw.org:3300/data.json")
+  useEffect(() => {
+    axios
+    .get("http://imatw.org:3300/data.json")
+  }, []);
+  
   return (
     <View style={styles.box}>
       <FlatList
