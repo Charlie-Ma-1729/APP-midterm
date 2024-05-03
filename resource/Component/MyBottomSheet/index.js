@@ -26,7 +26,7 @@ const MyBottomSheet = () => {
     return (
         <BottomSheet
             ref={bottomSheetRef}
-            snapPoints={[25, "50%", "100%"]}
+            snapPoints={[20, "90%"]}
             handleStyle={{
                 borderRadius: 28,
                 backgroundColor: theme.colors.surfaceContainerHighest
@@ -40,24 +40,31 @@ const MyBottomSheet = () => {
         >
             <BottomSheetView style={{ ...styles.box }}>
                 <Image style={styles.card} source={require("../../../assets/images/AATW/AATW-001.png")} />
-                <View style={styles.detailBox}>
-                    <View style={styles.chipBox}>
-                        <MyBottomSheetChip lable={"需能"} num={6} />
-                        <MyBottomSheetChip lable={"充能"} num={0} />
-                        <MyBottomSheetChip lable={"走時"} num={5} />
-                        <MyBottomSheetChip lable={"屬性"} num={"暗"} />
-                        <MyBottomSheetChip lable={"夜"} num={140} />
-                        <MyBottomSheetChip lable={"日"} num={80} />
-                    </View>
-                    <View style={{ ...styles.effectBox, backgroundColor: theme.colors.surfaceContainer }}>
-                        <Text style={{ ...styles.effectText, color: theme.colors.onSurface }}>
-                            效果
-                        </Text>
-                        <Divider />
-                        <Text style={{ ...styles.effectText, color: theme.colors.onSurface }}>
-                            {"沒有喔目前"}
-                        </Text>
-                    </View>
+
+                <View style={styles.chipBox}>
+                    <MyBottomSheetChip lable={"需能"} num={6} />
+                    <MyBottomSheetChip lable={"充能"} num={0} />
+                    <MyBottomSheetChip lable={"走時"} num={5} />
+                    <MyBottomSheetChip lable={"屬性"} num={"暗"} />
+                    <MyBottomSheetChip lable={"夜"} num={140} />
+                    <MyBottomSheetChip lable={"日"} num={80} />
+                </View>
+                <View style={{ ...styles.infoBox }}>
+                    <Text style={{ ...styles.nameText, color: theme.colors.onSurface }}>妮菈醬(殘機)</Text>
+                    <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>角色</Text>
+                    <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>AATW-015</Text>
+                </View>
+                <View style={{ ...styles.effectBox, backgroundColor: theme.colors.surfaceContainer }}>
+                    <Text style={{ ...styles.effectText, color: theme.colors.onSurface }}>
+                        效果
+                    </Text>
+                    <Divider />
+                    <Text style={{ ...styles.effectText, color: theme.colors.onSurface }}>
+                        {"沒有喔目前"}
+                    </Text>
+                </View>
+                <View>
+                    <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>illustrator:skmaru</Text>
                 </View>
             </BottomSheetView>
         </BottomSheet>

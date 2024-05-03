@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignItems: "center",
         width: 154,
-        height: 44,
+        height: 30,
         borderRadius: 20,
     },
     lableBox: {
