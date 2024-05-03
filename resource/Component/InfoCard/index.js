@@ -35,7 +35,7 @@ const InfoCard = ({ packId, picture, name, type, element }) => {
         <View style={{ ...styles.box, backgroundColor: theme.colors.surfaceContainer }}>
             <Image style={styles.pic} source={{ uri: picture }} />
             <View style={styles.infoBox}>
-                <Text style={{ ...styles.cardName, color: theme.colors.onSurface }}>{name}</Text>
+                <Text numberOfLines={1} ellipsizeMode="tail" style={{ ...styles.cardName, color: theme.colors.onSurface }}>{name}</Text>
                 <View style={styles.chipBox}>
                     {chipArr}
                 </View>
