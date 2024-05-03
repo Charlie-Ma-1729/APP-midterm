@@ -1,5 +1,7 @@
 const express = require("express");
+const cors = require('cors');
 const app = express();
+app.use(cors());
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -31,6 +33,6 @@ function saveJson(data, callback) {
 }
 
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(3300, () => {
+  console.log("Server is running on port 3300");
 });
