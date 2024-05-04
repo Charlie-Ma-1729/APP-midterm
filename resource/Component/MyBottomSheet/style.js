@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     card: {
+        marginTop: 10,
         width: 154,
         height: 216
     },
@@ -28,6 +29,10 @@ const styles = StyleSheet.create({
         height: 160,
         borderRadius: 10
     },
+    effectBoxInside: {
+        width: 288,
+        marginLeft: 20
+    },
     //用於儲存字體
     nameText: {
         fontSize: 20,
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
     },
     effectText: {
         fontSize: 16,
-        marginLeft: 20
+        marginTop: 5
     }
 });
 

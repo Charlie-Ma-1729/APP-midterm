@@ -33,6 +33,8 @@ const InfoCardList = () => {
             name={item.name}
             type={item.type}
             element={item.element}
+            effect={item.effect}
+            illustrator={item.illustrator}
           />
         )}
         showsVerticalScrollIndicator={false}

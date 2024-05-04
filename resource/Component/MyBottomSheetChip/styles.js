@@ -13,9 +13,10 @@ const styles = StyleSheet.create({
         height: 30,
     },
     numBox: {
+
         alignItems: "center",
         justifyContent: "center",
-        width: 30,
+        width: 40,
         height: 40,
     },
     text: {
