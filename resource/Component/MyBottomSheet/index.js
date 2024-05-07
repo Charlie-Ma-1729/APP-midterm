@@ -9,6 +9,9 @@ import { Text, View, StatusBar, ScrollView, Image } from 'react-native';
 import BottomSheet, { BottomSheetView, BottomSheetScrollView, useBottomSheet } from '@gorhom/bottom-sheet';
 //引用自己的物件
 import MyBottomSheetChip from '../MyBottomSheetChip';
+//引入store函式
+import { useDispatch, useSelector } from 'react-redux';
+import { selectsheetContent } from '../../redux/sheetContentSlice';
 
 const MyBottomSheet = () => {
     const theme = useTheme();
@@ -23,10 +26,12 @@ const MyBottomSheet = () => {
         bottomSheetRef.current?.close();
     };
 
+    //使用store，將其帶入
+    const sheetContent = useSelector(selectsheetContent);
     return (
         <BottomSheet
             ref={bottomSheetRef}
-            snapPoints={[25, "50%", "100%"]}
+            snapPoints={[25, "90%"]}
             handleStyle={{
                 borderRadius: 28,
                 backgroundColor: theme.colors.surfaceContainerHighest
@@ -39,25 +44,34 @@ const MyBottomSheet = () => {
             }}
         >
             <BottomSheetView style={{ ...styles.box }}>
-                <Image style={styles.card} source={require("../../../assets/images/AATW/AATW-001.png")} />
-                <View style={styles.detailBox}>
-                    <View style={styles.chipBox}>
-                        <MyBottomSheetChip lable={"需能"} num={6} />
-                        <MyBottomSheetChip lable={"充能"} num={0} />
-                        <MyBottomSheetChip lable={"走時"} num={5} />
-                        <MyBottomSheetChip lable={"屬性"} num={"暗"} />
-                        <MyBottomSheetChip lable={"夜"} num={140} />
-                        <MyBottomSheetChip lable={"日"} num={80} />
-                    </View>
-                    <View style={{ ...styles.effectBox, backgroundColor: theme.colors.surfaceContainer }}>
+                <Image style={styles.card} source={{ uri: sheetContent.sheetContent.sheetPicture }} />
+
+                <View style={styles.chipBox}>
+                    <MyBottomSheetChip lable={"需能"} num={sheetContent.sheetContent.sheetElement.elementCost} />
+                    <MyBottomSheetChip lable={"充能"} num={sheetContent.sheetContent.sheetElement.elementCharge} />
+                    <MyBottomSheetChip lable={"走時"} num={sheetContent.sheetContent.sheetElement.elementTime} />
+                    <MyBottomSheetChip lable={"屬性"} num={sheetContent.sheetContent.sheetElement.elementAttribute} />
+                    <MyBottomSheetChip lable={"夜"} num={sheetContent.sheetContent.sheetElement.elementNight} />
+                    <MyBottomSheetChip lable={"日"} num={sheetContent.sheetContent.sheetElement.elementDay} />
+                </View>
+                <View style={{ ...styles.infoBox }}>
+                    <Text style={{ ...styles.nameText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetName}</Text>
+                    <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetType}</Text>
+                    <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetPackId}</Text>
+                </View>
+                <View style={{ ...styles.effectBox, backgroundColor: theme.colors.surfaceContainer }}>
+                    <View style={styles.effectBoxInside}>
                         <Text style={{ ...styles.effectText, color: theme.colors.onSurface }}>
                             效果
                         </Text>
                         <Divider />
                         <Text style={{ ...styles.effectText, color: theme.colors.onSurface }}>
-                            {"沒有喔目前"}
+                            {sheetContent.sheetContent.sheetEffect}
                         </Text>
                     </View>
+                </View>
+                <View>
+                    <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>illustrator:{sheetContent.sheetContent.sheetIllustrator}</Text>
                 </View>
             </BottomSheetView>
         </BottomSheet>

@@ -18,9 +18,9 @@ const InfoCardList = () => {
   const theme = useTheme();
   useEffect(() => {
     axios
-    .get("http://imatw.org:3300/data.json")
+      .get("http://imatw.org:3300/data.json")
   }, []);
-  
+
   return (
     <View style={styles.box}>
       <FlatList
@@ -33,8 +33,11 @@ const InfoCardList = () => {
             name={item.name}
             type={item.type}
             element={item.element}
+            effect={item.effect}
+            illustrator={item.illustrator}
           />
         )}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.packId}
       />
     </View>
