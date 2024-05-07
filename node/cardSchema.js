@@ -1,3 +1,4 @@
+const { text } = require("body-parser");
 const mongoose = require("mongoose");
 
 const cardSchema = new mongoose.Schema({
@@ -61,5 +62,4 @@ const cardSchema = new mongoose.Schema({
     required: true,
   },
 });
-
 mongoose.model("Card", cardSchema);

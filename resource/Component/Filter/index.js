@@ -26,11 +26,11 @@ const Filter = () => {
         "The World Is Changing",
         "All Along With The Watchtower"
     ]
-    const costMenu = [0, 1, 2, 3, 4, 5, +6];
+    const costMenu = [0, 1, 2, 3, 4, 5, "6+"];
     const chargeMenu = [0, 1, 2];
     const timeMenu = [0, 1, 2, 3, 4, 5];
     const attributeMenu = ["火", "暗", "風", "電氣"];
-    const attackMenu = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, +120]
+    const attackMenu = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, "120+"]
     return (
         <View style={styles.Box}>
             <View style={styles.formBox}>

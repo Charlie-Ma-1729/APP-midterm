@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
 app.use(cors());
 const bodyParser = require("body-parser");
@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 const mongoDB = process.env.DB;
-const fs = require('fs');
+const fs = require("fs");
 require("./cardSchema");
 const Card = mongoose.model("Card");
 
@@ -19,7 +19,7 @@ mongoose.connection.on("connected", () => {
 
 app.get("/data.json", async (req, res) => {
   const jsonData = await Card.find();
-  saveJson(jsonData, (err)=> {
+  saveJson(jsonData, (err) => {
     if (err) {
       console.log(err);
     }
@@ -27,15 +27,49 @@ app.get("/data.json", async (req, res) => {
   res.json(jsonData);
 });
 
-
 function saveJson(data, callback) {
-  fs.writeFile('./data.json', JSON.stringify(data), callback);
+  fs.writeFile("./data.json", JSON.stringify(data), callback);
 }
 
-app.get("filter", async (req, res) => {
-  
-  const jsonData = await Card.find({type: req.query.type});
-
+app.get("/filter", async (req, res) => {
+  try {
+    const {pack,type,cost,charge,time,attribute,night,day,name } = req.query;
+    let query = {};
+    if (pack) {
+      query.pack = pack;
+    }
+    if (type) {
+      query.type = type;
+    }
+    if (cost) {
+      query["element.cost"] = parseInt(cost);
+    }
+    if (charge) {
+      query["element.charge"] = parseInt(charge);
+    }
+    if (time) {
+      query["element.time"] = parseInt(time);
+    }
+    if (attribute) {
+      query["element.attribute"] = attribute;
+    }
+    if (night) {
+      query["element.night"] = parseInt(night);
+    }
+    if (day) {
+      query["element.day"] = parseInt(day);
+    }
+    if (name) {
+      Card.collection.createIndex({ name: "text" });
+      query.$text = { $search: name };
+    }
+    const jsonData = await Card.find(query);
+    res.json(jsonData);
+  } catch (error) {
+    console.error("過濾卡片失敗:", error);
+    res.status(500).send("伺服器發生錯誤");
+  }
+});
 
 app.listen(3300, () => {
   console.log("Server is running on port 3300");
