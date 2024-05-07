@@ -32,6 +32,10 @@ function saveJson(data, callback) {
   fs.writeFile('./data.json', JSON.stringify(data), callback);
 }
 
+app.get("filter", async (req, res) => {
+  
+  const jsonData = await Card.find({type: req.query.type});
+
 
 app.listen(3300, () => {
   console.log("Server is running on port 3300");

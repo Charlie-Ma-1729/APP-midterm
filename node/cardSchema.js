@@ -6,6 +6,10 @@ const cardSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  pack: {
+    type: String,
+    required: true,
+  },
   picture: {
     type: String,
     required: true,
@@ -47,6 +51,14 @@ const cardSchema = new mongoose.Schema({
   effect: {
     type: String,
     required: false,
+  },
+  rare: {
+    type: String,
+    required: true,
+  },
+  illustrator: {
+    type: String,
+    required: true,
   },
 });
 
