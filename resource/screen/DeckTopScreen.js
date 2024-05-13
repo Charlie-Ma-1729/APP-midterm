@@ -7,12 +7,14 @@ import { IconButton, Appbar, useTheme } from 'react-native-paper';
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-native';
 
 import PerDeck from "../Component/PerDeck"
+import NewDeck from '../Component/NewDeck';
 
 const DeckTopScreen = ({ navigation }) => {
     const theme = useTheme();
     return (
         <View style={{ ...styles.container, backgroundColor: theme.colors.surface }}>
             <PerDeck />
+            <NewDeck />
             <StatusBar style="auto" />
         </View>
     );
