@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 //自己的reducer
 import colorModeReducer from './colorModeSlice';
 import sheetContentReducer from './sheetContentSlice';
+import filterReducer from './filterSlice';
 //persist變數
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,6 +16,7 @@ export const store = configureStore({
     reducer: {
         colorMode: persistReducer(persistConfig, colorModeReducer),
         sheetContent: sheetContentReducer,
+        filter: filterReducer
     },
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) =>

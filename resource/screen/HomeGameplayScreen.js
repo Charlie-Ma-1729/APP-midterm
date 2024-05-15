@@ -9,21 +9,13 @@ import HomeButton from '../Component/HomeButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectcolorMode } from '../redux/colorModeSlice';
 
-const HomeTopScreen = ({ navigation }) => {
+const HomeGameplayScreen = ({ navigation }) => {
     const theme = useTheme();//引入主題以使用主題
     const colorMode = useSelector(selectcolorMode);
     let StatusBarMode = colorMode.colorMode === "dark" ? "dark-content" : "light-content";
     return (
         <View style={{ ...styles.container, backgroundColor: theme.colors.surface }}>
             <StatusBar backgroundColor={theme.colors.secondary} barStyle={StatusBarMode} style="auto" />
-            <Image style={{ width: 328, height: 164, marginTop: 20 }} source={require("../../assets/images/news.jpg")} />
-            <View style={styles.buttonContainer}>
-                <HomeButton type={"big"} color={theme.colors.primary} icon={"gamepad-square"} label={"遊戲工具"} />
-            </View>
-            <View style={styles.buttonContainer}>
-                <HomeButton type={"small"} color={theme.colors.secondary} icon={"book-open-variant"} label={"說明書"} />
-                <HomeButton type={"small"} color={theme.colors.tertiary} icon={"history"} label={"更新歷史"} />
-            </View>
         </View>
     );
 }
@@ -42,4 +34,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeTopScreen;
+export default HomeGameplayScreen;

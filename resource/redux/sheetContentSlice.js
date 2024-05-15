@@ -26,7 +26,7 @@ const sheetContentSlice = createSlice({
     initialState,
     //定義函式(action)
     reducers: {
-        //傳一個物件，全部由蓋物件一次設置
+        //傳一個物件，全部由該物件一次設置
         //在使用全域變數時，請務必以state, action為引數
         setSheetContent: (state, action) => {
             const { tarPicture, tarName, tarType, tarPackId, tarEffect, tarIllustrator, tarElement } = action.payload;
@@ -42,6 +42,7 @@ const sheetContentSlice = createSlice({
                 state.sheetContent.sheetElement.elementCharge = tarCharge;
                 state.sheetContent.sheetElement.elementTime = tarTime;
                 state.sheetContent.sheetElement.elementAttribute = tarAttribute;
+                //不是腳色卡就沒有攻擊
                 if (tarType == "角色") {
                     state.sheetContent.sheetElement.elementNight = tarNight;
                     state.sheetContent.sheetElement.elementDay = tarDay;

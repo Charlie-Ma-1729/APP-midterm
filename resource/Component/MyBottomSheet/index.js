@@ -28,10 +28,12 @@ const MyBottomSheet = () => {
 
     //使用store，將其帶入
     const sheetContent = useSelector(selectsheetContent);
+    //若內容變更，則張開
+    React.useEffect(() => { openBottomSheet() }, [sheetContent])
     return (
         <BottomSheet
             ref={bottomSheetRef}
-            snapPoints={[25, "90%"]}
+            snapPoints={[25, "50%", "90%"]}
             handleStyle={{
                 borderRadius: 28,
                 backgroundColor: theme.colors.surfaceContainerHighest
