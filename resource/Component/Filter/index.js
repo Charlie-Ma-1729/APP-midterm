@@ -19,8 +19,8 @@ const Filter = () => {
     //宣告主題
     const theme = useTheme();
     //宣告表單基礎變數
-    const [cardName, setCardName] = React.useState("");
-    const [type, setType] = React.useState("");
+    const [cardName, setCardName] = React.useState(null);
+    const [type, setType] = React.useState(null);
     //宣告列表選項矩陣
     const cardPackMenu = [
         "The World Is Changing",
@@ -48,7 +48,14 @@ const Filter = () => {
                 <SegmentedButtons
                     style={styles.typeBlock}
                     value={type}
-                    onValueChange={setType}
+                    onValueChange={(value) => {
+                        if (type == value) {
+                            setType(null);
+                        }
+                        else {
+                            setType(value);
+                        }
+                    }}
                     theme={{ colors: { secondaryContainer: theme.colors.primary } }}
                     buttons={[
                         {
