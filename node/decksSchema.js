@@ -14,15 +14,13 @@ const decksSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  element: {
-    cardId: {
-      type: [String],
-      required: true,
-    },
-    count: {
-      type: [Number],
-      required: true,
-    },
+  cardId: {
+    type: [String],
+    required: true,
+  },
+  count: {
+    type: [Number],
+    required: true,
   },
 });
 

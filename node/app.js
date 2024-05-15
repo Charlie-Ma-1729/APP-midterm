@@ -9,6 +9,7 @@ dotenv.config();
 const mongoDB = process.env.DB;
 const fs = require("fs");
 require("./cardSchema");
+const DeckSchema = require("./deckSchema");
 const Card = mongoose.model("Card");
 
 mongoose.connect(mongoDB);
@@ -33,7 +34,8 @@ function saveJson(data, callback) {
 
 app.get("/filter", async (req, res) => {
   try {
-    const {pack,type,cost,charge,time,attribute,night,day,name } = req.query;
+    const { pack, type, cost, charge, time, attribute, night, day, name } =
+      req.query;
     let query = {};
     if (pack) {
       query.pack = pack;
@@ -69,6 +71,16 @@ app.get("/filter", async (req, res) => {
     console.error("過濾卡片失敗:", error);
     res.status(500).send("伺服器發生錯誤");
   }
+});
+
+app.post("/newDeck", async (req, res) => {
+  const newDeck = new DeckSchema({
+    name: query.name,
+    deckId: query.deckId,
+    picture: query.picture,
+    cardId: query.cardId,
+    count: query.count,
+  });
 });
 
 app.listen(3300, () => {
