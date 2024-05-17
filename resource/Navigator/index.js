@@ -17,6 +17,7 @@ import i18next from "../../i18next";
 //導入頁面
 import HomeTopScreen from "../screen/HomeTopScreen";
 import HomeGameplayScreen from "../screen/HomeGameplayScreen";
+import HomeManualScreen from "../screen/HomeManualScreen";
 import SearchTopScreen from "../screen/SearchTopScreen";
 import SearchFilterScreen from "../screen/SearchFilterScreen";
 import DeckTopScreen from "../screen/DeckTopScreen";
@@ -43,6 +44,7 @@ const HomeStack = () => {
     >
       <Stack.Screen name="主頁" component={HomeTopScreen} />
       <Stack.Screen name="遊戲" component={HomeGameplayScreen} />
+      <Stack.Screen name="說明書" component={HomeManualScreen} />
     </Stack.Navigator>
   );
 };

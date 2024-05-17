@@ -2,7 +2,7 @@
 import { IconButton, Appbar, useTheme } from 'react-native-paper';
 
 //普通宣告
-import { StyleSheet, Text, View, StatusBar, ScrollView, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, ScrollView, Button, Image, Pressable } from 'react-native';
 //宣告自己的物件
 import HomeButton from '../Component/HomeButton';
 //引入store函式
@@ -21,7 +21,9 @@ const HomeTopScreen = ({ navigation }) => {
                 <HomeButton type={"big"} color={theme.colors.primary} icon={"gamepad-square"} label={"遊戲工具"} />
             </View>
             <View style={styles.buttonContainer}>
-                <HomeButton type={"small"} color={theme.colors.secondary} icon={"book-open-variant"} label={"說明書"} />
+                <Pressable onPress={() => { navigation.navigate("說明書") }}>
+                    <HomeButton type={"small"} color={theme.colors.secondary} icon={"book-open-variant"} label={"說明書"} />
+                </Pressable>
                 <HomeButton type={"small"} color={theme.colors.tertiary} icon={"history"} label={"更新歷史"} />
             </View>
         </View>
