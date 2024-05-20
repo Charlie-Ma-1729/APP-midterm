@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
+    //總括排版
     manualBlock: {
+        marginTop: 30,
         width: 328
     },
     titleBlock: {
@@ -9,7 +11,43 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     contentBlock: {
+        marginTop: 15,
         marginHorizontal: 5
+    },
+    flowBlock: {
+        width: 120,
+        height: 40,
+        marginBottom: 20,
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center"
+    },
+    twoPicBlock: {
+        width: 318,
+        height: 210,
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
+    marginBottom10: {
+        marginBottom: 10
+    },
+    //圖片大小設定
+    picAboutCard: {
+        width: 318,
+        height: 192
+    },
+    picAboutBoard: {
+        width: 318,
+        height: 360
+    },
+    picTime: {
+        width: 318,
+        height: 148,
+        marginBottom: 10
+    },
+    picTwo: {
+        width: 150,
+        height: 210,
     },
     //字體設定
     lightTitle: {
@@ -25,7 +63,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold",
         color: "#35275E",
-        marginHorizontal: 5
+        marginHorizontal: 5,
+        borderWidth: 1,
+        borderColor: "#35275E",
+        paddingLeft: 10
     },
     lightSubTitle: {
         fontSize: 14,

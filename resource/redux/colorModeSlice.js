@@ -12,7 +12,6 @@ const colorModeSlice = createSlice({
     reducers: {
         toggleColorMode: (state, action) => {
             state.colorMode = state.colorMode === "light" ? "dark" : "light";
-            console.log(state.colorMode);
         }
     },
 });
