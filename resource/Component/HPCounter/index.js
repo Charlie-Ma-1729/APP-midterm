@@ -4,17 +4,62 @@ import { Text, View, Image, Pressable } from 'react-native';
 import { Switch, useTheme, IconButton } from 'react-native-paper';
 //引入風格
 import styles from './styles';
+//引入動畫用函式
+import Animated, {
+    useSharedValue,
+    withSpring,
+    withTiming,
+    useAnimatedStyle,
+    useDerivedValue,
+    Easing,
+    runOnJS
+} from 'react-native-reanimated';
+import { ReText } from 'react-native-redash';
 const HPCounter = () => {
     const theme = useTheme();
+    // 動畫用變數宣告
+    const HP = useSharedValue(100);
+    const isAnimating = React.useRef(false);
+    const animatedHP = useDerivedValue(() => {
+        return (`${Math.floor(HP.value)}`);
+    });
+    //runOnJS是怪東西，我是抄來用的
+    const resetAnimating = () => {
+        isAnimating.current = false;
+    }
+
+    const plus10HP = () => {
+        if (HP.value >= 0 && HP.value < 100 && !isAnimating.current) {
+            isAnimating.current = true;
+            HP.value = withTiming(HP.value + 10, { duration: 200, easing: Easing.linear }, () => {
+                runOnJS(resetAnimating)();
+            });
+        }
+    }
+
+    const minus10HP = () => {
+        if (HP.value > 0 && HP.value <= 100 && !isAnimating.current) {
+            isAnimating.current = true;
+            HP.value = withTiming(HP.value - 10, { duration: 200, easing: Easing.linear }, () => {
+                runOnJS(resetAnimating)();
+            });
+        }
+    }
     return (
         <View style={{ ...styles.box }}>
-            <Pressable style={{ ...styles.plus10, backgroundColor: theme.colors.secondaryContainer }}>
+            <Pressable style={{ ...styles.plus10, backgroundColor: theme.colors.secondaryContainer }}
+                onPress={() => {
+                    plus10HP();
+                }}>
                 <IconButton icon={"triangle"} size={20} iconColor={theme.colors.onSecondaryContainer} />
             </Pressable>
             <View style={styles.numField}>
-                <Text style={styles.textNum}>{100}</Text>
+                <ReText style={styles.textNum} text={animatedHP} />
             </View>
-            <Pressable style={{ ...styles.plus10, backgroundColor: theme.colors.secondaryContainer, transform: [{ rotate: '180deg' }], }}>
+            <Pressable style={{ ...styles.plus10, backgroundColor: theme.colors.secondaryContainer, transform: [{ rotate: '180deg' }], }}
+                onPress={() => {
+                    minus10HP();
+                }}>
                 <IconButton icon={"triangle"} size={20} iconColor={theme.colors.onSecondaryContainer} />
             </Pressable>
         </View>
