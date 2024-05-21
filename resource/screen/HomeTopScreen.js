@@ -18,7 +18,9 @@ const HomeTopScreen = ({ navigation }) => {
             <StatusBar backgroundColor={theme.colors.secondary} barStyle={StatusBarMode} style="auto" />
             <Image style={{ width: 328, height: 164, marginTop: 20 }} source={require("../../assets/images/news.jpg")} />
             <View style={styles.buttonContainer}>
-                <HomeButton type={"big"} color={theme.colors.primary} icon={"gamepad-square"} label={"遊戲工具"} />
+                <Pressable onPress={() => { navigation.navigate("遊戲") }}>
+                    <HomeButton type={"big"} color={theme.colors.primary} icon={"gamepad-square"} label={"遊戲工具"} />
+                </Pressable>
             </View>
             <View style={styles.buttonContainer}>
                 <Pressable onPress={() => { navigation.navigate("說明書") }}>

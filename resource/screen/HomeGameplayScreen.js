@@ -4,7 +4,7 @@ import { IconButton, Appbar, useTheme } from 'react-native-paper';
 //普通宣告
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button, Image } from 'react-native';
 //宣告自己的物件
-import HomeButton from '../Component/HomeButton';
+import HPCounter from '../Component/HPCounter';
 //引入store函式
 import { useDispatch, useSelector } from 'react-redux';
 import { selectcolorMode } from '../redux/colorModeSlice';
@@ -14,8 +14,12 @@ const HomeGameplayScreen = ({ navigation }) => {
     const colorMode = useSelector(selectcolorMode);
     let StatusBarMode = colorMode.colorMode === "dark" ? "dark-content" : "light-content";
     return (
-        <View style={{ ...styles.container, backgroundColor: theme.colors.surface }}>
+        <View style={{ ...styles.container, backgroundColor: theme.colors.primary }}>
             <StatusBar backgroundColor={theme.colors.secondary} barStyle={StatusBarMode} style="auto" />
+            <View style={{ transform: [{ rotate: '180deg' }] }}>
+                <HPCounter />
+            </View>
+            <HPCounter />
         </View>
     );
 }

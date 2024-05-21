@@ -36,6 +36,9 @@
     },
     "updates": {
       "url": "https://u.expo.dev/594d9e66-cba2-4fc7-b8b3-302510428b54"
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
