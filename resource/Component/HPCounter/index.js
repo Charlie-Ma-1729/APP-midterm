@@ -23,7 +23,7 @@ const HPCounter = () => {
     const animatedHP = useDerivedValue(() => {
         return (`${Math.floor(HP.value)}`);
     });
-    //runOnJS是怪東西，我是抄來用的
+    //播放動畫
     const resetAnimating = () => {
         isAnimating.current = false;
     }

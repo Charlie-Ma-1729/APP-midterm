@@ -19,6 +19,7 @@ const HomeGameplayScreen = ({ navigation }) => {
             <View style={{ transform: [{ rotate: '180deg' }] }}>
                 <HPCounter />
             </View>
+
             <HPCounter />
         </View>
     );
