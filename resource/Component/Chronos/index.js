@@ -5,14 +5,20 @@ import { IconButton, Appbar, useTheme, FAB } from 'react-native-paper';
 import styles from './styles';
 //普通宣告
 import { Text, View, StatusBar, ScrollView, Image } from 'react-native';
-
+//引入自己的物件
+import ChronosRound from '../ChronosRound';
+import ChronosCoinAndTime from '../ChronosCoinAndTime';
 const Chronos = () => {
     const theme = useTheme();
 
     return (
-        <View>
-
+        <View style={styles.box}>
+            <View style={styles.roundBox}>
+                <ChronosRound parentWidth={300} parentHeight={300} radius={140} />
+            </View>
+            <ChronosCoinAndTime />
         </View>
+
     );
 }
 

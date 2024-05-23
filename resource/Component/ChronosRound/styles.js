@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
-    box: {
-        width: 332,
-        height: 318
+    pic: {
+        width: 50,
+        height: 50
     }
 });
 

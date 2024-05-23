@@ -10,36 +10,41 @@ import boardIconLight from "../../json/chronosIconLight.json"
 import boardIconDark from "../../json/chronosIconDark.json"
 //引入store函式
 import { useDispatch, useSelector } from 'react-redux';
-import { selectcolorMode } from '../redux/colorModeSlice';
+import { selectcolorMode } from '../../redux/colorModeSlice';
+
 const ChronosRound = ({ parentWidth, parentHeight, radius }) => {
     const theme = useTheme();
-    //使用全域變數
+    // 使用全域變數(顏色主題)
     const colorMode = useSelector(selectcolorMode).colorMode;
-    //生成中點位置
+    // 生成中點位置
     const centerX = parentWidth / 2;
     const centerY = parentHeight / 2;
-    //生成環狀串列
+    // 生成環狀串列
     const [items, setItems] = React.useState([]);
+
     React.useEffect(() => {
-        //根據顏色模式適用物件
-        pictures = colorMode == "light" ? boardIconLight : boardIconDark;
-        finalItem = pictures.map((value, index) => {
-            //生成單元位置
-            const x = centerX + (Math.cos(index * 20)) * radius - 25;
-            const y = centerY + (Math.sin(index * 20)) * radius - 25;
+        // 根據顏色模式適用物件
+        const pictures = colorMode === "light" ? boardIconLight : boardIconDark;
+        const finalItems = pictures.map((value, index) => {
+            // 生成單元位置，確保角度計算為弧度
+            const angle = index * (2 * Math.PI / pictures.length);
+            const x = centerX + Math.cos(angle) * radius - 25;
+            const y = centerY + Math.sin(angle) * radius - 25;
             return (
-                <View key={value.codeNum} style={[{ left: x, top: y }]}>
-                    <Image source={{ uri: value.icon }}></Image>
+                <View key={value.codeNum} style={{ position: 'absolute', left: x, top: y }}>
+                    <Image style={{ ...styles.pic, transform: [{ rotate: `${value.spin}` }] }} source={{ uri: value.icon }} />
                 </View>
             );
-        })
-    })
-    return (
-        <View>
+        });
+        setItems(finalItems);
+    }, [colorMode, centerX, centerY, radius]);
 
+    return (
+        <View style={{ width: parentWidth, height: parentHeight, position: 'relative' }}>
+            {items}
         </View>
     );
-}
+};
 
 export default ChronosRound;
 //物件放在遊戲頁，因為克羅諾斯的形狀十分複雜，因此拆分圓環部分於此

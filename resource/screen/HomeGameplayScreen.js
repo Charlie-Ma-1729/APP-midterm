@@ -5,6 +5,7 @@ import { IconButton, Appbar, useTheme } from 'react-native-paper';
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button, Image } from 'react-native';
 //宣告自己的物件
 import HPCounter from '../Component/HPCounter';
+import Chronos from '../Component/Chronos';
 //引入store函式
 import { useDispatch, useSelector } from 'react-redux';
 import { selectcolorMode } from '../redux/colorModeSlice';
@@ -19,7 +20,7 @@ const HomeGameplayScreen = ({ navigation }) => {
             <View style={{ transform: [{ rotate: '180deg' }] }}>
                 <HPCounter />
             </View>
-
+            <Chronos />
             <HPCounter />
         </View>
     );
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
+        justifyContent: "space-around"
     },
     buttonContainer: {
         marginTop: 15,
