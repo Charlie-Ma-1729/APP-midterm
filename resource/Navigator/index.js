@@ -1,3 +1,4 @@
+import React from "react";
 //navigation宣告
 import { NavigationContainer } from "@react-navigation/native";
 import { CommonActions } from "@react-navigation/native";
@@ -7,7 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 //導入素材
-import { Text, BottomNavigation, useTheme } from "react-native-paper";
+import { Text, BottomNavigation, useTheme, Button, Menu, Divider, IconButton } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 //導入語言
@@ -26,6 +27,12 @@ import ConfigTopScreen from "../screen/ConfigTopScreen";
 //各頁面的堆疊
 const HomeStack = () => {
   const theme = useTheme(); //引入主題以使用主題
+  //設置menu
+  const [visible, setVisible] = React.useState(false);
+
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
   return (
     <Stack.Navigator
       screenOptions={{
@@ -40,10 +47,27 @@ const HomeStack = () => {
           fontWeight: "bold", // 标题栏文字样式
         },
       }}
-      initialRouteName="home"
+      initialRouteName="主頁"
     >
       <Stack.Screen name="主頁" component={HomeTopScreen} />
-      <Stack.Screen name="遊戲" component={HomeGameplayScreen} />
+      <Stack.Screen name="遊戲" component={HomeGameplayScreen}
+        options={{
+          headerRight: () => (
+            <Menu
+              visible={visible}
+              onDismiss={closeMenu}
+              anchor={<IconButton
+                icon="dots-horizontal"
+                iconColor={theme.colors.onSecondary}
+                size={30}
+                onPress={() => openMenu()}
+              />}>
+              <Menu.Item onPress={() => { }} title="重製盤面" />
+              <Menu.Item onPress={() => { }} title="骰子" />
+              <Menu.Item onPress={() => { }} title="硬幣" />
+            </Menu>
+          ),
+        }} />
       <Stack.Screen name="說明書" component={HomeManualScreen} />
     </Stack.Navigator>
   );
@@ -64,7 +88,7 @@ const SearchStack = () => {
           fontWeight: "bold", // 标题栏文字样式
         },
       }}
-      initialRouteName="search"
+      initialRouteName="搜尋"
     >
       <Stack.Screen name="搜尋" component={SearchTopScreen} />
       <Stack.Screen name="篩選" component={SearchFilterScreen} />
@@ -116,7 +140,7 @@ const ConfigStack = () => {
           fontWeight: "bold", // 标题栏文字样式
         },
       }}
-      initialRouteName="config"
+      initialRouteName="設置"
     >
       <Stack.Screen name="設置" component={ConfigTopScreen} />
     </Stack.Navigator>

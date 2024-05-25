@@ -117,7 +117,7 @@ const ChronosCoinAndTime = () => {
                     onPress={() => {
                         minus5Time();
                     }}>
-                    <Text>-5</Text>
+                    <Text style={{ color: theme.colors.onSurface }}>-5</Text>
                 </Pressable>
                 <Pressable
                     style={({ pressed }) => [
@@ -129,10 +129,10 @@ const ChronosCoinAndTime = () => {
                     onPress={() => {
                         minus1Time();
                     }}>
-                    <Text>-1</Text>
+                    <Text style={{ color: theme.colors.onSurface }}>-1</Text>
                 </Pressable>
                 <View style={{ ...styles.numField, backgroundColor: theme.colors.secondaryContainer }}>
-                    <ReText style={styles.textNum} text={animatedTime} />
+                    <ReText style={[styles.textNum, { color: theme.colors.onSurface }]} text={animatedTime} />
                 </View>
                 <Pressable
                     style={({ pressed }) => [
@@ -144,7 +144,7 @@ const ChronosCoinAndTime = () => {
                     onPress={() => {
                         plus1Time();
                     }}>
-                    <Text>+1</Text>
+                    <Text style={{ color: theme.colors.onSurface }}>+1</Text>
                 </Pressable>
                 <Pressable
                     style={({ pressed }) => [
@@ -156,7 +156,7 @@ const ChronosCoinAndTime = () => {
                     onPress={() => {
                         plus5Time();
                     }}>
-                    <Text>+5</Text>
+                    <Text style={{ color: theme.colors.onSurface }}>+5</Text>
                 </Pressable>
             </View>
             <View style={styles.line}>
