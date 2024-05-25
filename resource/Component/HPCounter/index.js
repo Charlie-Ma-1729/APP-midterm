@@ -47,7 +47,13 @@ const HPCounter = () => {
     }
     return (
         <View style={{ ...styles.box }}>
-            <Pressable style={{ ...styles.plus10, backgroundColor: theme.colors.secondaryContainer }}
+            <Pressable
+                style={({ pressed }) => [
+                    {
+                        backgroundColor: pressed ? theme.colors.primaryContainer : theme.colors.surfaceContainer,
+                    },
+                    styles.plus10,
+                ]}
                 onPress={() => {
                     plus10HP();
                 }}>
@@ -56,7 +62,13 @@ const HPCounter = () => {
             <View style={styles.numField}>
                 <ReText style={styles.textNum} text={animatedHP} />
             </View>
-            <Pressable style={{ ...styles.plus10, backgroundColor: theme.colors.secondaryContainer, transform: [{ rotate: '180deg' }], }}
+            <Pressable style={({ pressed }) => [
+                {
+                    backgroundColor: pressed ? theme.colors.primaryContainer : theme.colors.surfaceContainer,
+                    transform: [{ rotate: "180deg" }]
+                },
+                styles.plus10,
+            ]}
                 onPress={() => {
                     minus10HP();
                 }}>

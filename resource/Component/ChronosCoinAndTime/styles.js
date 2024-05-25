@@ -41,6 +41,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         borderColor: "#ffffff",
         alignSelf: "center"
+    },
+    //硬幣
+    coin: {
+        width: 50,
+        height: 50,
+        position: "absolute"
     }
 });
 

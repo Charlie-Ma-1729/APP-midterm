@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     },
     roundBox: {
         transform: [{ rotate: '-90deg' }]
+    },
+    CoinAndTimeBox: {
+        position: "absolute",
     }
 });
 

@@ -16,7 +16,9 @@ const Chronos = () => {
             <View style={styles.roundBox}>
                 <ChronosRound parentWidth={300} parentHeight={300} radius={140} />
             </View>
-            <ChronosCoinAndTime />
+            <View style={styles.CoinAndTimeBox}>
+                <ChronosCoinAndTime />
+            </View>
         </View>
 
     );
