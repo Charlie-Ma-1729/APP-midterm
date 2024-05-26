@@ -24,6 +24,7 @@ const HomeGameplayScreen = ({ route }) => {
             showDiceDialog();
             navigation.setParams({ action: null });
         } else if (route.params?.action == "coin") {
+            flipCoin();
             showCoinDialog();
             console.log(route.params?.action);
             navigation.setParams({ action: null });
@@ -46,7 +47,20 @@ const HomeGameplayScreen = ({ route }) => {
     }
     //硬幣Dialog
     const [coinVisible, setCoinVisible] = React.useState(false);
-    const [coinSide, setCoinSide] = React.useState(false);
+    const [coinSide, setCoinSide] = React.useState(people);
+    const [coinSideText, setCoinSideText] = React.useState("正");
+    const people = "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E5%8E%BB%E8%83%8C%E9%A0%AD.png"
+    const hedgehog = "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E5%8E%BB%E8%83%8C%E5%88%BA%E8%9D%9F.png"
+    const flipCoin = () => {
+        num = Math.floor(Math.random() * 2);
+        if (num == 0) {
+            setCoinSide(people);
+            setCoinSideText("正");
+        } else if (num == 1) {
+            setCoinSide(hedgehog);
+            setCoinSideText("反");
+        }
+    }
     const showCoinDialog = () => {
         setCoinVisible(true);
     }
@@ -77,16 +91,17 @@ const HomeGameplayScreen = ({ route }) => {
                 </Dialog>
                 <Dialog visible={coinVisible} onDismiss={hideCoinDialog}>
                     <Dialog.Title>硬幣</Dialog.Title>
-                    <Dialog.Content>
-                        <Text variant="bodyMedium">你擲出了</Text>
+                    <Dialog.Content style={styles.coinDialogContent}>
+                        <Text variant="bodyMedium">你擲出了{coinSideText}</Text>
                         <View style={[styles.coinBox, { backgroundColor: theme.colors.primary }]}>
                             <View style={[styles.coinInnerBox, { backgroundColor: theme.colors.onPrimary }]}>
-                                <Image style={styles.coinImage} source={require("../../assets/images/去背頭.png")} />
+                                <Image style={styles.coinImage} source={{ uri: coinSide }} />
                             </View>
                         </View>
                     </Dialog.Content>
                     <Dialog.Actions>
-                        <Button onPress={() => { hideCoinDialog() }}>Done</Button>
+                        <Button onPress={() => { flipCoin() }}>重拋</Button>
+                        <Button onPress={() => { hideCoinDialog() }}>結束</Button>
                     </Dialog.Actions>
                 </Dialog>
             </Portal>
@@ -101,6 +116,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-around"
     },
     diceDialogContent: {
+        alignItems: "center"
+    },
+    coinDialogContent: {
         alignItems: "center"
     },
     coinBox: {
