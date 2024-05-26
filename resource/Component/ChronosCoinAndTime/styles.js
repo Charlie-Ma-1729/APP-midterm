@@ -38,8 +38,6 @@ const styles = StyleSheet.create({
         width: 350,
         height: 1,
         marginBottom: 20,
-        backgroundColor: "#ffffff",
-        borderColor: "#ffffff",
         alignSelf: "center"
     },
     //硬幣

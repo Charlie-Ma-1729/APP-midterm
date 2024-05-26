@@ -4,6 +4,8 @@ import { Text, View, Image, Pressable } from 'react-native';
 import { Switch, useTheme, IconButton } from 'react-native-paper';
 //引入風格
 import styles from './styles';
+//navigation提供的物件
+import { useNavigation, useRoute } from '@react-navigation/native';
 //引入動畫用函式
 import Animated, {
     useSharedValue,
@@ -36,6 +38,14 @@ const HPCounter = () => {
             });
         }
     }
+    const return100HP = () => {
+        if (!isAnimating.current) {
+            isAnimating.current = true;
+            HP.value = withTiming(100, { duration: 1000, easing: Easing.linear }, () => {
+                runOnJS(resetAnimating)();
+            });
+        }
+    }
 
     const minus10HP = () => {
         if (HP.value > 0 && HP.value <= 100 && !isAnimating.current) {
@@ -45,6 +55,15 @@ const HPCounter = () => {
             });
         }
     }
+    //創建navigation變數(小選單用)
+    const navigation = useNavigation();
+    const route = useRoute();
+    React.useEffect(() => {
+        if (route.params?.action == "reset") {
+            return100HP();
+            navigation.setParams({ action: null });
+        }
+    }, [route.params?.action])
     return (
         <View style={{ ...styles.box }}>
             <Pressable

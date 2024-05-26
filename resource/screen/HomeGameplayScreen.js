@@ -1,8 +1,10 @@
+import React from "react";
 //react-native-paper提供的物件
-import { IconButton, Appbar, useTheme } from 'react-native-paper';
-
+import { IconButton, Appbar, useTheme, Portal, Dialog, Button, Icon } from 'react-native-paper';
+//navigation提供的物件
+import { useNavigation, useRoute } from '@react-navigation/native';
 //普通宣告
-import { StyleSheet, Text, View, StatusBar, ScrollView, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, ScrollView, Image } from 'react-native';
 //宣告自己的物件
 import HPCounter from '../Component/HPCounter';
 import Chronos from '../Component/Chronos';
@@ -10,10 +12,47 @@ import Chronos from '../Component/Chronos';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectcolorMode } from '../redux/colorModeSlice';
 
-const HomeGameplayScreen = ({ navigation }) => {
+const HomeGameplayScreen = ({ route }) => {
     const theme = useTheme();//引入主題以使用主題
     const colorMode = useSelector(selectcolorMode);
     let StatusBarMode = colorMode.colorMode === "dark" ? "dark-content" : "light-content";
+    //創建navigation變數
+    const navigation = useNavigation();
+    React.useEffect(() => {
+        if (route.params?.action == "dice") {
+            throwDice();
+            showDiceDialog();
+            navigation.setParams({ action: null });
+        } else if (route.params?.action == "coin") {
+            showCoinDialog();
+            console.log(route.params?.action);
+            navigation.setParams({ action: null });
+        }
+    }, [route.params?.action])
+    //Dialog用的變數
+    //骰子Dialog
+    const [diceVisible, setDiceVisible] = React.useState(false);
+    const [diceNum, setDiceNum] = React.useState("dice-1");
+    const throwDice = () => {
+        num = `dice-${Math.floor(Math.random() * 6) + 1}`;
+        console.log(num);
+        setDiceNum(num);
+    }
+    const showDiceDialog = () => {
+        setDiceVisible(true);
+    }
+    const hideDiceDialog = () => {
+        setDiceVisible(false);
+    }
+    //硬幣Dialog
+    const [coinVisible, setCoinVisible] = React.useState(false);
+    const [coinSide, setCoinSide] = React.useState(false);
+    const showCoinDialog = () => {
+        setCoinVisible(true);
+    }
+    const hideCoinDialog = () => {
+        setCoinVisible(false);
+    }
     return (
         <View style={{ ...styles.container, backgroundColor: theme.colors.primary }}>
             <StatusBar backgroundColor={theme.colors.secondary} barStyle={StatusBarMode} style="auto" />
@@ -22,6 +61,35 @@ const HomeGameplayScreen = ({ navigation }) => {
             </View>
             <Chronos />
             <HPCounter />
+            <Portal>
+                <Dialog visible={diceVisible} onDismiss={hideDiceDialog}>
+                    <Dialog.Title>骰子</Dialog.Title>
+                    <Dialog.Content style={styles.diceDialogContent}>
+                        <Text variant="bodyMedium">你投出了{diceNum}點</Text>
+                        <Icon source={diceNum}
+                            color={theme.colors.primary}
+                            size={100} />
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button onPress={() => { throwDice() }}>重骰</Button>
+                        <Button onPress={() => { hideDiceDialog() }}>結束</Button>
+                    </Dialog.Actions>
+                </Dialog>
+                <Dialog visible={coinVisible} onDismiss={hideCoinDialog}>
+                    <Dialog.Title>硬幣</Dialog.Title>
+                    <Dialog.Content>
+                        <Text variant="bodyMedium">你擲出了</Text>
+                        <View style={[styles.coinBox, { backgroundColor: theme.colors.primary }]}>
+                            <View style={[styles.coinInnerBox, { backgroundColor: theme.colors.onPrimary }]}>
+                                <Image style={styles.coinImage} source={require("../../assets/images/去背頭.png")} />
+                            </View>
+                        </View>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button onPress={() => { hideCoinDialog() }}>Done</Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
         </View>
     );
 }
@@ -31,6 +99,27 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "space-around"
+    },
+    diceDialogContent: {
+        alignItems: "center"
+    },
+    coinBox: {
+        width: 100,
+        height: 100,
+        borderRadius: 100,
+        alignItems: "center",
+        justifyContent: 'center'
+    },
+    coinInnerBox: {
+        width: 80,
+        height: 80,
+        borderRadius: 70,
+        alignItems: "center",
+        justifyContent: 'center'
+    },
+    coinImage: {
+        width: 70,
+        height: 70
     },
     buttonContainer: {
         marginTop: 15,

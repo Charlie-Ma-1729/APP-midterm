@@ -1,6 +1,8 @@
 import React from 'react';
 //react-native-paper提供的物件
 import { useTheme, TextInput, Button, Divider, IconButton } from 'react-native-paper';
+//navigation提供的物件
+import { useNavigation, useRoute } from '@react-navigation/native';
 //引入style
 import styles from './styles';
 //普通宣告
@@ -37,6 +39,28 @@ const ChronosCoinAndTime = () => {
     //播放動畫
     const resetAnimating = () => {
         isAnimating.current = false;
+        if (angle.value > Math.PI * 2) {
+            angle.value = angle.value - Math.PI * 2;
+        }
+    }
+    //數字歸0且硬幣歸位->重置
+    const coinReset = () => {
+        if (!isAnimating.current) {
+            isAnimating.current = true;
+            angle.value = withTiming(
+                Math.PI / 2,
+                {
+                    duration: 1000,
+                    easing: Easing.inOut(Easing.quad),
+                    reduceMotion: ReduceMotion.System,
+                }, () => {
+                    runOnJS(resetAnimating)();
+                }
+            )
+            time.value = withTiming(0, { duration: 1000, easing: Easing.linear }, () => {
+                runOnJS(resetAnimating)();
+            });
+        }
     }
     //硬幣移動的動畫
     const coinMove = () => {
@@ -58,7 +82,6 @@ const ChronosCoinAndTime = () => {
             });
         }
     }
-    //數字歸0
     //+1以及+5的動畫
     const plus1Time = () => {
         if (time.value >= 0 && time.value < 30 && !isAnimating.current) {
@@ -103,9 +126,20 @@ const ChronosCoinAndTime = () => {
             });
         }
     }
+    //創建navigation變數
+    const navigation = useNavigation();
+    const route = useRoute();
+    React.useEffect(() => {
+        if (route.params?.action == "reset") {
+            coinReset();
+            console.log(route.params?.action);
+            navigation.setParams({ action: null });
+        }
+    }, [route.params?.action])
+    //本體
     return (
         <View style={[styles.box]}>
-            <Animated.Image style={[styles.coin, animatedCoinSpot]} source={{ uri: "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E7%9C%9F%E5%A4%9C(%E6%9A%97%E8%89%B2).png" }} />
+            <Animated.Image style={[styles.coin, animatedCoinSpot]} source={require("../../../assets/images/盤面icon/coin.png")} />
             <View style={styles.timeCounter}>
                 <Pressable
                     style={({ pressed }) => [
@@ -159,7 +193,7 @@ const ChronosCoinAndTime = () => {
                     <Text style={{ color: theme.colors.onSurface }}>+5</Text>
                 </Pressable>
             </View>
-            <View style={styles.line}>
+            <View style={[styles.line, { backgroundColor: theme.colors.onPrimary }]}>
             </View>
             <Button
                 contentStyle={{ width: 100, height: 50 }}

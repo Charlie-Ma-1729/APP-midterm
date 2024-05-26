@@ -4,7 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { CommonActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+//navigation提供的物件
+import { useNavigation } from '@react-navigation/native';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 //導入素材
@@ -33,6 +34,8 @@ const HomeStack = () => {
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
+  //創建navigation變數
+  const navigation = useNavigation();
   return (
     <Stack.Navigator
       screenOptions={{
@@ -51,23 +54,44 @@ const HomeStack = () => {
     >
       <Stack.Screen name="主頁" component={HomeTopScreen} />
       <Stack.Screen name="遊戲" component={HomeGameplayScreen}
-        options={{
+        options={({ navigation }) => ({
           headerRight: () => (
             <Menu
               visible={visible}
               onDismiss={closeMenu}
-              anchor={<IconButton
-                icon="dots-horizontal"
-                iconColor={theme.colors.onSecondary}
-                size={30}
-                onPress={() => openMenu()}
-              />}>
-              <Menu.Item onPress={() => { }} title="重製盤面" />
-              <Menu.Item onPress={() => { }} title="骰子" />
-              <Menu.Item onPress={() => { }} title="硬幣" />
+              anchor={
+                <IconButton
+                  icon="dots-horizontal"
+                  iconColor={theme.colors.onSecondary}
+                  size={30}
+                  onPress={openMenu}
+                />
+              }
+            >
+              <Menu.Item
+                onPress={() => {
+                  navigation.setParams({ action: 'reset' });
+                  closeMenu();
+                }}
+                title="重製盤面"
+              />
+              <Menu.Item
+                onPress={() => {
+                  navigation.setParams({ action: 'dice' });
+                  closeMenu();
+                }}
+                title="擲骰子"
+              />
+              <Menu.Item
+                onPress={() => {
+                  navigation.setParams({ action: 'coin' });
+                  closeMenu();
+                }}
+                title="拋硬幣"
+              />
             </Menu>
           ),
-        }} />
+        })} />
       <Stack.Screen name="說明書" component={HomeManualScreen} />
     </Stack.Navigator>
   );
