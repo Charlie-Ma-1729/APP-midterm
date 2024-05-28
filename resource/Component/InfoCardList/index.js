@@ -16,39 +16,41 @@ import { selectfilterContent } from "../../redux/filterSlice";
 //import CardDataList from "../../../node/data.json";
 import { use } from "i18next";
 const InfoCardList = () => {
-  const [FC, setFC] = useState({}); // 使用 useState 管理 FC
+  const filter = useSelector(selectfilterContent);
+  const dispatch = useDispatch();
+  //宣告表單基礎變數
+  const [cardPack, setCardPack] = React.useState(filter.filterPack);
+  const [cardType, setCardType] = React.useState(filter.filterType);
+  const [cardCost, setCardCost] = React.useState(filter.filterCost);
+  const [cardCharge, setCardCharge] = React.useState(filter.filterCharge);
+  const [cardTime, setCardTime] = React.useState(filter.filterTime);
+  const [cardAttribute, setCardAttribute] = React.useState(filter.filterAttribute);
+  const [cardNight, setCardNight] = React.useState(filter.filterNight);
+  const [cardDay, setCardDay] = React.useState(filter.filterDay);
+  const [cardName, setCardName] = React.useState(filter.filterName);
   const [data, setData] = useState([]);
   //使用theme
   const theme = useTheme();
   useEffect(() => {
-    const getData = async () => {
-      const filterContent = await useSelector(selectfilterContent);
-      setFC(filterContent);
-    };
-    axios
-      fetchData();
+    axios;
+    fetchData();
   }, []);
   const fetchData = async () => {
     try {
-      console.log(FC);
-      const response = await axios.get('http://localhost:3300/api/filter',{
-        pack: FC.filterPack,
-        type: FC.filterType,
-        cost: FC.filterCost,
-        charge: FC.filterCharge,
-        time: FC.filterTime,
-        attribute:FC.filterAttribute,
-        night: FC.filterNight,
-        day: FC.filterDay,
-        name: FC.filterName
+      const response = await axios.get("http://localhost:3300/api/filter", {
+        pack: cardPack,
+        type: cardType,
+        cost: cardCost,
+        charge: cardCharge,
+        time: cardTime,
+        attribute: cardAttribute,
+        night: cardNight,
+        day: cardDay,
+        name: cardName,
       });
-      console.log(FC);
       setData(response.data);
-
     } catch (error) {
-
       console.log(error);
-
     }
   };
 
