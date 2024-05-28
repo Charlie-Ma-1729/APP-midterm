@@ -9,6 +9,11 @@ import CardDataList from "../../../node/data.json";
 
 const DeckIn = () => {
   const theme = useTheme();
+  
+  useEffect(() => {
+    axios
+      .get("http://localhost:3300/data.json")
+  }, []);
   const inlinestyle = {
     Line: {
       borderBottomColor: theme.colors.onSurface,
@@ -25,6 +30,7 @@ const DeckIn = () => {
       marginHorizontal: 16,
       color: theme.colors.onSurface,
     },
+    
   };
   return (
     <View style={[{backgroundColor:theme.colors.surface},{paddingHorizontal:8}]}>

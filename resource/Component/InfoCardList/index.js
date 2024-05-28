@@ -18,7 +18,7 @@ const InfoCardList = () => {
   const theme = useTheme();
   useEffect(() => {
     axios
-      .get("http://imatw.org:3300/data.json")
+      .get("http://localhost:3300/data.json")
   }, []);
 
   return (

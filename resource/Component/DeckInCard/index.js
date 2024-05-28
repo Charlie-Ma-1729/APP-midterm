@@ -5,7 +5,7 @@ import { Image, View, FlatList } from "react-native";
 import style from "./style.js";
 import { useTheme } from "react-native-paper";
 
-import CardDataList from "../../../node/data.json";
+
 
 
 

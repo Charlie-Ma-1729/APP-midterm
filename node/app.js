@@ -9,7 +9,7 @@ dotenv.config();
 const mongoDB = process.env.DB;
 const fs = require("fs");
 require("./cardSchema");
-const DeckSchema = require("./deckSchema");
+const DeckSchema = require("./decksSchema");
 const Card = mongoose.model("Card");
 
 mongoose.connect(mongoDB);
