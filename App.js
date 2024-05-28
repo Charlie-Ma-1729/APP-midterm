@@ -1,6 +1,7 @@
 //規定一定要放最上面，不能亂動
 import 'react-native-gesture-handler';
 //---------------------------------------
+import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 //引入導航
@@ -11,11 +12,38 @@ import { store } from './resource/redux/store';
 //導入語言
 import { useTranslation } from "react-i18next";
 import i18next from "./i18next";
-
+//引入自訂字體
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'Jersey15-Regular': require('./assets/fonts/Jersey15-Regular.ttf'),
+  });
+};
 
 export default function App() {
   const { t } = useTranslation();
-  
+  //確認字體得到讀取
+  const [fontLoaded, setFontLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    const loadFonts = async () => {
+      try {
+        await fetchFonts();
+        setFontLoaded(true);
+        SplashScreen.hideAsync();
+      } catch (e) {
+        console.warn(e);
+      }
+    };
+
+    loadFonts();
+  }, []);
+
+  if (!fontLoaded) {
+    return null; // Return null until the font is loaded
+  }
+
   return (
     <Provider store={store} >
       <Main />

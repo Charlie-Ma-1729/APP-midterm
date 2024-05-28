@@ -1,13 +1,15 @@
+import React from "react";
 //navigation宣告
 import { NavigationContainer } from "@react-navigation/native";
 import { CommonActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+//navigation提供的物件
+import { useNavigation } from '@react-navigation/native';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 //導入素材
-import { Text, BottomNavigation, useTheme } from "react-native-paper";
+import { Text, BottomNavigation, useTheme, Button, Menu, Divider, IconButton } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 //導入語言
@@ -17,6 +19,7 @@ import i18next from "../../i18next";
 //導入頁面
 import HomeTopScreen from "../screen/HomeTopScreen";
 import HomeGameplayScreen from "../screen/HomeGameplayScreen";
+import HomeManualScreen from "../screen/HomeManualScreen";
 import SearchTopScreen from "../screen/SearchTopScreen";
 import SearchFilterScreen from "../screen/SearchFilterScreen";
 import DeckTopScreen from "../screen/DeckTopScreen";
@@ -25,6 +28,14 @@ import ConfigTopScreen from "../screen/ConfigTopScreen";
 //各頁面的堆疊
 const HomeStack = () => {
   const theme = useTheme(); //引入主題以使用主題
+  //設置menu
+  const [visible, setVisible] = React.useState(false);
+
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
+  //創建navigation變數
+  const navigation = useNavigation();
   return (
     <Stack.Navigator
       screenOptions={{
@@ -39,10 +50,49 @@ const HomeStack = () => {
           fontWeight: "bold", // 标题栏文字样式
         },
       }}
-      initialRouteName="home"
+      initialRouteName="主頁"
     >
       <Stack.Screen name="主頁" component={HomeTopScreen} />
-      <Stack.Screen name="遊戲" component={HomeGameplayScreen} />
+      <Stack.Screen name="遊戲" component={HomeGameplayScreen}
+        options={({ navigation }) => ({
+          headerRight: () => (
+            <Menu
+              visible={visible}
+              onDismiss={closeMenu}
+              anchor={
+                <IconButton
+                  icon="dots-horizontal"
+                  iconColor={theme.colors.onSecondary}
+                  size={30}
+                  onPress={openMenu}
+                />
+              }
+            >
+              <Menu.Item
+                onPress={() => {
+                  navigation.setParams({ action: 'reset' });
+                  closeMenu();
+                }}
+                title="重製盤面"
+              />
+              <Menu.Item
+                onPress={() => {
+                  navigation.setParams({ action: 'dice' });
+                  closeMenu();
+                }}
+                title="擲骰子"
+              />
+              <Menu.Item
+                onPress={() => {
+                  navigation.setParams({ action: 'coin' });
+                  closeMenu();
+                }}
+                title="拋硬幣"
+              />
+            </Menu>
+          ),
+        })} />
+      <Stack.Screen name="說明書" component={HomeManualScreen} />
     </Stack.Navigator>
   );
 };
@@ -62,7 +112,7 @@ const SearchStack = () => {
           fontWeight: "bold", // 标题栏文字样式
         },
       }}
-      initialRouteName="search"
+      initialRouteName="搜尋"
     >
       <Stack.Screen name="搜尋" component={SearchTopScreen} />
       <Stack.Screen name="篩選" component={SearchFilterScreen} />
@@ -114,7 +164,7 @@ const ConfigStack = () => {
           fontWeight: "bold", // 标题栏文字样式
         },
       }}
-      initialRouteName="config"
+      initialRouteName="設置"
     >
       <Stack.Screen name="設置" component={ConfigTopScreen} />
     </Stack.Navigator>

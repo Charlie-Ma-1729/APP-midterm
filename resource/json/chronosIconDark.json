@@ -1,0 +1,92 @@
+[
+    {
+        "codeNum": -5,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E7%9C%9F%E5%A4%9C(%E6%9A%97%E8%89%B2).png",
+        "spin": "-90deg"
+    },
+    {
+        "codeNum": -6,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E4%B8%89%E5%88%BB(%E6%9A%97%E8%89%B2).png",
+        "spin": "-70deg"
+    },
+    {
+        "codeNum": -7,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E5%8D%8A%E6%9C%88(%E6%9A%97%E8%89%B2).png",
+        "spin": "-30deg"
+    },
+    {
+        "codeNum": -8,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E6%96%B0%E6%9C%88(%E6%9A%97%E8%89%B2).png",
+        "spin": "150deg"
+    },
+    {
+        "codeNum": -9,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E7%84%A1%E6%9C%88(%E6%9A%97%E8%89%B2).png",
+        "spin": "-90deg"
+    },
+    {
+        "codeNum": 8,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E9%9B%99%E8%A7%92%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "30deg"
+    },
+    {
+        "codeNum": 7,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E4%B8%89%E8%A7%92%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "-70deg"
+    },
+    {
+        "codeNum": 6,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E5%9B%9B%E8%A7%92%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "-50deg"
+    },
+    {
+        "codeNum": 5,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E5%85%AD%E8%A7%92%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "-70deg"
+    },
+    {
+        "codeNum": 4,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E5%A4%A7%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "-90deg"
+    },
+    {
+        "codeNum": 3,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E5%85%AD%E8%A7%92%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "-110deg"
+    },
+    {
+        "codeNum": 2,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E5%9B%9B%E8%A7%92%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "-130deg"
+    },
+    {
+        "codeNum": 1,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E4%B8%89%E8%A7%92%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "-150deg"
+    },
+    {
+        "codeNum": 0,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E9%9B%99%E8%A7%92%E6%97%A5(%E6%9A%97%E8%89%B2).png",
+        "spin": "150deg"
+    },
+    {
+        "codeNum": -1,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E7%84%A1%E6%9C%88(%E6%9A%97%E8%89%B2).png",
+        "spin": "90deg"
+    },
+    {
+        "codeNum": -2,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E6%96%B0%E6%9C%88(%E6%9A%97%E8%89%B2).png",
+        "spin": "-150deg"
+    },
+    {
+        "codeNum": -3,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E5%8D%8A%E6%9C%88(%E6%9A%97%E8%89%B2).png",
+        "spin": "40deg"
+    },
+    {
+        "codeNum": -4,
+        "icon": "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/%E7%9B%A4%E9%9D%A2icon/%E4%B8%89%E5%88%BB(%E6%9A%97%E8%89%B2).png",
+        "spin": "-110deg"
+    }
+]
