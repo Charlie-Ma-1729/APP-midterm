@@ -28,16 +28,17 @@ const InfoCardList = () => {
   const cardDay = filter.filterDay;
   const cardName = filter.filterName;
   console.log("card");
-  console.log(cardPack);  
+  console.log(cardPack);
   const [data, setData] = useState([]);
 
+  const filterContent = useSelector(selectfilterContent);
   //使用theme
   const theme = useTheme();
   useEffect(() => {
     fetchData();
     console.log("data");
     console.log(data);
-  }, []);
+  }, [filterContent]);
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3300/api/filter", {
