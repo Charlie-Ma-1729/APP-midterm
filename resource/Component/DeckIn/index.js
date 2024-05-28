@@ -12,7 +12,7 @@ const DeckIn = () => {
   
   useEffect(() => {
     axios
-      .get("http://localhost:3300/data.json")
+      .get("http://localhost:3300/api/data")
   }, []);
   const inlinestyle = {
     Line: {

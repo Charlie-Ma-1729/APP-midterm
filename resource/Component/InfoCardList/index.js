@@ -9,22 +9,53 @@ import InfoCard from "../InfoCard";
 //引入風格
 import styles from "./styles";
 //引入store函式
+import { useSelector, useDispatch } from "react-redux";
+import { selectfilterContent } from "../../redux/filterSlice";
 
 //測試用資料
-import CardDataList from "../../../node/data.json";
+//import CardDataList from "../../../node/data.json";
 import { use } from "i18next";
 const InfoCardList = () => {
+  const [FC, setFC] = useState({}); // 使用 useState 管理 FC
+  const [data, setData] = useState([]);
   //使用theme
   const theme = useTheme();
   useEffect(() => {
+    const getData = async () => {
+      const filterContent = await useSelector(selectfilterContent);
+      setFC(filterContent);
+    };
     axios
-      .get("http://localhost:3300/data.json")
+      fetchData();
   }, []);
+  const fetchData = async () => {
+    try {
+      console.log(FC);
+      const response = await axios.get('http://localhost:3300/api/filter',{
+        pack: FC.filterPack,
+        type: FC.filterType,
+        cost: FC.filterCost,
+        charge: FC.filterCharge,
+        time: FC.filterTime,
+        attribute:FC.filterAttribute,
+        night: FC.filterNight,
+        day: FC.filterDay,
+        name: FC.filterName
+      });
+      console.log(FC);
+      setData(response.data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+  };
 
   return (
     <View style={styles.box}>
       <FlatList
-        data={CardDataList}
+        data={data}
         numColumns={2}
         renderItem={({ item }) => (
           <InfoCard

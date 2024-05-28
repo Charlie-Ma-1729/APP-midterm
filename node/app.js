@@ -18,8 +18,8 @@ mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
 });
 
-app.get("/data.json", async (req, res) => {
-  const jsonData = await Card.find();
+app.get("/api/data", async (req, res) => {
+  const jsonData = await Card.find().sort({ id: 1 });
   saveJson(jsonData, (err) => {
     if (err) {
       console.log(err);
@@ -32,7 +32,7 @@ function saveJson(data, callback) {
   fs.writeFile("./data.json", JSON.stringify(data), callback);
 }
 
-app.get("/filter", async (req, res) => {
+app.get("/api/filter", async (req, res) => {
   try {
     const { pack, type, cost, charge, time, attribute, night, day, name } =
       req.query;
@@ -65,7 +65,7 @@ app.get("/filter", async (req, res) => {
       Card.collection.createIndex({ name: "text" });
       query.$text = { $search: name };
     }
-    const jsonData = await Card.find(query);
+    const jsonData = await Card.find(query).sort({ id: 1 });
     res.json(jsonData);
   } catch (error) {
     console.error("過濾卡片失敗:", error);
