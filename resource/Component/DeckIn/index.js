@@ -5,11 +5,11 @@ import { Image, View, FlatList } from "react-native";
 import style from "./style.js";
 import { useTheme } from "react-native-paper";
 import DeckInCard from "../DeckInCard";
-import CardDataList from "../../../node/data.json";
+//import CardDataList from "../../../node/data.json";
 
 const DeckIn = () => {
   const theme = useTheme();
-  
+
   useEffect(() => {
     axios
       .get("http://localhost:3300/api/data")
@@ -30,16 +30,16 @@ const DeckIn = () => {
       marginHorizontal: 16,
       color: theme.colors.onSurface,
     },
-    
+
   };
   return (
-    <View style={[{backgroundColor:theme.colors.surface},{paddingHorizontal:8}]}>
+    <View style={[{ backgroundColor: theme.colors.surface }, { paddingHorizontal: 8 }]}>
       <Text style={inlinestyle.Title}>需能0</Text>
-      <Text style={inlinestyle.Line} /> 
+      <Text style={inlinestyle.Line} />
       <FlatList
         data={CardDataList}
         renderItem={({ item }) => (
-          <DeckInCard picture={item.picture}/>
+          <DeckInCard picture={item.picture} />
         )}
         horizontal={true}
         keyExtractor={(item) => item.packId}

@@ -16,7 +16,7 @@ const initialState = {
 };
 
 const filterSlice = createSlice({
-    name: 'colorMode',
+    name: 'filter',
     initialState,
     //定義函式(action)
     reducers: {
@@ -30,7 +30,7 @@ const filterSlice = createSlice({
             state.filterContent.filterCharge = tarCharge;
             state.filterContent.filterTime = tarTime;
             state.filterContent.filterAttribute = tarAttribute;
-            if (tarPack == "角色") {
+            if (tarType == "角色") {
                 state.filterContent.filterDay = tarDay;
                 state.filterContent.filterNight = tarNight;
             }
@@ -43,7 +43,7 @@ const filterSlice = createSlice({
 });
 
 // export state to global
-export const selectfilterContent = (state) => state.filterContent;
+export const selectfilterContent = (state) => state.filter.filterContent;
 
 // export actions to global
 export const { setFilterContent } = filterSlice.actions;

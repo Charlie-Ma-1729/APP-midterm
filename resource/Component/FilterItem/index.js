@@ -5,6 +5,8 @@ import { Text, View, Pressable, ScrollView } from 'react-native';
 import { Button, useTheme, Menu } from 'react-native-paper';
 //引入風格
 import styles from './styles';
+//navigation提供的物件
+import { useNavigation, useRoute } from '@react-navigation/native';
 //引入store函式
 import { useDispatch, useSelector } from 'react-redux';
 import { selectcolorMode } from '../../redux/colorModeSlice';
@@ -13,6 +15,9 @@ import { toggleColorMode } from '../../redux/colorModeSlice';
 const FilterItem = ({ size, label, placeHolder = "---", menuList }) => {
     //宣告主題
     const theme = useTheme();
+    //創建navigation變數
+    const navigation = useNavigation();
+    const route = useRoute();
     //宣告表單控制的變數
     const [content, setContent] = React.useState(placeHolder);
 
@@ -35,7 +40,12 @@ const FilterItem = ({ size, label, placeHolder = "---", menuList }) => {
     //控管選項功能
     const handleMenuPress = (value) => {
         setContent(value);
-        closeMenu();
+        //被點擊後向螢幕回報
+        // 確保 setContent 完成後再設置 navigation params
+        setTimeout(() => {
+            navigation.setParams({ action: label, value: value });
+            closeMenu();
+        }, 0);
     };
 
     // 用於渲染menuItem的函式
@@ -68,14 +78,16 @@ const FilterItem = ({ size, label, placeHolder = "---", menuList }) => {
                 anchor={
                     <Pressable onPress={openMenu}>
                         <View style={{ ...type, backgroundColor: theme.colors.surface, borderWidth: borderWidth, borderColor: colorType }}>
-                            <Text style={{ ...styles.lable, backgroundColor: theme.colors.surface, color: colorType }}>{label}
+                            <Text style={{ ...styles.lable, backgroundColor: theme.colors.surface, color: colorType }}>
+                                {label}
                             </Text>
-                            <Text style={{ ...styles.placeHolder, color: theme.colors.onSurface }}>{content}</Text>
+                            <Text style={{ ...styles.placeHolder, color: theme.colors.onSurface }}>    {content}
+                            </Text>
                         </View>
                     </Pressable>}>
                 <ScrollView style={styles.scroll}>
                     <Menu.Item onPress={() => {
-                        handleMenuPress(placeHolder);
+                        handleMenuPress("---");
                     }} title="---" />
                     {renderMenuItems()}
                 </ScrollView>
