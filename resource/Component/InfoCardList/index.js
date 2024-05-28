@@ -18,38 +18,45 @@ import { use } from "i18next";
 const InfoCardList = () => {
   const filter = useSelector(selectfilterContent);
   const dispatch = useDispatch();
-  //宣告表單基礎變數
-  const [cardPack, setCardPack] = React.useState(filter.filterPack);
-  const [cardType, setCardType] = React.useState(filter.filterType);
-  const [cardCost, setCardCost] = React.useState(filter.filterCost);
-  const [cardCharge, setCardCharge] = React.useState(filter.filterCharge);
-  const [cardTime, setCardTime] = React.useState(filter.filterTime);
-  const [cardAttribute, setCardAttribute] = React.useState(filter.filterAttribute);
-  const [cardNight, setCardNight] = React.useState(filter.filterNight);
-  const [cardDay, setCardDay] = React.useState(filter.filterDay);
-  const [cardName, setCardName] = React.useState(filter.filterName);
+  const cardPack = filter.filterPack;
+  const cardType = filter.filterType;
+  const cardCost = filter.filterCost;
+  const cardCharge = filter.filterCharge;
+  const cardTime = filter.filterTime;
+  const cardAttribute = filter.filterAttribute;
+  const cardNight = filter.filterNight;
+  const cardDay = filter.filterDay;
+  const cardName = filter.filterName;
+  console.log("card");
+  console.log(cardPack);  
   const [data, setData] = useState([]);
+
   //使用theme
   const theme = useTheme();
   useEffect(() => {
-    axios;
     fetchData();
+    console.log("data");
+    console.log(data);
   }, []);
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3300/api/filter", {
-        pack: cardPack,
-        type: cardType,
-        cost: cardCost,
-        charge: cardCharge,
-        time: cardTime,
-        attribute: cardAttribute,
-        night: cardNight,
-        day: cardDay,
-        name: cardName,
+        params: {
+          pack: cardPack,
+          type: cardType,
+          cost: cardCost,
+          charge: cardCharge,
+          time: cardTime,
+          attribute: cardAttribute,
+          night: cardNight,
+          day: cardDay,
+          name: cardName,
+        },
       });
-      setData(response.data);
+      console.log("資料讀取成功");
+      setData(response.data); // 更新 data 状态
     } catch (error) {
+      console.log("資料讀取失敗");
       console.log(error);
     }
   };
