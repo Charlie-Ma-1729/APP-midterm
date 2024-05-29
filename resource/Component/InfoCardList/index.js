@@ -16,39 +16,49 @@ import { selectfilterContent } from "../../redux/filterSlice";
 //import CardDataList from "../../../node/data.json";
 import { use } from "i18next";
 const InfoCardList = () => {
-  const [FC, setFC] = useState({}); // 使用 useState 管理 FC
+  const filter = useSelector(selectfilterContent);
+  const dispatch = useDispatch();
+  const cardPack = filter.filterPack;
+  const cardType = filter.filterType;
+  const cardCost = filter.filterCost;
+  const cardCharge = filter.filterCharge;
+  const cardTime = filter.filterTime;
+  const cardAttribute = filter.filterAttribute;
+  const cardNight = filter.filterNight;
+  const cardDay = filter.filterDay;
+  const cardName = filter.filterName;
+  console.log("card");
+  console.log(cardPack);
   const [data, setData] = useState([]);
+
+  const filterContent = useSelector(selectfilterContent);
   //使用theme
   const theme = useTheme();
   useEffect(() => {
-    const getData = async () => {
-      const filterContent = await useSelector(selectfilterContent);
-      setFC(filterContent);
-    };
-    axios
-      fetchData();
-  }, []);
+    fetchData();
+    console.log("data");
+    console.log(data);
+  }, [filterContent]);
   const fetchData = async () => {
     try {
-      console.log(FC);
-      const response = await axios.get('http://localhost:3300/api/filter',{
-        pack: FC.filterPack,
-        type: FC.filterType,
-        cost: FC.filterCost,
-        charge: FC.filterCharge,
-        time: FC.filterTime,
-        attribute:FC.filterAttribute,
-        night: FC.filterNight,
-        day: FC.filterDay,
-        name: FC.filterName
+      const response = await axios.get("http://localhost:3300/api/filter", {
+        params: {
+          pack: cardPack,
+          type: cardType,
+          cost: cardCost,
+          charge: cardCharge,
+          time: cardTime,
+          attribute: cardAttribute,
+          night: cardNight,
+          day: cardDay,
+          name: cardName,
+        },
       });
-      console.log(FC);
-      setData(response.data);
-
+      console.log("資料讀取成功");
+      setData(response.data); // 更新 data 状态
     } catch (error) {
-
+      console.log("資料讀取失敗");
       console.log(error);
-
     }
   };
 

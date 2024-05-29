@@ -36,6 +36,7 @@ app.get("/api/filter", async (req, res) => {
   try {
     const { pack, type, cost, charge, time, attribute, night, day, name } =
       req.query;
+      console.log(req.query);
     let query = {};
     if (pack) {
       query.pack = pack;
