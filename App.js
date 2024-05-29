@@ -14,35 +14,37 @@ import { useTranslation } from "react-i18next";
 import i18next from "./i18next";
 //引入自訂字體
 import * as Font from 'expo-font';
+//啟動畫面splash screen用
 import * as SplashScreen from 'expo-splash-screen';
 const fetchFonts = () => {
   return Font.loadAsync({
     'Jersey15-Regular': require('./assets/fonts/Jersey15-Regular.ttf'),
   });
 };
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const { t } = useTranslation();
   //確認字體得到讀取
   const [fontLoaded, setFontLoaded] = React.useState(false);
-
   React.useEffect(() => {
     const loadFonts = async () => {
       try {
         await fetchFonts();
         setFontLoaded(true);
-        SplashScreen.hideAsync();
+        await SplashScreen.hideAsync();
       } catch (e) {
         console.warn(e);
       }
     };
-
     loadFonts();
+
   }, []);
 
   if (!fontLoaded) {
     return null; // Return null until the font is loaded
   }
+
 
   return (
     <Provider store={store} >
