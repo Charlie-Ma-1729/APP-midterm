@@ -9,6 +9,7 @@ import { Text, View, StatusBar, ScrollView, Image } from 'react-native';
 import BottomSheet, { BottomSheetView, BottomSheetScrollView, useBottomSheet } from '@gorhom/bottom-sheet';
 //引用自己的物件
 import MyBottomSheetChip from '../MyBottomSheetChip';
+import CarNumConfig from '../CarNumConfig';
 //引入store函式
 import { useDispatch, useSelector } from 'react-redux';
 import { selectsheetContent } from '../../redux/sheetContentSlice';
@@ -56,10 +57,14 @@ const MyBottomSheet = () => {
                     <MyBottomSheetChip lable={"夜"} num={sheetContent.sheetContent.sheetElement.elementNight} />
                     <MyBottomSheetChip lable={"日"} num={sheetContent.sheetContent.sheetElement.elementDay} />
                 </View>
+                {/*卡名、類型、卡號、數量計量表*/}
                 <View style={{ ...styles.infoBox }}>
                     <Text style={{ ...styles.nameText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetName}</Text>
                     <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetType}</Text>
                     <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetPackId}</Text>
+                </View>
+                <View style={styles.configBox}>
+                    <CarNumConfig />
                 </View>
                 <View style={{ ...styles.effectBox, backgroundColor: theme.colors.surfaceContainer }}>
                     <View style={styles.effectBoxInside}>

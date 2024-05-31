@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { useTheme } from 'react-native-paper';
 const styles = StyleSheet.create({
     Box: {
         justifyContent: "space-between",
