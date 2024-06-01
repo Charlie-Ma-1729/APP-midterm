@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: 328,
         height: "100%",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignSelf: "center"
     },
     card: {
@@ -20,9 +20,15 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignContent: "space-between"
     },
+    //卡名、類型、卡號、數量計量表
     infoBox: {
-        width: 328,
-        height: 80
+        width: 154,
+        height: 80,
+    },
+    configBox: {
+        width: 154,
+        alignItems: "flex-end",
+        justifyContent: "flex-end"
     },
     effectBox: {
         width: 328,

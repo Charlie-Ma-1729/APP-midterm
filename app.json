@@ -4,12 +4,12 @@
     "slug": "mid_13_ZUTOMAYOapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/myicon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/mysplash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#64558F"
     },
     "assetBundlePatterns": [
       "**/*"
