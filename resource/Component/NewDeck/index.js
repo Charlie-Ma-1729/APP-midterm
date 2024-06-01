@@ -15,9 +15,10 @@ const NewDeck = () => {
     <Card
       mode="outlined"
       style={[style.Card, { backgroundColor: theme.colors.surface }]}
-      onPress={( ) => navigation.navigate("牌組詳細")}>
+      onPress={( ) => {showDialog}}>
       <Button icon={"plus-circle"} labelStyle={{fontSize:64}} style={{height:169,justifyContent:"center",alignItems:"center"}}></Button>
     </Card>
+    
   );
 };
 
