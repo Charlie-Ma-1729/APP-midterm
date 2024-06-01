@@ -23,7 +23,9 @@ const DeckTopScreen = ({ navigation }) => {
   const theme = useTheme();
 
   const [visible, setVisible] = React.useState(false);
-  const showDialog = () => {setVisible(true);console.log("showDialog");};
+  const [text, setText] = React.useState("");
+  const showDialog = () => setVisible(true);
+
   const hideDialog = () => setVisible(false);
   return (
     <View
@@ -38,9 +40,7 @@ const DeckTopScreen = ({ navigation }) => {
         }}
       >
         <Button
-          onPress={() => {
-            showDialog;
-          }}
+          onPress={showDialog}
           icon={"plus-circle"}
           labelStyle={{ fontSize: 64 }}
           style={{
@@ -52,8 +52,14 @@ const DeckTopScreen = ({ navigation }) => {
       </Card>
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
-          <Dialog.Title>Alert</Dialog.Title>
-          <TextInput label="Email" />
+          <Dialog.Title>新建卡組</Dialog.Title>
+          <Dialog.Content>
+            <TextInput
+              label="卡組名稱"
+              value={text}
+              onChangeText={(text) => setText(text)}
+            />
+          </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={hideDialog}>Done</Button>
           </Dialog.Actions>
