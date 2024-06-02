@@ -36,7 +36,7 @@ app.get("/api/filter", async (req, res) => {
   try {
     const { pack, type, cost, charge, time, attribute, night, day, name } =
       req.query;
-      console.log(req.query);
+    console.log(req.query);
     let query = {};
     if (pack) {
       query.pack = pack;
@@ -76,16 +76,17 @@ app.get("/api/filter", async (req, res) => {
 
 app.get("/newDeck", async (req, res) => {
   try {
-    const {name}  = req.query;
+    const { name } = req.query;
     console.log(name);
     let did = Date.now();
     const newDeck = new Deck({
       name,
       deckId: did,
-      picture: "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/TWIC/TWIC-001.png",
+      picture:
+        "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/TWIC/TWIC-001.png",
       cardId: [],
       count: [],
-      owner: "admin",//這裡應該要改成登入的使用者
+      owner: "admin", //這裡應該要改成登入的使用者
     });
     await newDeck.save();
     res.json({ id: did, message: "牌組新增成功" });
@@ -101,10 +102,9 @@ app.get("/editDeck", async (req, res) => {
     console.log(deckId, cardId, count);
     let deck = await Deck.findOne({ deckId: deckId });
     let cindex = deck.cardId.indexOf(cardId);
-    if (cindex>=0) {
+    if (cindex >= 0) {
       deck.count[cindex] = count;
-    }
-    else {
+    } else {
       deck.cardId.push(cardId);
       deck.count.push(count);
     }
@@ -127,14 +127,13 @@ app.get("/getCardCount", async (req, res) => {
     let ct;
     let deck = await Deck.findOne({ deckId: deckId });
     let cindex = deck.cardId.indexOf(cardId);
-    if (cindex>=0) {
-      ct = deck.count[cindex]
-    }
-    else {
+    if (cindex >= 0) {
+      ct = deck.count[cindex];
+    } else {
       ct = 0;
     }
-    
-    res.json({ count: ct, message: "牌組編輯成功"});
+
+    res.json({ count: ct, message: "牌組編輯成功" });
   } catch (error) {
     console.error(error);
     res.status(500).send("伺服器錯誤");
@@ -150,7 +149,18 @@ app.get("/api/deckta", async (req, res) => {
   try {
     const { deckId } = req.query;
     let deck = await Deck.findOne({ deckId: deckId });
-    res.json({deck});
+    res.json({ deck });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("伺服器錯誤");
+  }
+});
+
+app.get("/api/findid", async (req, res) => {
+  try {
+    const { cardId } = req.query;
+    let card = await Card.findOne({ id: cardId });
+    res.json({ card });
   } catch (error) {
     console.error(error);
     res.status(500).send("伺服器錯誤");
