@@ -35,7 +35,7 @@ import {
   editOff,
   setEditingDeck,
   setEditingDeckId,
-  selectEditingDeckId
+  selectEditingDeckId,
 } from "../redux/isEditSlice.js";
 import { useNavigation } from "@react-navigation/native";
 import { use } from "i18next";
@@ -58,11 +58,13 @@ const DeckTopScreen = () => {
   const [visible, setVisible] = React.useState(false);
   const [text, setText] = React.useState("");
   const showDialog = () => setVisible(true);
-
+  const [data, setData] = React.useState([]);
   useEffect(() => {
     console.log(editingDeckId);
   }, [editingDeckId]);
-    
+  useEffect(() => {
+    getData();
+  }, []);
 
   const hideDialog = () => {
     setVisible(false);
@@ -81,11 +83,23 @@ const DeckTopScreen = () => {
           name: text,
         },
       });
-      console.log("資料上傳成功");
+      console.log("牌組建立成功");
       dispatch(setEditingDeckId(response.data.id));
       dispatch(setEditingDeck(text));
     } catch (error) {
-      console.log("資料上傳失敗");
+      console.log("牌組建立失敗");
+      console.log(error);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      //await axios.get("http://localhost:3300/api/deckList", {
+      const response = await axios.get("http://imatw.org:3300/api/deckList");
+      console.log("牌組列表成功");
+      setData(response.data);
+    } catch (error) {
+      console.log("牌組列表失敗");
       console.log(error);
     }
   };

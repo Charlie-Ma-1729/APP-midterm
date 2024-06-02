@@ -11,7 +11,8 @@ import DeckInCard from "../DeckInCard";
 const DeckIn = () => {
   const theme = useTheme();
   const [data, setData] = useState([]);
-
+  const [deckta, setDeckta] = useState([]);
+  const currentDeckId = "1717335070381";
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,8 +20,15 @@ const DeckIn = () => {
     try {
       //const response = await axios.get("http://localhost:3300/api/data");
       const response = await axios.get("http://imatw.org:3300/api/data");
-      console.log("資料讀取成功");
       setData(response.data); // 更新 data 状态
+      const response2 = await axios.get("http://imatw.org:3300/api/deckta", {
+        params: {
+          deckId: currentDeckId,
+        },
+      });
+      setDeckta(response2.data);
+      console.log(response2.data);
+      console.log("資料讀取成功");
     } catch (error) {
       console.log("資料讀取失敗");
       console.log(error);

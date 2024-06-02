@@ -11,7 +11,7 @@ const fs = require("fs");
 require("./cardSchema");
 require("./decksSchema");
 const Card = mongoose.model("Card");
-const decksSchema = mongoose.model("Decks");
+const Deck = mongoose.model("Decks");
 mongoose.connect(mongoDB);
 
 mongoose.connection.on("connected", () => {
@@ -79,7 +79,7 @@ app.get("/newDeck", async (req, res) => {
     const {name}  = req.query;
     console.log(name);
     let did = Date.now();
-    const newDeck = new decksSchema({
+    const newDeck = new Deck({
       name,
       deckId: did,
       picture: "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/TWIC/TWIC-001.png",
@@ -99,7 +99,7 @@ app.get("/editDeck", async (req, res) => {
   try {
     const { deckId, cardId, count } = req.query;
     console.log(deckId, cardId, count);
-    let deck = await decksSchema.findOne({ deckId: deckId });
+    let deck = await Deck.findOne({ deckId: deckId });
     let cindex = deck.cardId.indexOf(cardId);
     if (cindex>=0) {
       deck.count[cindex] = count;
@@ -125,7 +125,7 @@ app.get("/getCardCount", async (req, res) => {
     const { deckId, cardId } = req.query;
     console.log(deckId, cardId);
     let ct;
-    let deck = await decksSchema.findOne({ deckId: deckId });
+    let deck = await Deck.findOne({ deckId: deckId });
     let cindex = deck.cardId.indexOf(cardId);
     if (cindex>=0) {
       ct = deck.count[cindex]
@@ -141,7 +141,21 @@ app.get("/getCardCount", async (req, res) => {
   }
 });
 
+app.get("/api/deckList", async (req, res) => {
+  const jsonData = await Deck.find().sort({ id: 1 });
+  res.json(jsonData);
+});
 
+app.get("/api/deckta", async (req, res) => {
+  try {
+    const { deckId } = req.query;
+    let deck = await Deck.findOne({ deckId: deckId });
+    res.json({deck});
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("伺服器錯誤");
+  }
+});
 
 app.listen(3300, () => {
   console.log("Server is running on port 3300");
