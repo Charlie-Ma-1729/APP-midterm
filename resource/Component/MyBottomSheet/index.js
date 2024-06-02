@@ -59,7 +59,7 @@ const MyBottomSheet = () => {
                 </View>
                 {/*卡名、類型、卡號、數量計量表*/}
                 <View style={{ ...styles.infoBox }}>
-                    <Text style={{ ...styles.nameText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetName}</Text>
+                    <Text numberOfLines={1} ellipsizeMode="tail" style={{ ...styles.nameText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetName}</Text>
                     <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetType}</Text>
                     <Text style={{ ...styles.sideText, color: theme.colors.onSurface }}>{sheetContent.sheetContent.sheetPackId}</Text>
                 </View>

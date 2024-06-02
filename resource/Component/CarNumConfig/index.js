@@ -78,4 +78,4 @@ const CarNumConfig = () => {
 }
 
 export default CarNumConfig;
-//本物件位於搜尋-過濾頁，主畫面中的唯一元件
+//本物件位於搜尋頁的sheet或牌組頁，用於改變卡片數量
