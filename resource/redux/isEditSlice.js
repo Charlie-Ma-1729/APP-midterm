@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 //定義起始變數(state)
 const initialState = {
     isEdit: false,
-    editingDeck: "飯糰拳"
+    editingDeck: "飯糰拳",
+    editingDeckId: null
 };
 
 const isEditSlice = createSlice({
@@ -22,6 +23,10 @@ const isEditSlice = createSlice({
         setEditingDeck: (state, action) => {
             const tarDeck = action.payload.tarDeck;
             state.editingDeck = tarDeck;
+        },
+        setEditingDeckId: (state, action) => {
+            const tarDeckId = action.payload.tarDeckId;
+            state.editingDeck = tarDeck;
         }
     }
 });
@@ -29,8 +34,9 @@ const isEditSlice = createSlice({
 // export state to global
 export const selectIsEdit = (state) => state.isEdit.isEdit;
 export const selectEditingDeck = (state) => state.isEdit.editingDeck;
+export const selectEditingDeckId = (state) => state.isEdit.editingDeckId;
 // export actions to global
-export const { editOn, editOff, setEditingDeck } = isEditSlice.actions;
+export const { editOn, editOff, setEditingDeck, setEditingDeckId } = isEditSlice.actions;
 
 // export reducer to global
 export default isEditSlice.reducer;
