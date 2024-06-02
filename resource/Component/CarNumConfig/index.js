@@ -68,7 +68,7 @@ const CarNumConfig = () => {
         { duration: 200, easing: Easing.linear },
         () => {
           runOnJS(resetAnimating)();
-          editDeck(num.value);
+          runOnJS(editDeck)(num.value);
         }
       );
       
@@ -82,7 +82,7 @@ const CarNumConfig = () => {
         { duration: 200, easing: Easing.linear },
         () => {
           runOnJS(resetAnimating)();
-          editDeck(num.value);
+          runOnJS(editDeck)(num.value);
         }
       );
       
@@ -105,14 +105,8 @@ const CarNumConfig = () => {
           cardId: sheetContent.sheetContent.sheetId,
         },
       });
-      console.log("數字讀取成功"+response.data.count);
+      console.log("數字讀取成功");
       num.value = response.data.count;
-      console.log(
-        "卡片" +
-          sheetContent.sheetContent.sheetId +
-          "數量" +
-          response.data.count
-      );
     } catch (error) {
       console.log("數字讀取失敗");
       console.log(error);

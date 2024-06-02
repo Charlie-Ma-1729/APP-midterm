@@ -108,6 +108,10 @@ app.get("/editDeck", async (req, res) => {
       deck.cardId.push(cardId);
       deck.count.push(count);
     }
+    if (count == 0) {
+      deck.cardId.splice(cindex, 1);
+      deck.count.splice(cindex, 1);
+    }
     await deck.save();
     res.json({ message: "牌組編輯成功" });
   } catch (error) {
