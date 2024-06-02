@@ -10,7 +10,7 @@ import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSheetContent } from '../../redux/sheetContentSlice';
 
-const InfoCard = ({ packId, picture, name, type, element, effect, illustrator }) => {
+const InfoCard = ({ id, packId, picture, name, type, element, effect, illustrator }) => {
     //使用theme
     const theme = useTheme();
     //使用store，呼叫設置sheet函式
@@ -18,6 +18,7 @@ const InfoCard = ({ packId, picture, name, type, element, effect, illustrator })
     //非角色卡沒有攻擊力，移除日月
     let chipArr;
     const thisSheetContent = {
+        tarId: id,
         tarPicture: picture,
         tarName: name,
         tarType: type,
