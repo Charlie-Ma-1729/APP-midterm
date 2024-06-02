@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PaperProvider } from "react-native-paper";
 import axios from "axios";
-
+import { useEffect } from "react";
 //react-native-paper提供的物件
 import {
   IconButton,
@@ -38,11 +38,11 @@ import {
   selectEditingDeckId
 } from "../redux/isEditSlice.js";
 import { useNavigation } from "@react-navigation/native";
+import { use } from "i18next";
 
 const DeckTopScreen = () => {
   const theme = useTheme();
   const isEdit = useSelector(selectIsEdit);
-  const editingDeck = useSelector(selectEditingDeck);
   const editingDeckId = useSelector(selectEditingDeckId);
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -58,6 +58,11 @@ const DeckTopScreen = () => {
   const [visible, setVisible] = React.useState(false);
   const [text, setText] = React.useState("");
   const showDialog = () => setVisible(true);
+
+  useEffect(() => {
+    console.log(editingDeckId);
+  }, [editingDeckId]);
+    
 
   const hideDialog = () => {
     setVisible(false);
@@ -77,10 +82,8 @@ const DeckTopScreen = () => {
         },
       });
       console.log("資料上傳成功");
-      setEditingDeckId(response.data.id);
-      console.log(response.data.id);
-      console.log(editingDeckId);
-      setEditingDeck(text);
+      dispatch(setEditingDeckId(response.data.id));
+      dispatch(setEditingDeck(text));
     } catch (error) {
       console.log("資料上傳失敗");
       console.log(error);

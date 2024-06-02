@@ -26,7 +26,7 @@ const isEditSlice = createSlice({
         },
         setEditingDeckId: (state, action) => {
             const tarDeckId = action.payload;
-            state.editingDeck = tarDeckId;
+            state.editingDeckId = tarDeckId;
         }
     }
 });
