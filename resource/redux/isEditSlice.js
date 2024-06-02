@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 //定義起始變數(state)
 const initialState = {
     isEdit: false,
-    editingDeck: null
+    editingDeck: "飯糰拳"
 };
 
 const isEditSlice = createSlice({

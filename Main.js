@@ -5,6 +5,8 @@ import costomColor from './resource/theme/material-theme.json'
 //引入store函式
 import { useDispatch, useSelector } from 'react-redux';
 import { selectcolorMode } from './resource/redux/colorModeSlice';
+//引入獨立於navigation的物件
+import EditHint from './resource/Component/EditHint';
 
 //修改原有主題以自建新主題
 const lightTheme = {
@@ -44,6 +46,7 @@ export default function Main() {
     return (
         <PaperProvider theme={Theme}>
             <Navigator />
+            <EditHint />
         </PaperProvider>
     );
 }
