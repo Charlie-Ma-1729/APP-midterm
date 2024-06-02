@@ -75,14 +75,15 @@ app.get("/api/filter", async (req, res) => {
 });
 
 app.post("/newDeck", async (req, res) => {
+  let name = query.name;
+  let did = Date.now();
   const newDeck = new DeckSchema({
     name: query.name,
-    deckId: query.deckId,
-    picture: query.picture,
-    cardId: query.cardId,
-    count: query.count,
+    deckId: did,
   });
 });
+
+
 
 app.listen(3300, () => {
   console.log("Server is running on port 3300");

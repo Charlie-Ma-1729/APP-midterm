@@ -14,19 +14,44 @@ import {
 } from "react-native-paper";
 
 //普通宣告
-import { StyleSheet, Text, View, StatusBar, ScrollView } from "react-native";
+import { StyleSheet, Text, View, StatusBar, ScrollView, ImageComponent } from "react-native";
 
 import PerDeck from "../Component/PerDeck";
 
 import style from "../Component/NewDeck/style.js";
-const DeckTopScreen = ({ navigation }) => {
-  const theme = useTheme();
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIsEdit, selectEditingDeck, editOn, editOff, setEditingDeck } from '../redux/isEditSlice.js';
+import { useNavigation } from '@react-navigation/native';
 
+const DeckTopScreen = () => {
+  const theme = useTheme();
+  const isEdit = useSelector(selectIsEdit);
+  const editingDeck = useSelector(selectEditingDeck);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const handleEditOn = () => {
+    dispatch(editOn());
+  };
+
+  const handleEditOff = () => {
+    dispatch(editOff());
+  };
+
+  const handleSetEditingDeck = (deckId) => {
+    dispatch(setEditingDeck({ tarDeck: deckId }));
+  };
   const [visible, setVisible] = React.useState(false);
   const [text, setText] = React.useState("");
   const showDialog = () => setVisible(true);
 
-  const hideDialog = () => setVisible(false);
+  const hideDialog = () => {
+    setVisible(false);
+  };
+  const goEdit = () => {
+    handleEditOn();
+    navigation.navigate("牌組詳細");
+  }//進入編輯模式
   return (
     <View
       style={{ ...styles.container, backgroundColor: theme.colors.surface }}
@@ -61,7 +86,7 @@ const DeckTopScreen = ({ navigation }) => {
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={hideDialog}>Done</Button>
+            <Button onPress={()=>{hideDialog();goEdit();}}>Done</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
