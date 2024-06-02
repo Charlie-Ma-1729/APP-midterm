@@ -1,4 +1,4 @@
-import * as React from 'react';
+ import * as React from 'react';
 import { useRef, useEffect } from 'react';
 //引入物件
 import { Text, View, Pressable, ScrollView } from 'react-native';
