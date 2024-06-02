@@ -23,8 +23,9 @@ import {
   ScrollView,
   ImageComponent,
 } from "react-native";
-
+//宣告自己的物件
 import PerDeck from "../Component/PerDeck";
+import PerDeckList from "../Component/PerDeckList";
 
 import style from "../Component/NewDeck/style.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -37,6 +38,7 @@ import {
   setEditingDeckId,
   selectEditingDeckId,
 } from "../redux/isEditSlice.js";
+import { selectDeckList } from "../redux/deckListSlice.js";
 import { useNavigation } from "@react-navigation/native";
 import { use } from "i18next";
 
@@ -74,7 +76,6 @@ const DeckTopScreen = () => {
     fetchData();
     navigation.navigate("牌組詳細");
   }; //進入編輯模式
-
   const fetchData = async () => {
     try {
       //await axios.get("http://localhost:3300/newDeck", {
@@ -91,13 +92,14 @@ const DeckTopScreen = () => {
       console.log(error);
     }
   };
-
+  //根據本地抓取牌組陣列資料
+  const deckList = useSelector(selectDeckList);
   const getData = async () => {
     try {
       //await axios.get("http://localhost:3300/api/deckList", {
-      const response = await axios.get("http://imatw.org:3300/api/deckList",{
-        params:{
-          deckIdArray: 
+      const response = await axios.get("http://imatw.org:3300/api/deckList", {
+        params: {
+          deckIdArray: deckList
         }
       });
       console.log("牌組列表成功");
@@ -112,7 +114,7 @@ const DeckTopScreen = () => {
     <View
       style={{ ...styles.container, backgroundColor: theme.colors.surface }}
     >
-      <PerDeck />
+      <PerDeckList data={data} />
       <Card
         mode="outlined"
         style={[style.Card, { backgroundColor: theme.colors.surface }]}

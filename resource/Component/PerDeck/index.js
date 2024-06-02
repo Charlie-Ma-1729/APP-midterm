@@ -8,9 +8,8 @@ import { Image, View } from "react-native";
 import style from "./style.js";
 import { useTheme } from "react-native-paper";
 
-const cardImg = require("../../../assets/images/AATW/AATW-001.png");
 
-const PerDeck = () => {
+const PerDeck = ({ name, id, picture }) => {
   const theme = useTheme();
   const navigation = useNavigation();
   const inlinestyle = {
@@ -49,15 +48,15 @@ const PerDeck = () => {
           variant="titleLarge"
           style={{ backgroundColor: theme.colors.onsurface }}
         >
-          殘機
+          {name}
         </Text>
         <Text style={inlinestyle.Line} />
         <View style={style.container}>
           <View style={style.leftContainer}>
-            <Image source={cardImg} style={style.cover} />
+            <Image source={{ uri: picture }} style={style.cover} />
           </View>
           <View style={style.rightContainer}>
-            <Card mode="outlined" style={[style.ChartCard,{borderColor:theme.colors.surfaceVariant}]}>
+            <Card mode="outlined" style={[style.ChartCard, { borderColor: theme.colors.surfaceVariant }]}>
               <View style={style.chart}>
                 <BarChart
                   data={data}
@@ -78,8 +77,8 @@ const PerDeck = () => {
                   style={style.barchart}
                   frontColor={theme.colors.primary}
                   backgroundColor={theme.colors.surface}
-                  xAxisLabelTextStyle={{color: theme.colors.primary}}
-                  yAxisTextStyle={{color: theme.colors.primary}}
+                  xAxisLabelTextStyle={{ color: theme.colors.primary }}
+                  yAxisTextStyle={{ color: theme.colors.primary }}
                 />
               </View>
               {/* <View style={style.buts}>
