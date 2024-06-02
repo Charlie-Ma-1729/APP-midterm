@@ -7,7 +7,7 @@ import { IconButton, Appbar, useTheme } from 'react-native-paper';
 import { StyleSheet, Text, View, StatusBar, ScrollView, Button } from 'react-native';
 //引入自訂物件
 import ColorModeSwich from '../Component/ColorModeSwich';
-
+import PerDeckList from '../Component/PerDeckList';
 const ConfigTopScreen = ({ navigation }) => {
     const theme = useTheme();
     return (
