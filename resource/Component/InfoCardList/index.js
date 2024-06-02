@@ -62,29 +62,37 @@ const InfoCardList = () => {
       console.log(error);
     }
   };
+  if (data.length == 0) {
+    return (
+      <View>
+        <Text>沒有找到任何卡片</Text>
+      </View>
+    )
+  } else {
+    return (
+      <View style={styles.box}>
+        <FlatList
+          data={data}
+          numColumns={2}
+          renderItem={({ item }) => (
+            <InfoCard
+              id={item.id}
+              packId={item.packId}
+              picture={item.picture}
+              name={item.name}
+              type={item.type}
+              element={item.element}
+              effect={item.effect}
+              illustrator={item.illustrator}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.packId}
+        />
+      </View>
+    );
+  }
 
-  return (
-    <View style={styles.box}>
-      <FlatList
-        data={data}
-        numColumns={2}
-        renderItem={({ item }) => (
-          <InfoCard
-            id={item.id}
-            packId={item.packId}
-            picture={item.picture}
-            name={item.name}
-            type={item.type}
-            element={item.element}
-            effect={item.effect}
-            illustrator={item.illustrator}
-          />
-        )}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.packId}
-      />
-    </View>
-  );
 };
 
 export default InfoCardList;
