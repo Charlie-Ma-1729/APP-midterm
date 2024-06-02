@@ -97,7 +97,7 @@ const DeckTopScreen = () => {
       //await axios.get("http://localhost:3300/api/deckList", {
       const response = await axios.get("http://imatw.org:3300/api/deckList",{
         params:{
-          deckIdArray: 
+          deckIdArray: []
         }
       });
       console.log("牌組列表成功");
