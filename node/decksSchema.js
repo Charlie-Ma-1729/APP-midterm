@@ -22,6 +22,10 @@ const decksSchema = new mongoose.Schema({
     type: [Number],
     required: true,
   },
+  owner: {
+    type: String,
+    required: true,
+  },
 });
 
 mongoose.model("Decks", decksSchema);

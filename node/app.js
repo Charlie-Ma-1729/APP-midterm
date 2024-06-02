@@ -9,9 +9,9 @@ dotenv.config();
 const mongoDB = process.env.DB;
 const fs = require("fs");
 require("./cardSchema");
-const DeckSchema = require("./decksSchema");
+require("./decksSchema");
 const Card = mongoose.model("Card");
-
+const decksSchema = mongoose.model("Decks");
 mongoose.connect(mongoDB);
 
 mongoose.connection.on("connected", () => {
@@ -74,13 +74,25 @@ app.get("/api/filter", async (req, res) => {
   }
 });
 
-app.post("/newDeck", async (req, res) => {
-  let name = query.name;
-  let did = Date.now();
-  const newDeck = new DeckSchema({
-    name: query.name,
-    deckId: did,
-  });
+app.get("/newDeck", async (req, res) => {
+  try {
+    const {name}  = req.query;
+    console.log(name);
+    let did = Date.now();
+    const newDeck = new decksSchema({
+      name,
+      deckId: did,
+      picture: "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/TWIC/TWIC-001.png",
+      cardId: [],
+      count: [],
+      owner: "admin",//這裡應該要改成登入的使用者
+    });
+    await newDeck.save();
+    res.json({ message: "牌組創建成功" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("伺服器錯誤");
+  }
 });
 
 

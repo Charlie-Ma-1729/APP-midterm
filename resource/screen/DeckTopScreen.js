@@ -1,5 +1,6 @@
 import * as React from "react";
 import { PaperProvider } from "react-native-paper";
+import axios from "axios";
 
 //react-native-paper提供的物件
 import {
@@ -14,14 +15,27 @@ import {
 } from "react-native-paper";
 
 //普通宣告
-import { StyleSheet, Text, View, StatusBar, ScrollView, ImageComponent } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  ScrollView,
+  ImageComponent,
+} from "react-native";
 
 import PerDeck from "../Component/PerDeck";
 
 import style from "../Component/NewDeck/style.js";
-import { useSelector, useDispatch } from 'react-redux';
-import { selectIsEdit, selectEditingDeck, editOn, editOff, setEditingDeck } from '../redux/isEditSlice.js';
-import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectIsEdit,
+  selectEditingDeck,
+  editOn,
+  editOff,
+  setEditingDeck,
+} from "../redux/isEditSlice.js";
+import { useNavigation } from "@react-navigation/native";
 
 const DeckTopScreen = () => {
   const theme = useTheme();
@@ -50,8 +64,24 @@ const DeckTopScreen = () => {
   };
   const goEdit = () => {
     handleEditOn();
+    fetchData();
     navigation.navigate("牌組詳細");
-  }//進入編輯模式
+  }; //進入編輯模式
+
+  const fetchData = async () => {
+    try {
+      await axios.get("http://localhost:3300/newDeck", {
+        params: {
+          name: text,
+        },
+      });
+      console.log("資料上傳成功");
+    } catch (error) {
+      console.log("資料上傳失敗");
+      console.log(error);
+    }
+  };
+
   return (
     <View
       style={{ ...styles.container, backgroundColor: theme.colors.surface }}
@@ -86,7 +116,14 @@ const DeckTopScreen = () => {
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={()=>{hideDialog();goEdit();}}>Done</Button>
+            <Button
+              onPress={() => {
+                hideDialog();
+                goEdit();
+              }}
+            >
+              Done
+            </Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
