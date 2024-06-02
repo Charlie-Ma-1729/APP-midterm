@@ -88,7 +88,28 @@ app.get("/newDeck", async (req, res) => {
       owner: "admin",//這裡應該要改成登入的使用者
     });
     await newDeck.save();
-    res.json({ message: "牌組創建成功" });
+    res.json({ id: did, message: "牌組新增成功" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("伺服器錯誤");
+  }
+});
+
+app.get("/editDeck", async (req, res) => {
+  try {
+    const { deckId, cardId, count } = req.query;
+    console.log(deckId, cardId, count);
+    let deck = await decksSchema.findOne({ deckId: deckId });
+    let cindex = deck.cardId.includes(cardId);
+    if (cindex>=0) {
+      deck.count[cindex] = count;
+    }
+    else {
+      deck.cardId.push(cardId);
+      deck.count.push(count);
+    }
+    await deck.save();
+    res.json({ message: "牌組編輯成功" });
   } catch (error) {
     console.error(error);
     res.status(500).send("伺服器錯誤");

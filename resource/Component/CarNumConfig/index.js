@@ -22,6 +22,9 @@ import Animated, {
     runOnJS
 } from 'react-native-reanimated';
 import { ReText } from 'react-native-redash';
+
+import { selectsheetContent } from '../../redux/sheetContentSlice';
+
 const CarNumConfig = () => {
     //宣告主題
     const theme = useTheme();
@@ -52,6 +55,22 @@ const CarNumConfig = () => {
             });
         }
     }
+
+    const sheetContent = useSelector(selectsheetContent);
+    console.log(sheetContent);
+    //使用store，將其帶入
+    const fetchData = async () => {
+        try {
+          //const response = await axios.get("http://localhost:3300/api/data");
+          const response = await axios.get("http://imatw.org:3300/api/data");
+          console.log("資料讀取成功");
+          setData(response.data);
+        } catch (error) {
+          console.log("資料讀取失敗");
+          console.log(error);
+        }
+      };
+
     return (
         <View style={styles.Box}>
             <Pressable onPress={() => { minus1() }}>
