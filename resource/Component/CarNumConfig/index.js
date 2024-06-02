@@ -83,8 +83,9 @@ const CarNumConfig = () => {
           runOnJS(resetAnimating)();
         }
       );
+      editDeck(num.value - 1);
     }
-    editDeck(num.value - 1);
+    
   };
   const sheetContent = useSelector(selectsheetContent);
   useEffect(() => {
