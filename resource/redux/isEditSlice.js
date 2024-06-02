@@ -21,11 +21,11 @@ const isEditSlice = createSlice({
             state.isEdit = false
         },
         setEditingDeck: (state, action) => {
-            const tarDeck = action.payload.tarDeck;
+            const tarDeck = action.payload;
             state.editingDeck = tarDeck;
         },
         setEditingDeckId: (state, action) => {
-            const tarDeckId = action.payload.tarDeckId;
+            const tarDeckId = action.payload;
             state.editingDeck = tarDeckId;
         }
     }
