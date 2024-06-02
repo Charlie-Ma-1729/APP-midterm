@@ -86,11 +86,11 @@ const CarNumConfig = () => {
     }
     editDeck(num.value - 1);
   };
+  const sheetContent = useSelector(selectsheetContent);
   useEffect(() => {
     fetchData();
-  }, [editingDeckId]);
+  }, [sheetContent.sheetContent]);
 
-  const sheetContent = useSelector(selectsheetContent);
   //使用store，將其帶入
   const fetchData = async () => {
     try {
@@ -104,6 +104,12 @@ const CarNumConfig = () => {
       });
       console.log("數字讀取成功");
       num.value = response.data.count;
+      console.log(
+        "卡片" +
+          sheetContent.sheetContent.sheetId +
+          "數量" +
+          response.data.count
+      );
     } catch (error) {
       console.log("數字讀取失敗");
       console.log(error);
