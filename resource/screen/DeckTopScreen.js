@@ -34,6 +34,7 @@ import {
   editOn,
   editOff,
   setEditingDeck,
+  setEditingDeckID,
 } from "../redux/isEditSlice.js";
 import { useNavigation } from "@react-navigation/native";
 
@@ -78,6 +79,7 @@ const DeckTopScreen = () => {
       });
       console.log("資料上傳成功");
       setEditingDeckID(response.data.id);
+      setEditingDeck(text);
       console.log(editingDeck);
     } catch (error) {
       console.log("資料上傳失敗");

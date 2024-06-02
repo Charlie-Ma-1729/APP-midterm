@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteFile } from 'realm';
 //此變數用於篩選卡牌頁卡片
 //定義起始變數(state)
 const initialState = {
