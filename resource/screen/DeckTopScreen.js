@@ -20,6 +20,7 @@ import {
   Text,
   View,
   StatusBar,
+  FlatList,
   ScrollView,
   ImageComponent,
 } from "react-native";
@@ -114,25 +115,39 @@ const DeckTopScreen = () => {
     <View
       style={{ ...styles.container, backgroundColor: theme.colors.surface }}
     >
-      <PerDeckList data={data} />
-      <Card
-        mode="outlined"
-        style={[style.Card, { backgroundColor: theme.colors.surface }]}
-        onPress={() => {
-          showDialog;
-        }}
-      >
-        <Button
-          onPress={showDialog}
-          icon={"plus-circle"}
-          labelStyle={{ fontSize: 64 }}
-          style={{
-            height: 169,
-            justifyContent: "center",
-            alignItems: "center",
+      {/*因技術問題將列表改成直接寫入screen*/}
+      <FlatList
+        data={data}
+        numColumns={1}
+        renderItem={({ item }) => (
+          <PerDeck
+            name={item.name}
+            id={item.deckId}
+            picture={item.picture}
+          />
+        )}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.deckId}
+        ListHeaderComponent={<Card
+          mode="outlined"
+          style={[style.Card, { backgroundColor: theme.colors.surface }]}
+          onPress={() => {
+            showDialog;
           }}
-        ></Button>
-      </Card>
+        >
+          <Button
+            onPress={showDialog}
+            icon={"plus-circle"}
+            labelStyle={{ fontSize: 64 }}
+            style={{
+              height: 169,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          ></Button>
+        </Card>}
+      />
+
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
           <Dialog.Title>新建卡組</Dialog.Title>
