@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 //定義起始變數(state)
 const initialState = {
     sheetContent: {
+        sheetId: 2015,
         sheetPicture: "https://raw.githubusercontent.com/Charlie-Ma-1729/APP-midterm/main/assets/images/AATW/AATW-015.png",
         sheetName: "垂頭鯊遊具",
         sheetType: "角色",
@@ -29,7 +30,8 @@ const sheetContentSlice = createSlice({
         //傳一個物件，全部由該物件一次設置
         //在使用全域變數時，請務必以state, action為引數
         setSheetContent: (state, action) => {
-            const { tarPicture, tarName, tarType, tarPackId, tarEffect, tarIllustrator, tarElement } = action.payload;
+            const { tarId, tarPicture, tarName, tarType, tarPackId, tarEffect, tarIllustrator, tarElement } = action.payload;
+            state.sheetContent.sheetId = tarId;
             state.sheetContent.sheetPicture = tarPicture;
             state.sheetContent.sheetName = tarName;
             state.sheetContent.sheetType = tarType;

@@ -70,6 +70,7 @@ const InfoCardList = () => {
         numColumns={2}
         renderItem={({ item }) => (
           <InfoCard
+            id={item.id}
             packId={item.packId}
             picture={item.picture}
             name={item.name}

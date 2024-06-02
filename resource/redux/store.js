@@ -4,6 +4,7 @@ import colorModeReducer from './colorModeSlice';
 import sheetContentReducer from './sheetContentSlice';
 import filterReducer from './filterSlice';
 import isEditReducer from './isEditSlice';
+import deckListReducer from './deckListSlice';
 //persist變數
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,7 +19,8 @@ export const store = configureStore({
         colorMode: persistReducer(persistConfig, colorModeReducer),
         sheetContent: sheetContentReducer,
         filter: filterReducer,
-        isEdit: isEditReducer
+        isEdit: isEditReducer,
+        deckList: persistReducer(persistConfig, deckListReducer),
     },
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) =>
