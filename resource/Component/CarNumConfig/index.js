@@ -68,9 +68,10 @@ const CarNumConfig = () => {
         { duration: 200, easing: Easing.linear },
         () => {
           runOnJS(resetAnimating)();
+          editDeck(num.value);
         }
       );
-      editDeck(num.value + 1);
+      
     }
   };
   const minus1 = () => {
@@ -81,9 +82,10 @@ const CarNumConfig = () => {
         { duration: 200, easing: Easing.linear },
         () => {
           runOnJS(resetAnimating)();
+          editDeck(num.value);
         }
       );
-      editDeck(num.value - 1);
+      
     }
     
   };
