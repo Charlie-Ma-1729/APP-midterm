@@ -27,8 +27,6 @@ const InfoCardList = () => {
   const cardNight = filter.filterNight;
   const cardDay = filter.filterDay;
   const cardName = filter.filterName;
-  console.log("card");
-  console.log(cardPack);
   const [data, setData] = useState([]);
 
   const filterContent = useSelector(selectfilterContent);
@@ -36,8 +34,6 @@ const InfoCardList = () => {
   const theme = useTheme();
   useEffect(() => {
     fetchData();
-    console.log("data");
-    console.log(data);
   }, [filterContent]);
   const fetchData = async () => {
     try {

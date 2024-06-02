@@ -11,6 +11,16 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectfilterContent } from '../../redux/filterSlice';
 import { setFilterContent } from '../../redux/filterSlice';
+import axios from 'axios';
+import {
+    selectIsEdit,
+    selectEditingDeck,
+    editOn,
+    editOff,
+    setEditingDeck,
+    setEditingDeckId,
+    selectEditingDeckId
+  } from "../../redux/isEditSlice.js";
 //引入動畫用函式
 import Animated, {
     useSharedValue,
@@ -24,12 +34,15 @@ import Animated, {
 import { ReText } from 'react-native-redash';
 
 import { selectsheetContent } from '../../redux/sheetContentSlice';
+import { use } from 'i18next';
 
 const CarNumConfig = () => {
     //宣告主題
     const theme = useTheme();
     // 動畫用變數宣告
     const num = useSharedValue(0);
+    const editingDeckId = useSelector(selectEditingDeckId);
+    const dispatch = useDispatch();
     const isAnimating = React.useRef(false);
     const animatedNum = useDerivedValue(() => {
         return (` ${Math.floor(num.value)}`);
@@ -45,28 +58,55 @@ const CarNumConfig = () => {
             num.value = withTiming(num.value + 1, { duration: 200, easing: Easing.linear }, () => {
                 runOnJS(resetAnimating)();
             });
+            editDeck(num.value+1);
         }
     }
-    const minus1 = () => {
+    const minus1 = ()  => {
         if (num.value > 0 && num.value < 3 && !isAnimating.current) {
             isAnimating.current = true;
             num.value = withTiming(num.value - 1, { duration: 200, easing: Easing.linear }, () => {
                 runOnJS(resetAnimating)();
             });
         }
+        editDeck(num.value-1);
     }
+    useEffect(() => {
+        fetchData();
+    }, []);
+
 
     const sheetContent = useSelector(selectsheetContent);
-    console.log(sheetContent);
     //使用store，將其帶入
     const fetchData = async () => {
         try {
           //const response = await axios.get("http://localhost:3300/getCardCount");
-          const response = await axios.get("http://imatw.org:3300/getCardCount");
-          console.log("資料讀取成功");
+          const response = await axios.get("http://imatw.org:3300/getCardCount",{
+            params: {
+              deckId: editingDeckId,
+              cardId: sheetContent.sheetContent.sheetId,
+            },
+          
+          });
+          console.log("數字讀取成功");
           num.value = response.data.count;
         } catch (error) {
-          console.log("資料讀取失敗");
+          console.log("數字讀取失敗");
+          console.log(error);
+        }
+      };
+      const editDeck = async (count) => {
+        try {
+          //await axios.get("http://localhost:3300/editDeck", {
+          const response = await axios.get("http://imatw.org:3300/editDeck", {
+            params: {
+              deckId: editingDeckId,
+              cardId: sheetContent.sheetContent.sheetId,
+              count: count,
+            },
+          });
+          console.log("資料上傳成功");
+        } catch (error) {
+          console.log("資料上傳失敗");
           console.log(error);
         }
       };
