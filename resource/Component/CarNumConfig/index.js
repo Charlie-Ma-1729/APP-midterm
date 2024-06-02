@@ -102,7 +102,7 @@ const CarNumConfig = () => {
           cardId: sheetContent.sheetContent.sheetId,
         },
       });
-      console.log("數字讀取成功");
+      console.log("數字讀取成功"+response.data.count);
       num.value = response.data.count;
       console.log(
         "卡片" +

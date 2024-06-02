@@ -100,7 +100,7 @@ app.get("/editDeck", async (req, res) => {
     const { deckId, cardId, count } = req.query;
     console.log(deckId, cardId, count);
     let deck = await decksSchema.findOne({ deckId: deckId });
-    let cindex = deck.cardId.includes(cardId);
+    let cindex = deck.cardId.indexOf(cardId);
     if (cindex>=0) {
       deck.count[cindex] = count;
     }
@@ -120,13 +120,17 @@ app.get("/getCardCount", async (req, res) => {
   try {
     const { deckId, cardId } = req.query;
     console.log(deckId, cardId);
-    let count=0;
+    let ct;
     let deck = await decksSchema.findOne({ deckId: deckId });
-    let cindex = deck.cardId.includes(cardId);
+    let cindex = deck.cardId.indexOf(cardId);
     if (cindex>=0) {
-      count = deck.count[cindex]
+      ct = deck.count[cindex]
     }
-    res.json({ count: count, message: "牌組編輯成功"});
+    else {
+      ct = 0;
+    }
+    
+    res.json({ count: ct, message: "牌組編輯成功"});
   } catch (error) {
     console.error(error);
     res.status(500).send("伺服器錯誤");
