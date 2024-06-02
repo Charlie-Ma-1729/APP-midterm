@@ -61,10 +61,10 @@ const CarNumConfig = () => {
     //使用store，將其帶入
     const fetchData = async () => {
         try {
-          //const response = await axios.get("http://localhost:3300/api/data");
-          const response = await axios.get("http://imatw.org:3300/api/data");
+          //const response = await axios.get("http://localhost:3300/getCardCount");
+          const response = await axios.get("http://imatw.org:3300/getCardCount");
           console.log("資料讀取成功");
-          setData(response.data);
+          num.value = response.data.count;
         } catch (error) {
           console.log("資料讀取失敗");
           console.log(error);

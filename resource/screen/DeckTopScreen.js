@@ -71,12 +71,14 @@ const DeckTopScreen = () => {
   const fetchData = async () => {
     try {
       //await axios.get("http://localhost:3300/newDeck", {
-      await axios.get("http://imatw.org:3300/newDeck", {
+      const response = await axios.get("http://imatw.org:3300/newDeck", {
         params: {
           name: text,
         },
       });
       console.log("資料上傳成功");
+      setEditingDeckID(response.data.id);
+      console.log(editingDeck);
     } catch (error) {
       console.log("資料上傳失敗");
       console.log(error);
