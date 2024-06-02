@@ -17,7 +17,8 @@ const DeckIn = () => {
   }, []);
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3300/api/data");
+      //const response = await axios.get("http://localhost:3300/api/data");
+      const response = await axios.get("http://imatw.org:3300/api/data");
       console.log("資料讀取成功");
       setData(response.data); // 更新 data 状态
     } catch (error) {

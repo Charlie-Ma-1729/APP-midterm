@@ -70,7 +70,8 @@ const DeckTopScreen = () => {
 
   const fetchData = async () => {
     try {
-      await axios.get("http://localhost:3300/newDeck", {
+      //await axios.get("http://localhost:3300/newDeck", {
+      await axios.get("http://imatw.org:3300/newDeck", {
         params: {
           name: text,
         },

@@ -41,7 +41,8 @@ const InfoCardList = () => {
   }, [filterContent]);
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3300/api/filter", {
+      //const response = await axios.get("http://localhost:3300/api/filter", {
+      const response = await axios.get("http://imatw.org:3300/api/filter", {
         params: {
           pack: cardPack,
           type: cardType,
