@@ -34,7 +34,8 @@ import {
   editOn,
   editOff,
   setEditingDeck,
-  setEditingDeckID,
+  setEditingDeckId,
+  selectEditingDeckId
 } from "../redux/isEditSlice.js";
 import { useNavigation } from "@react-navigation/native";
 
@@ -42,6 +43,7 @@ const DeckTopScreen = () => {
   const theme = useTheme();
   const isEdit = useSelector(selectIsEdit);
   const editingDeck = useSelector(selectEditingDeck);
+  const editingDeckId = useSelector(selectEditingDeckId);
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -53,9 +55,6 @@ const DeckTopScreen = () => {
     dispatch(editOff());
   };
 
-  const handleSetEditingDeck = (deckId) => {
-    dispatch(setEditingDeck({ tarDeck: deckId }));
-  };
   const [visible, setVisible] = React.useState(false);
   const [text, setText] = React.useState("");
   const showDialog = () => setVisible(true);
@@ -78,9 +77,10 @@ const DeckTopScreen = () => {
         },
       });
       console.log("資料上傳成功");
-      setEditingDeckID(response.data.id);
+      setEditingDeckId(response.data.id);
+      console.log(response.data.id);
+      console.log(editingDeckId);
       setEditingDeck(text);
-      console.log(editingDeck);
     } catch (error) {
       console.log("資料上傳失敗");
       console.log(error);
