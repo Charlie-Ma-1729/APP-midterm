@@ -68,16 +68,15 @@ const DeckTopScreen = () => {
   useEffect(() => {
     getData();
   }, []);
-  
+
   const hideDialog = () => {
     setVisible(false);
   };
   const goEdit = async () => {
     handleEditOn();
-    await fetchData();
-    navigation.navigate("牌組詳細");
+    fetchData();
   }; //進入編輯模式
-  
+
   const fetchData = async () => {
     try {
       //await axios.get("http://localhost:3300/newDeck", {
@@ -89,6 +88,7 @@ const DeckTopScreen = () => {
       console.log("牌組建立成功");
       dispatch(setEditingDeckId(response.data.id));
       dispatch(setEditingDeck(text));
+      navigation.navigate("牌組詳細", { id: response.data.id, name: text });
     } catch (error) {
       console.log("牌組建立失敗");
       console.log(error);
@@ -101,8 +101,8 @@ const DeckTopScreen = () => {
       //await axios.get("http://localhost:3300/api/deckList", {
       const response = await axios.get("http://imatw.org:3300/api/deckList", {
         params: {
-          deckIdArray: deckList
-        }
+          deckIdArray: deckList,
+        },
       });
       console.log("牌組列表成功");
       setData(response.data);
@@ -121,32 +121,30 @@ const DeckTopScreen = () => {
         data={data}
         numColumns={1}
         renderItem={({ item }) => (
-          <PerDeck
-            name={item.name}
-            id={item.deckId}
-            picture={item.picture}
-          />
+          <PerDeck name={item.name} id={item.deckId} picture={item.picture} />
         )}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.deckId}
-        ListHeaderComponent={<Card
-          mode="outlined"
-          style={[style.Card, { backgroundColor: theme.colors.surface }]}
-          onPress={() => {
-            showDialog;
-          }}
-        >
-          <Button
-            onPress={showDialog}
-            icon={"plus-circle"}
-            labelStyle={{ fontSize: 64 }}
-            style={{
-              height: 169,
-              justifyContent: "center",
-              alignItems: "center",
+        ListHeaderComponent={
+          <Card
+            mode="outlined"
+            style={[style.Card, { backgroundColor: theme.colors.surface }]}
+            onPress={() => {
+              showDialog;
             }}
-          ></Button>
-        </Card>}
+          >
+            <Button
+              onPress={showDialog}
+              icon={"plus-circle"}
+              labelStyle={{ fontSize: 64 }}
+              style={{
+                height: 169,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            ></Button>
+          </Card>
+        }
       />
 
       <Portal>
