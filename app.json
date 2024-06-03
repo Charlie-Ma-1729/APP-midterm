@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "fin_22_ZUTOMAYO CARD tool",
-    "slug": "fin_22_ZUTOMAYO CARD tool",
+    "slug": "mid_13_ZUTOMAYOapp",
     "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/myicon.png",
@@ -39,6 +39,7 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "owner": "ntuedtd2024app"
   }
 }
