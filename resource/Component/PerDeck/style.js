@@ -6,18 +6,12 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   cover: {
-    width: 66,
-    height: 92,
-  },
-  ChartCard: {
-    flex: 1,
-    borderRadius: 10,
-    flexDirection: "row",
-    
+    width: 99,
+    height: 138,
   },
   container: {
     flexDirection: "row",
-    height: 100,
+    height: 130,
   },
   leftContainer: {
     flex: 2,
@@ -27,15 +21,6 @@ export default StyleSheet.create({
   rightContainer: {
     flex: 5,
     justifyContent: "center",
+    paddingLeft: 40,
   },
-  chart: {
-    width: 1000,
-  },
-  barchart: {
-    width: 200,
-  },
-  buts: {
-    width: 20,
-    flex:2
-  }
 });
