@@ -70,7 +70,7 @@ const DeckTopScreen = () => {
   }, [editingDeckId]);
   useEffect(() => {
     getData();
-  }, [deckList]);
+  }, [deckList,isEdit]);
 
   const hideDialog = () => {
     setVisible(false);
