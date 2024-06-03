@@ -1,17 +1,23 @@
 import * as React from "react";
 import { Avatar, Button, Card, Text } from "react-native-paper";
-
+import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigator } from "@react-navigation/stack";
 import { BarChart } from "react-native-gifted-charts";
 import { Image, View } from "react-native";
 import style from "./style.js";
 import { useTheme } from "react-native-paper";
-
+import { use } from "i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { selectIsEdit } from "../../redux/isEditSlice";
+import axios from "axios";
 
 const PerDeck = ({ name, id, picture }) => {
   const theme = useTheme();
   const navigation = useNavigation();
+  const isEdit = useSelector(selectIsEdit);
+  const dispatch = useDispatch();
+  const [data, setData] = React.useState([]);
   const inlinestyle = {
     Line: {
       borderBottomColor: theme.colors.outlineVariant,
@@ -28,20 +34,33 @@ const PerDeck = ({ name, id, picture }) => {
       icon: { color: theme.colors.onPrimaryContainer },
     },
   };
-  const data = [
-    { value: 10, label: "0" },
-    { value: 4, label: "1" },
-    { value: 2, label: "2" },
-    { value: 2, label: "3" },
-    { value: 0, label: "4" },
-    { value: 2, label: "5+" },
-  ];
+  useEffect(() => {
+    updateData();
+  }, [isEdit]);
+
+  updateData = async () => {
+    let costCount = await axios.get("http://imatw.org:3300/api/costCount", {
+      params: {
+        deckId: id,
+      },
+    });
+    console.log(costCount);
+    setData([
+      { value: costCount[0], label: "0" },
+      { value: costCount[1], label: "1" },
+      { value: costCount[2], label: "2" },
+      { value: costCount[3], label: "3" },
+      { value: costCount[4], label: "4" },
+      { value: costCount[5], label: "5" },
+      { value: costCount[6], label: "6+" },
+    ]);
+  };
   const yLabel = ["0", "2", "4", "6", "8", "10"];
   return (
     <Card
       mode="outlined"
       style={[style.Card, { backgroundColor: theme.colors.surface }]}
-      onPress={() => navigation.navigate("牌組詳細",{id:id, name:name})}
+      onPress={() => navigation.navigate("牌組詳細", { id: id, name: name })}
     >
       <Card.Content>
         <Text
@@ -56,11 +75,17 @@ const PerDeck = ({ name, id, picture }) => {
             <Image source={{ uri: picture }} style={style.cover} />
           </View>
           <View style={style.rightContainer}>
-            <Card mode="outlined" style={[style.ChartCard, { borderColor: theme.colors.surfaceVariant }]}>
+            <Card
+              mode="outlined"
+              style={[
+                style.ChartCard,
+                { borderColor: theme.colors.surfaceVariant },
+              ]}
+            >
               <View style={style.chart}>
                 <BarChart
                   data={data}
-                  barWidth={10}
+                  barWidth={7}
                   height={80}
                   xAxisLabelsVerticalShift={-8}
                   yAxisLabelWidth={30}
