@@ -133,6 +133,11 @@ const SearchStack = () => {
 const DeckStack = () => {
   const { t } = useTranslation(); //引入語言以使用語言
   const theme = useTheme(); //引入主題以使用主題
+  const [visible, setVisible] = React.useState(false);
+
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
 
   return (
     <Stack.Navigator
