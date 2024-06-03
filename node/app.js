@@ -67,21 +67,24 @@ app.get("/api/filter", async (req, res) => {
       Card.collection.createIndex({ name: "text" });
       query.$text = { $search: name };
     }
-    if(parseInt(cost) == 6){
-      const jsonData = await Card.find({ "element.cost": { $gte: 6 } }).sort({ id: 1 });
+    if (parseInt(cost) == 6) {
+      const jsonData = await Card.find({ "element.cost": { $gte: 6 } }).sort({
+        id: 1,
+      });
       res.json(jsonData);
-    }
-    else if(parseInt(day) == 120){
-      const jsonData = await Card.find({ "element.day": { $gte: 120 } }).sort({ id: 1 });
+    } else if (parseInt(day) == 120) {
+      const jsonData = await Card.find({ "element.day": { $gte: 120 } }).sort({
+        id: 1,
+      });
       res.json(jsonData);
-    }
-    else if(parseInt(night) == 120){
-      const jsonData = await Card.find({ "element.night": { $gte: 120 } }).sort({ id: 1 });
+    } else if (parseInt(night) == 120) {
+      const jsonData = await Card.find({ "element.night": { $gte: 120 } }).sort(
+        { id: 1 }
+      );
       res.json(jsonData);
-    }
-    else{
-    const jsonData = await Card.find(query).sort({ id: 1 });
-    res.json(jsonData);
+    } else {
+      const jsonData = await Card.find(query).sort({ id: 1 });
+      res.json(jsonData);
     }
   } catch (error) {
     console.error("過濾卡片失敗:", error);
@@ -102,7 +105,7 @@ app.get("/newDeck", async (req, res) => {
       cardId: [],
       count: [],
       owner: "admin", //這裡應該要改成登入的使用者
-      costCount: [0,0,0,0,0,0,0],
+      costCount: [0, 0, 0, 0, 0, 0, 0],
     });
     await newDeck.save();
     res.json({ id: did, message: "牌組新增成功" });
@@ -197,13 +200,24 @@ app.get("/api/deleteDeck", async (req, res) => {
 
 app.get("/updateCover", async (req, res) => {
   try {
-    const { deckId,picture,costCount } = req.query;
+    const { deckId, picture, costCount } = req.query;
     let deck = await Deck.findOne({ deckId: deckId });
     deck.picture = picture;
-    console.log(costCount)
+    console.log(costCount);
     deck.costCount = costCount;
     await deck.save();
     res.json({ message: "封面更新成功" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("伺服器錯誤");
+  }
+});
+
+app.get("/api/costCount", async (req, res) => {
+  try {
+    const { deckId } = req.query;
+    let deck = await Deck.findOne({ deckId: deckId });
+    res.json({ costCount: deck.costCount });
   } catch (error) {
     console.error(error);
     res.status(500).send("伺服器錯誤");
