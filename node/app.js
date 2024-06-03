@@ -170,8 +170,7 @@ app.get("/api/findid", async (req, res) => {
 app.get("/api/deleteDeck", async (req, res) => {
   try {
     const { deckId } = req.query;
-    let deck = await Deck.findOne({ deckId: deckId });
-    await deck.remove();
+    await Deck.findOneAndDelete({ deckId: deckId });
     res.json({ message: "刪除成功" });
   } catch (error) {
     console.error(error);

@@ -51,7 +51,7 @@ const DeckInsideScreen = ({ navigation, route }) => {
     }
   }, [route.params?.action]);
   const deleteDeck = async () => {
-    await axios.get("http://imatw.org:3300/deleteDeck", {
+    await axios.get("http://imatw.org:3300/api/deleteDeck", {
       params: {
         deckId: currentDeckId,
       },
