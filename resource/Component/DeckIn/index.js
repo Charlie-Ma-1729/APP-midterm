@@ -53,7 +53,6 @@ const DeckIn = ({ currentDeckId }) => {
       console.log(error);
     }
   };
-}, [isEdit, isTriger]);
 const fetchData = async () => {
   // 從伺服器取得資料
   try {
