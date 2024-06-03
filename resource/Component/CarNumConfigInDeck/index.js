@@ -34,7 +34,7 @@ import { ReText } from "react-native-redash";
 
 import { use } from "i18next";
 
-const CarNumConfigInDeck = ({ cardNum, cId }) => {
+const CarNumConfigInDeck = ({ cardNum, cardId }) => {
   //宣告主題
   const theme = useTheme();
   //是否處於編輯模式(若否則隱藏)
@@ -92,11 +92,11 @@ const CarNumConfigInDeck = ({ cardNum, cId }) => {
       await axios.get("http://imatw.org:3300/editDeck", {
         params: {
           deckId: editingDeckId,
-          cardId: cId,
+          cardId: cardId,
           count: num.value,
         },
       });
-      console.log("資料上傳ID"+cId+"count"+num.value);
+      console.log("資料上傳ID"+cardId+"count"+num.value);
       console.log("資料上傳成功");
     } catch (error) {
       console.log("資料上傳失敗");
