@@ -22,7 +22,34 @@ const DeckIn = ({ currentDeckId }) => {
   let tcardObjectArray = [];
   useEffect(() => {
     fetchData();
+    updateCover();
   }, [isEdit]);
+  const updateCover = async () => {
+    try {
+      let highestCost = 0;
+      let highestCostPictureURL = "";
+
+      for (const object of cardObjectArray) {
+        const currentCost = object.cost;
+
+        if (currentCost > highestCost) {
+          highestCost = currentCost;
+          highestCostPictureURL = object.picture;
+        }
+      }
+
+      await axios.get("http://imatw.org:3300/updateCover", {
+        params: {
+          deckId: currentDeckId,
+          picture: highestCostPictureURL,
+        },
+      });
+      console.log("封面更新成功");
+    } catch (error) {
+      console.log("封面更新失敗");
+      console.log(error);
+    }
+  };
   const fetchData = async () => {
     // 從伺服器取得資料
     try {
@@ -45,7 +72,7 @@ const DeckIn = ({ currentDeckId }) => {
       }
       tcardObjectArray.forEach((obj, index) => {
         obj["num"] = cardCountArray[index];
-      })
+      });
       setCardObjectArray(tcardObjectArray);
     } catch (error) {
       console.log("資料讀取失敗");
@@ -84,7 +111,9 @@ const DeckIn = ({ currentDeckId }) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 0)}
-            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} id={item.id} />}
+            renderItem={({ item }) => (
+              <DeckInCard num={item.num} picture={item.picture} id={item.id} />
+            )}
             horizontal={true}
           />
         </>
@@ -96,7 +125,9 @@ const DeckIn = ({ currentDeckId }) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 1)}
-            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} id={item.id} />}
+            renderItem={({ item }) => (
+              <DeckInCard num={item.num} picture={item.picture} id={item.id} />
+            )}
             horizontal={true}
           />
         </>
@@ -107,7 +138,9 @@ const DeckIn = ({ currentDeckId }) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 2)}
-            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} id={item.id} />}
+            renderItem={({ item }) => (
+              <DeckInCard num={item.num} picture={item.picture} id={item.id} />
+            )}
             horizontal={true}
           />
         </>
@@ -118,7 +151,9 @@ const DeckIn = ({ currentDeckId }) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 3)}
-            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} id={item.id} />}
+            renderItem={({ item }) => (
+              <DeckInCard num={item.num} picture={item.picture} id={item.id} />
+            )}
             horizontal={true}
           />
         </>
@@ -129,7 +164,9 @@ const DeckIn = ({ currentDeckId }) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 4)}
-            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} id={item.id} />}
+            renderItem={({ item }) => (
+              <DeckInCard num={item.num} picture={item.picture} id={item.id} />
+            )}
             horizontal={true}
           />
         </>
@@ -140,7 +177,9 @@ const DeckIn = ({ currentDeckId }) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 5)}
-            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} id={item.id} />}
+            renderItem={({ item }) => (
+              <DeckInCard num={item.num} picture={item.picture} id={item.id} />
+            )}
             horizontal={true}
           />
         </>
@@ -151,7 +190,9 @@ const DeckIn = ({ currentDeckId }) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost >= 6)}
-            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} id={item.id} />}
+            renderItem={({ item }) => (
+              <DeckInCard num={item.num} picture={item.picture} id={item.id} />
+            )}
             horizontal={true}
           />
         </>

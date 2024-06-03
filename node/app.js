@@ -179,6 +179,19 @@ app.get("/api/deleteDeck", async (req, res) => {
   }
 });
 
+app.get("/updateCover", async (req, res) => {
+  try {
+    const { deckId,picture } = req.query;
+    const deck = await Deck.findOne({ deckId: deckId });
+    deck.picture = picture;
+    await deck.save();
+    res.json({ message: "封面更新成功" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("伺服器錯誤");
+  }
+});
+
 app.listen(3300, () => {
   console.log("Server is running on port 3300");
 });
