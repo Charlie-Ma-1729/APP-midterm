@@ -182,7 +182,7 @@ app.get("/api/deleteDeck", async (req, res) => {
 app.get("/updateCover", async (req, res) => {
   try {
     const { deckId,picture } = req.query;
-    const deck = await Deck.findOne({ deckId: deckId });
+    let deck = await Deck.findOne({ deckId: deckId });
     deck.picture = picture;
     await deck.save();
     res.json({ message: "封面更新成功" });

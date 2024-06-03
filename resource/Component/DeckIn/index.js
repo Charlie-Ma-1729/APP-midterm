@@ -30,7 +30,7 @@ const DeckIn = ({ currentDeckId }) => {
       let highestCostPictureURL = "";
 
       for (const object of cardObjectArray) {
-        const currentCost = object.cost;
+        const currentCost = object.element.cost;
 
         if (currentCost > highestCost) {
           highestCost = currentCost;
