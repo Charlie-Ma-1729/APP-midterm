@@ -8,6 +8,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const mongoDB = process.env.DB;
 const fs = require("fs");
+const { parse } = require("path");
 require("./cardSchema");
 require("./decksSchema");
 const Card = mongoose.model("Card");
@@ -66,8 +67,22 @@ app.get("/api/filter", async (req, res) => {
       Card.collection.createIndex({ name: "text" });
       query.$text = { $search: name };
     }
+    if(parseInt(cost) == 6){
+      const jsonData = await Card.find({ "element.cost": { $gte: 6 } }).sort({ id: 1 });
+      res.json(jsonData);
+    }
+    else if(parseInt(day) == 120){
+      const jsonData = await Card.find({ "element.day": { $gte: 120 } }).sort({ id: 1 });
+      res.json(jsonData);
+    }
+    else if(parseInt(night) == 120){
+      const jsonData = await Card.find({ "element.night": { $gte: 120 } }).sort({ id: 1 });
+      res.json(jsonData);
+    }
+    else{
     const jsonData = await Card.find(query).sort({ id: 1 });
     res.json(jsonData);
+    }
   } catch (error) {
     console.error("過濾卡片失敗:", error);
     res.status(500).send("伺服器發生錯誤");
