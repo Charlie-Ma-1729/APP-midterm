@@ -26,6 +26,11 @@ const decksSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  costCount: {
+    type: [Number],
+    required: true,
+    default: [0, 0, 0, 0, 0, 0, 0],
+  },
 });
 
 mongoose.model("Decks", decksSchema);

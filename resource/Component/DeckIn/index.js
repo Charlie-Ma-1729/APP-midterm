@@ -32,6 +32,7 @@ const DeckIn = ({ currentDeckId }) => {
 
   const updateCover = async () => {
     try {
+      let costCount = [0, 0, 0, 0, 0, 0, 0];
       let highestCost = 0;
       let highestCostPictureURL = "";
       for (const object of tcardObjectArray) {
@@ -40,12 +41,36 @@ const DeckIn = ({ currentDeckId }) => {
           highestCost = currentCost;
           highestCostPictureURL = object.picture;
         }
+        switch (currentCost) {
+          case 0:
+            costCount[0]++;
+            break;
+          case 1:
+            costCount[1]++;
+            break;
+          case 2:
+            costCount[2]++;
+            break;
+          case 3:
+            costCount[3]++;
+            break;
+          case 4:
+            costCount[4]++;
+            break;
+          case 5:
+            costCount[5]++;
+            break;
+          default:
+            costCount[6]++;
+            break;
+        }
       }
       console.log(highestCostPictureURL);
       await axios.get("http://imatw.org:3300/updateCover", {
         params: {
           deckId: currentDeckId,
           picture: highestCostPictureURL,
+          costCount: costCount,
         },
       });
       console.log("封面更新成功");
