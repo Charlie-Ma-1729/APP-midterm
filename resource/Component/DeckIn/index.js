@@ -2,18 +2,17 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { Avatar, Button, Card, Text } from "react-native-paper";
 import axios from "axios";
-import { Image, View, FlatList } from "react-native";
+import { Image, View, FlatList, ScrollView } from "react-native";
 import style from "./style.js";
 import { useTheme } from "react-native-paper";
 import DeckInCard from "../DeckInCard";
 //import CardDataList from "../../../node/data.json";
 
-const DeckIn = () => {
+const DeckIn = ({currentDeckId}) => {
   const theme = useTheme();
   const [data, setData] = useState([]);
   const [deckta, setDeckta] = useState([]);
   const [cardObjectArray, setCardObjectArray] = useState([]); // 初始化 cardObjectArray 狀態
-  const currentDeckId = "1717335070381";
   let cardIdArray = [];
   let cardCountArray = [];
   let tcardObjectArray = [];
@@ -37,9 +36,7 @@ const DeckIn = () => {
       cardCountArray = response2.data.deck.count;
       let d = response.data;
       for (let i = 0; i < cardIdArray.length; i++) {
-        tcardObjectArray.push(
-          d.find((item) => item.id == cardIdArray[i])
-        );
+        tcardObjectArray.push(d.find((item) => item.id == cardIdArray[i]));
       }
       setCardObjectArray(tcardObjectArray);
     } catch (error) {
@@ -67,20 +64,91 @@ const DeckIn = () => {
   };
 
   return (
-    <View
+    <ScrollView
       style={[
         { backgroundColor: theme.colors.surface },
         { paddingHorizontal: 8 },
       ]}
     >
-      <Text style={inlinestyle.Title}>需能0</Text>
-      <Text style={inlinestyle.Line} />
-      <FlatList
-        data={cardObjectArray}
-        renderItem={({ item }) => <DeckInCard picture={item.picture} />}
-        horizontal={true}
-      />
-    </View>
+      {cardObjectArray.some((item) => item.element.cost == 0) && ( // 使用 some 方法判断是否有元素
+        <>
+          <Text style={inlinestyle.Title}>需能0</Text>
+          <Text style={inlinestyle.Line} />
+          <FlatList
+            data={cardObjectArray.filter((item) => item.element.cost == 0)}
+            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            horizontal={true}
+          />
+        </>
+      )}
+
+      {cardObjectArray.some((item) => item.element.cost == 1) && ( // 使用 some 方法判断是否有元素
+        <>
+          <Text style={inlinestyle.Title}>需能1</Text>
+          <Text style={inlinestyle.Line} />
+          <FlatList
+            data={cardObjectArray.filter((item) => item.element.cost == 1)}
+            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            horizontal={true}
+          />
+        </>
+      )}
+      {cardObjectArray.some((item) => item.element.cost == 2) && ( // 使用 some 方法判断是否有元素
+        <>
+          <Text style={inlinestyle.Title}>需能2</Text>
+          <Text style={inlinestyle.Line} />
+          <FlatList
+            data={cardObjectArray.filter((item) => item.element.cost == 2)}
+            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            horizontal={true}
+          />
+        </>
+      )}
+      {cardObjectArray.some((item) => item.element.cost == 3) && ( // 使用 some 方法判断是否有元素
+        <>
+          <Text style={inlinestyle.Title}>需能3</Text>
+          <Text style={inlinestyle.Line} />
+          <FlatList
+            data={cardObjectArray.filter((item) => item.element.cost == 3)}
+            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            horizontal={true}
+          />
+        </>
+      )}
+      {cardObjectArray.some((item) => item.element.cost == 4) && ( // 使用 some 方法判断是否有元素
+        <>
+          <Text style={inlinestyle.Title}>需能4</Text>
+          <Text style={inlinestyle.Line} />
+          <FlatList
+            data={cardObjectArray.filter((item) => item.element.cost == 4)}
+            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            horizontal={true}
+          />
+        </>
+      )}
+      {cardObjectArray.some((item) => item.element.cost == 5) && ( // 使用 some 方法判断是否有元素
+        <>
+          <Text style={inlinestyle.Title}>需能5</Text>
+          <Text style={inlinestyle.Line} />
+          <FlatList
+            data={cardObjectArray.filter((item) => item.element.cost == 5)}
+            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            horizontal={true}
+          />
+        </>
+      )}
+      {cardObjectArray.some((item) => item.element.cost >= 6) && ( // 使用 some 方法判断是否有元素
+        <>
+          <Text style={inlinestyle.Title}>需能6+</Text>
+          <Text style={inlinestyle.Line} />
+          <FlatList
+            data={cardObjectArray.filter((item) => item.element.cost >= 6)}
+            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            horizontal={true}
+          />
+        </>
+      )}
+    </ScrollView>
   );
 };
 

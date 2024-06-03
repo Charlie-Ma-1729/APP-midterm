@@ -26,7 +26,7 @@ import {
 } from "react-native";
 //宣告自己的物件
 import PerDeck from "../Component/PerDeck";
-import PerDeckList from "../Component/PerDeckList";
+//import PerDeckList from "../Component/PerDeckList";
 
 import style from "../Component/NewDeck/style.js";
 import { useSelector, useDispatch } from "react-redux";
