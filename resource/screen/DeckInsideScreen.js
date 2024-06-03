@@ -31,6 +31,7 @@ const DeckInsideScreen = ({ navigation, route }) => {
   const currentDeckId = route.params.id;
   const currentDeckName = route.params.name;
   const [visible, setVisible] = React.useState(false);
+  const [dvisible, setdVisible] = React.useState(false);
   const theme = useTheme();
   const isEdit = useSelector(selectIsEdit);
   const editingDeckId = useSelector(selectEditingDeckId);
@@ -39,10 +40,14 @@ const DeckInsideScreen = ({ navigation, route }) => {
   const hideDialog = () => {
     setVisible(false);
   };
+  const showdDialog = () => setdVisible(true);
+  const hidedDialog = () => {
+    setdVisible(false);
+  };
   React.useEffect(() => {
     if (route.params?.action == "deleteDeck") {
       navigation.setParams({ action: null });
-        deleteDeck();
+        showdDialog();
     }
   }, [route.params?.action]);
   const deleteDeck = async () => {
@@ -52,6 +57,7 @@ const DeckInsideScreen = ({ navigation, route }) => {
       },
     });
     dispatch(editOff());
+    deleteDeck(currentDeckId);
     navigation.navigate("牌組");
   }; //刪除牌組
   const choosetoEditthis = () => {
@@ -132,6 +138,31 @@ const DeckInsideScreen = ({ navigation, route }) => {
               onPress={() => {
                 hideDialog();
                 choosetoEditthis();
+              }}
+            >
+              確定
+            </Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
+      <Portal>
+        <Dialog visible={dvisible} onDismiss={hidedDialog}>
+          <Dialog.Title>刪除此牌組</Dialog.Title>
+          <Dialog.Content>
+            <Text>是否確定刪除此牌組?此操作無法復原!</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button
+              onPress={() => {
+                hidedDialog();
+              }}
+            >
+              取消
+            </Button>
+            <Button
+              onPress={() => {
+                hidedDialog();
+                deleteDeck();
               }}
             >
               確定
