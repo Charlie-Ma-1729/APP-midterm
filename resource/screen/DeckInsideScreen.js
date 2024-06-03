@@ -41,6 +41,7 @@ const DeckInsideScreen = ({ navigation ,route}) => {
         label="編輯模式"
         onPress={() => {
           dispatch(editOn());
+          dispatch(setEditingDeckId(currentDeckId));
         }}
       />
       <DeckIn currentDeckId={currentDeckId} />

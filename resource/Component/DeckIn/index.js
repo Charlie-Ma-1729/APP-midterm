@@ -7,8 +7,9 @@ import style from "./style.js";
 import { useTheme } from "react-native-paper";
 import DeckInCard from "../DeckInCard";
 //import CardDataList from "../../../node/data.json";
-
+import { useNavigation } from "@react-navigation/native";
 const DeckIn = ({currentDeckId}) => {
+  const navigation = useNavigation();
   const theme = useTheme();
   const [data, setData] = useState([]);
   const [deckta, setDeckta] = useState([]);
@@ -32,6 +33,7 @@ const DeckIn = ({currentDeckId}) => {
       });
       setDeckta(JSON.stringify(response2.data));
       console.log("資料讀取成功");
+      navigation.setOptions({ title: response2.data.deck.name });
       cardIdArray = response2.data.deck.cardId;
       cardCountArray = response2.data.deck.count;
       let d = response.data;
