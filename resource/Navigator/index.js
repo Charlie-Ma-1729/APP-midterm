@@ -204,7 +204,7 @@ const DeckStack = () => {
                 titleStyle={{ color: theme.colors.error }}
               />
             </Menu>
-          ),
+          )
         })}
       />
     </Stack.Navigator>

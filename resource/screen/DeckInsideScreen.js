@@ -45,6 +45,7 @@ const DeckInsideScreen = ({ navigation, route }) => {
   const hidedDialog = () => {
     setdVisible(false);
   };
+
   React.useEffect(() => {
     if (route.params?.action == "deleteDeck") {
       navigation.setParams({ action: null });
