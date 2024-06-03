@@ -68,33 +68,16 @@ const DeckTopScreen = () => {
   useEffect(() => {
     getData();
   }, []);
-  React.useEffect(() => {
-    if (route.params?.action == "deleteDeck") {
-        navigation.setParams({ action: null });
-    } else if (route.params?.action == "coin") {
-        flipCoin();
-        showCoinDialog();
-        console.log(route.params?.action);
-        navigation.setParams({ action: null });
-    }
-}, [route.params?.action])
+  
   const hideDialog = () => {
     setVisible(false);
   };
-  const goEdit = () => {
+  const goEdit = async () => {
     handleEditOn();
-    fetchData();
+    await fetchData();
     navigation.navigate("牌組詳細");
   }; //進入編輯模式
-  const deleteDeck = async () => {
-    await axios.get("http://imatw.org:3300/deleteDeck", {
-      params: {
-        deckId: editingDeckId,
-      },
-    });
-    handleEditOff();
-    navigation.navigate("牌組");
-  }; //刪除牌組
+  
   const fetchData = async () => {
     try {
       //await axios.get("http://localhost:3300/newDeck", {

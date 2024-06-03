@@ -13,14 +13,8 @@ import {
 } from "react-native-paper";
 
 //普通宣告
-import {
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  ScrollView,
-} from "react-native";
-
+import { StyleSheet, Text, View, StatusBar, ScrollView } from "react-native";
+import axios from "axios";
 import DeckIn from "../Component/DeckIn";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -45,6 +39,26 @@ const DeckInsideScreen = ({ navigation, route }) => {
   const hideDialog = () => {
     setVisible(false);
   };
+  React.useEffect(() => {
+    if (route.params?.action == "deleteDeck") {
+      navigation.setParams({ action: null });
+        deleteDeck();
+    } else if (route.params?.action == "coin") {
+      flipCoin();
+      showCoinDialog();
+      console.log(route.params?.action);
+      navigation.setParams({ action: null });
+    }
+  }, [route.params?.action]);
+  const deleteDeck = async () => {
+    await axios.get("http://imatw.org:3300/deleteDeck", {
+      params: {
+        deckId: currentDeckId,
+      },
+    });
+    handleEditOff();
+    navigation.navigate("牌組");
+  }; //刪除牌組
   const choosetoEditthis = () => {
     dispatch(editOn());
     dispatch(setEditingDeckId(currentDeckId));
@@ -53,56 +67,56 @@ const DeckInsideScreen = ({ navigation, route }) => {
   return (
     <View
       style={{ ...styles.container, backgroundColor: theme.colors.surface }}
-    >   
-    {!isEdit && (
-    <>
-      <FAB
-        color={theme.colors.onPrimaryContainer}
-        backgroundColor={theme.colors.primaryContainer}
-        style={styles.FABStyle}
-        icon="pencil"
-        label="編輯模式"
-        onPress={() => {
-          if (isEdit && editingDeckId !== currentDeckId) {
-            showDialog();
-          } else {
-            choosetoEditthis();
-          }
-        }}
-      />
-      </>
+    >
+      {!isEdit && (
+        <>
+          <FAB
+            color={theme.colors.onPrimaryContainer}
+            backgroundColor={theme.colors.primaryContainer}
+            style={styles.FABStyle}
+            icon="pencil"
+            label="編輯模式"
+            onPress={() => {
+              if (isEdit && editingDeckId !== currentDeckId) {
+                showDialog();
+              } else {
+                choosetoEditthis();
+              }
+            }}
+          />
+        </>
       )}
       {isEdit && editingDeckId != currentDeckId && (
-    <>
-      <FAB
-        color={theme.colors.onPrimaryContainer}
-        backgroundColor={theme.colors.primaryContainer}
-        style={styles.FABStyle}
-        icon="pencil"
-        label="編輯模式"
-        onPress={() => {
-          if (isEdit && editingDeckId !== currentDeckId) {
-            showDialog();
-          } else {
-            choosetoEditthis();
-          }
-        }}
-      />
-      </>
+        <>
+          <FAB
+            color={theme.colors.onPrimaryContainer}
+            backgroundColor={theme.colors.primaryContainer}
+            style={styles.FABStyle}
+            icon="pencil"
+            label="編輯模式"
+            onPress={() => {
+              if (isEdit && editingDeckId !== currentDeckId) {
+                showDialog();
+              } else {
+                choosetoEditthis();
+              }
+            }}
+          />
+        </>
       )}
       {isEdit && editingDeckId == currentDeckId && (
-    <>
-      <FAB
-        color={theme.colors.onPrimaryContainer}
-        backgroundColor={theme.colors.primaryContainer}
-        style={styles.FABStyle}
-        icon="content-save"
-        label="結束編輯"
-        onPress={() => {
-            dispatch(editOff());
-        }}
-      />
-      </>
+        <>
+          <FAB
+            color={theme.colors.onPrimaryContainer}
+            backgroundColor={theme.colors.primaryContainer}
+            style={styles.FABStyle}
+            icon="content-save"
+            label="結束編輯"
+            onPress={() => {
+              dispatch(editOff());
+            }}
+          />
+        </>
       )}
       <DeckIn currentDeckId={currentDeckId} />
       <Portal>
@@ -112,7 +126,7 @@ const DeckInsideScreen = ({ navigation, route }) => {
             <Text>是否結束編輯，並改為編輯本牌組？</Text>
           </Dialog.Content>
           <Dialog.Actions>
-          <Button
+            <Button
               onPress={() => {
                 hideDialog();
               }}
