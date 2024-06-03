@@ -5,6 +5,7 @@ import sheetContentReducer from './sheetContentSlice';
 import filterReducer from './filterSlice';
 import isEditReducer from './isEditSlice';
 import deckListReducer from './deckListSlice';
+import trigerRefreshReducer from './trigerRefreshSlice';
 //persist變數
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -21,6 +22,7 @@ export const store = configureStore({
         filter: filterReducer,
         isEdit: isEditReducer,
         deckList: persistReducer(persistConfig, deckListReducer),
+        trigerRefresh: trigerRefreshReducer
     },
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) =>

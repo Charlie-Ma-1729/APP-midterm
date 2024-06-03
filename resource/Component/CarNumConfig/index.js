@@ -19,6 +19,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { selectfilterContent } from "../../redux/filterSlice";
 import { setFilterContent } from "../../redux/filterSlice";
+import { trigerOn } from "../../redux/trigerRefreshSlice.js";
 import axios from "axios";
 import {
   selectIsEdit,
@@ -47,6 +48,8 @@ import { use } from "i18next";
 const CarNumConfig = () => {
   //宣告主題
   const theme = useTheme();
+  //觸發重新渲染
+  const dispatch = useDispatch();
   //是否處於編輯模式(若否則隱藏)
   const isEdit = useSelector(selectIsEdit);
   const [isVisible, setIsVisible] = React.useState(true);
@@ -60,7 +63,6 @@ const CarNumConfig = () => {
   // 動畫用變數宣告
   const num = useSharedValue(0);
   const editingDeckId = useSelector(selectEditingDeckId);
-  const dispatch = useDispatch();
   const isAnimating = React.useRef(false);
   const animatedNum = useDerivedValue(() => {
     return ` ${Math.floor(num.value)}`;
@@ -79,6 +81,7 @@ const CarNumConfig = () => {
         () => {
           runOnJS(resetAnimating)();
           runOnJS(editDeck)(num.value);
+          runOnJS(dispatch(trigerOn()))();
         }
       );
 
@@ -93,6 +96,7 @@ const CarNumConfig = () => {
         () => {
           runOnJS(resetAnimating)();
           runOnJS(editDeck)(num.value);
+          runOnJS(dispatch(trigerOn()))();
         }
       );
 
