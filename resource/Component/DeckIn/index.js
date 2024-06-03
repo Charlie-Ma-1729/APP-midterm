@@ -22,22 +22,19 @@ const DeckIn = ({ currentDeckId }) => {
   let tcardObjectArray = [];
   useEffect(() => {
     fetchData();
-    updateCover();
   }, [isEdit]);
   const updateCover = async () => {
     try {
       let highestCost = 0;
       let highestCostPictureURL = "";
-
-      for (const object of cardObjectArray) {
+      for (const object of tcardObjectArray) {
         const currentCost = object.element.cost;
-
         if (currentCost > highestCost) {
           highestCost = currentCost;
           highestCostPictureURL = object.picture;
         }
       }
-
+      console.log(highestCostPictureURL);
       await axios.get("http://imatw.org:3300/updateCover", {
         params: {
           deckId: currentDeckId,
@@ -74,6 +71,7 @@ const DeckIn = ({ currentDeckId }) => {
         obj["num"] = cardCountArray[index];
       });
       setCardObjectArray(tcardObjectArray);
+      updateCover();
     } catch (error) {
       console.log("資料讀取失敗");
       console.log(error);
