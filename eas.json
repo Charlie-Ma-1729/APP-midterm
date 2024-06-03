@@ -3,9 +3,6 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env": {
-        "EAS_PROJECT_ID": "594d9e66-cba2-4fc7-b8b3-302510428b54"
-      },
       "channel": "development"
     },
     "preview": {
@@ -13,9 +10,6 @@
       "channel": "preview"
     },
     "production": {
-      "env": {
-        "EAS_PROJECT_ID": "594d9e66-cba2-4fc7-b8b3-302510428b54"
-      },
       "channel": "production"
     }
   }

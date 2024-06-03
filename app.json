@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "fin_22_ZUTOMAYO CARD tool",
-    "slug": "mid_13_ZUTOMAYOapp",
+    "slug": "fin_22_ZUTOMAYO_CARD_tool",
     "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/myicon.png",
@@ -28,14 +28,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "594d9e66-cba2-4fc7-b8b3-302510428b54"
+        "projectId": "6793c946-5c02-482e-808a-30a8adbc7726"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/594d9e66-cba2-4fc7-b8b3-302510428b54"
+      "url": "https://u.expo.dev/6793c946-5c02-482e-808a-30a8adbc7726"
     },
     "plugins": [
       "expo-font"
