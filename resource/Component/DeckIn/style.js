@@ -10,4 +10,7 @@ export default StyleSheet.create({
     width: 154,
     height: 215,
   },
+  block: {
+    height: 80,
+  }
 });

@@ -84,6 +84,7 @@ const InfoCardList = () => {
           )}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.packId}
+          ListFooterComponent={<View style={styles.bottomBlock}></View>}
         />
       </View>
     );
