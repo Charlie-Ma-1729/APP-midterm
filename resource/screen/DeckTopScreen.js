@@ -30,6 +30,7 @@ import PerDeck from "../Component/PerDeck";
 
 import style from "../Component/NewDeck/style.js";
 import { useSelector, useDispatch } from "react-redux";
+import { selectDeckList } from "../redux/deckListSlice.js";
 import {
   selectIsEdit,
   selectEditingDeck,
@@ -44,6 +45,7 @@ import { useNavigation } from "@react-navigation/native";
 import { use } from "i18next";
 
 const DeckTopScreen = () => {
+  //使用全域變數
   const theme = useTheme();
   const isEdit = useSelector(selectIsEdit);
   const editingDeckId = useSelector(selectEditingDeckId);
@@ -62,12 +64,14 @@ const DeckTopScreen = () => {
   const [text, setText] = React.useState("");
   const showDialog = () => setVisible(true);
   const [data, setData] = React.useState([]);
+  //根據本地抓取牌組陣列資料
+  const deckList = useSelector(selectDeckList);
   useEffect(() => {
     console.log(editingDeckId);
   }, [editingDeckId]);
   useEffect(() => {
     getData();
-  }, []);
+  }, [deckList]);
 
   const hideDialog = () => {
     setVisible(false);
@@ -94,8 +98,7 @@ const DeckTopScreen = () => {
       console.log(error);
     }
   };
-  //根據本地抓取牌組陣列資料
-  const deckList = useSelector(selectDeckList);
+
   const getData = async () => {
     try {
       //await axios.get("http://localhost:3300/api/deckList", {
