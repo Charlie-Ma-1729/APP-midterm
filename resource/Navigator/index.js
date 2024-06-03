@@ -5,11 +5,19 @@ import { CommonActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 //navigation提供的物件
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 //導入素材
-import { Text, BottomNavigation, useTheme, Button, Menu, Divider, IconButton } from "react-native-paper";
+import {
+  Text,
+  BottomNavigation,
+  useTheme,
+  Button,
+  Menu,
+  Divider,
+  IconButton,
+} from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 //導入語言
@@ -53,7 +61,9 @@ const HomeStack = () => {
       initialRouteName="主頁"
     >
       <Stack.Screen name="主頁" component={HomeTopScreen} />
-      <Stack.Screen name="遊戲" component={HomeGameplayScreen}
+      <Stack.Screen
+        name="遊戲"
+        component={HomeGameplayScreen}
         options={({ navigation }) => ({
           headerRight: () => (
             <Menu
@@ -70,28 +80,29 @@ const HomeStack = () => {
             >
               <Menu.Item
                 onPress={() => {
-                  navigation.setParams({ action: 'reset' });
+                  navigation.setParams({ action: "reset" });
                   closeMenu();
                 }}
                 title="重製盤面"
               />
               <Menu.Item
                 onPress={() => {
-                  navigation.setParams({ action: 'dice' });
+                  navigation.setParams({ action: "dice" });
                   closeMenu();
                 }}
                 title="擲骰子"
               />
               <Menu.Item
                 onPress={() => {
-                  navigation.setParams({ action: 'coin' });
+                  navigation.setParams({ action: "coin" });
                   closeMenu();
                 }}
                 title="拋硬幣"
               />
             </Menu>
           ),
-        })} />
+        })}
+      />
       <Stack.Screen name="說明書" component={HomeManualScreen} />
     </Stack.Navigator>
   );
@@ -142,9 +153,51 @@ const DeckStack = () => {
       <Stack.Screen
         name="牌組"
         component={DeckTopScreen}
-        options={{ title: t("decks") }}//使用t()來調用語言
+        options={{ title: t("decks") }} //使用t()來調用語言
       />
-      <Stack.Screen name="牌組詳細" component={DeckInsideScreen} />
+      <Stack.Screen
+        name="牌組詳細"
+        component={DeckInsideScreen}
+        options={({ navigation }) => ({
+          headerRight: () => (
+            <Menu
+              visible={visible}
+              onDismiss={closeMenu}
+              anchor={
+                <IconButton
+                  icon="dots-horizontal"
+                  iconColor={theme.colors.onSecondary}
+                  size={30}
+                  onPress={openMenu}
+                />
+              }
+            >
+              <Menu.Item
+                onPress={() => {
+                  navigation.setParams({ action: "inputDeckCode" });
+                  closeMenu();
+                }}
+                title="輸入牌組代碼"
+              />
+              <Menu.Item
+                onPress={() => {
+                  navigation.setParams({ action: "generateDeckCode" });
+                  closeMenu();
+                }}
+                title="生成牌組代碼"
+              />
+              <Menu.Item
+                color="red"
+                onPress={() => {
+                  navigation.setParams({ action: "deleteDeck" });
+                  closeMenu();
+                }}
+                title="刪除牌組"
+              />
+            </Menu>
+          ),
+        })}
+      />
     </Stack.Navigator>
   );
 };
@@ -215,8 +268,8 @@ function Navigator() {
                 options.tabBarLabel !== undefined
                   ? options.tabBarLabel
                   : options.title !== undefined
-                    ? options.title
-                    : route.title;
+                  ? options.title
+                  : route.title;
 
               return label;
             }}
