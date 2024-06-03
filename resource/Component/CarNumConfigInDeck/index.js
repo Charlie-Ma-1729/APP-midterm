@@ -2,11 +2,7 @@ import * as React from "react";
 import { useRef, useEffect } from "react";
 //引入物件
 import { Text, View, Image, Pressable } from "react-native";
-import {
-  SegmentedButtons,
-  useTheme,
-  Icon,
-} from "react-native-paper";
+import { SegmentedButtons, useTheme, Icon } from "react-native-paper";
 //引入風格
 import styles from "./styles.js";
 //navigation提供的物件
@@ -36,10 +32,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { ReText } from "react-native-redash";
 
-
 import { use } from "i18next";
 
-const CarNumConfigInDeck = ({ cardNum }) => {
+const CarNumConfigInDeck = ({ cardNum, cId }) => {
   //宣告主題
   const theme = useTheme();
   //是否處於編輯模式(若否則隱藏)
@@ -51,7 +46,7 @@ const CarNumConfigInDeck = ({ cardNum }) => {
     } else {
       setIsVisible(false);
     }
-  }, [isEdit])
+  }, [isEdit]);
   // 動畫用變數宣告
   const num = useSharedValue(cardNum);
   const editingDeckId = useSelector(selectEditingDeckId);
@@ -76,7 +71,6 @@ const CarNumConfigInDeck = ({ cardNum }) => {
           runOnJS(editDeck)(num.value);
         }
       );
-
     }
   };
   const minus1 = () => {
@@ -90,40 +84,65 @@ const CarNumConfigInDeck = ({ cardNum }) => {
           runOnJS(editDeck)(num.value);
         }
       );
-
     }
-
+  };
+  const editDeck = async () => {
+    try {
+      //await axios.get("http://localhost:3300/editDeck", {
+      await axios.get("http://imatw.org:3300/editDeck", {
+        params: {
+          deckId: editingDeckId,
+          cardId: cId,
+          count: num.value,
+        },
+      });
+      console.log("資料上傳ID"+cId+"count"+num.value);
+      console.log("資料上傳成功");
+    } catch (error) {
+      console.log("資料上傳失敗");
+      console.log(error);
+    }
   };
 
   return (
     <View style={styles.Box}>
-      {isVisible && (<Pressable
-        onPress={() => {
-          minus1();
-        }}
-      >
-        <View
-          style={[styles.buttomBox, { backgroundColor: theme.colors.error }]}
+      {isVisible && (
+        <Pressable
+          onPress={() => {
+            minus1();
+          }}
         >
-          <Icon source="minus-thick" color={theme.colors.onError} size={25} />
-        </View>
-      </Pressable>)}
+          <View
+            style={[styles.buttomBox, { backgroundColor: theme.colors.error }]}
+          >
+            <Icon source="minus-thick" color={theme.colors.onError} size={25} />
+          </View>
+        </Pressable>
+      )}
 
       <View style={[styles.numBox, { backgroundColor: "#ffffff" }]}>
         <ReText style={styles.textNum} text={animatedNum} />
       </View>
-      {isVisible && (<Pressable
-        onPress={() => {
-          plus1();
-        }}
-      >
-        <View
-          style={[styles.buttomBox, { backgroundColor: theme.colors.primary }]}
+      {isVisible && (
+        <Pressable
+          onPress={() => {
+            plus1();
+          }}
         >
-          <Icon source="plus-thick" color={theme.colors.onPrimary} size={25} />
-        </View>
-      </Pressable>)}
-
+          <View
+            style={[
+              styles.buttomBox,
+              { backgroundColor: theme.colors.primary },
+            ]}
+          >
+            <Icon
+              source="plus-thick"
+              color={theme.colors.onPrimary}
+              size={25}
+            />
+          </View>
+        </Pressable>
+      )}
     </View>
   );
 };

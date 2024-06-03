@@ -9,12 +9,12 @@ import { useTheme } from "react-native-paper";
 import CarNumConfigInDeck from "../CarNumConfigInDeck/index.js";
 
 
-const DeckInCard = ({ picture, num }) => {
+const DeckInCard = ({ picture, num, id }) => {
   const theme = useTheme();
   return (
     <View style={style.box}>
       <Image style={style.pic} source={{ uri: picture }} />
-      <CarNumConfigInDeck cardNum={num} />
+      <CarNumConfigInDeck cardNum={num} cardId={id} />
     </View>
 
   );
