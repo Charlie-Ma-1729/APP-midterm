@@ -150,10 +150,10 @@ const DeckTopScreen = () => {
 
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
-          <Dialog.Title>新建卡組</Dialog.Title>
+          <Dialog.Title>新建牌組</Dialog.Title>
           <Dialog.Content>
             <TextInput
-              label="卡組名稱"
+              label="牌組名稱"
               value={text}
               onChangeText={(text) => setText(text)}
             />
@@ -165,7 +165,7 @@ const DeckTopScreen = () => {
                 goEdit();
               }}
             >
-              Done
+              完成
             </Button>
           </Dialog.Actions>
         </Dialog>
