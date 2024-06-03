@@ -171,6 +171,7 @@ app.get("/api/deleteDeck", async (req, res) => {
   try {
     const { deckId } = req.query;
     await Deck.findOneAndDelete({ deckId: deckId });
+    console.log("刪除成功");
     res.json({ message: "刪除成功" });
   } catch (error) {
     console.error(error);
