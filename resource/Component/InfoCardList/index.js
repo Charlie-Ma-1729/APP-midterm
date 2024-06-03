@@ -61,7 +61,7 @@ const InfoCardList = () => {
   if (data.length == 0) {
     return (
       <View>
-        <Text>沒有找到任何卡片</Text>
+        <Text style={{ color: theme.colors.onSurface }}>沒有找到任何卡片</Text>
       </View>
     )
   } else {

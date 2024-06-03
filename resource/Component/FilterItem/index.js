@@ -1,4 +1,4 @@
- import * as React from 'react';
+import * as React from 'react';
 import { useRef, useEffect } from 'react';
 //引入物件
 import { Text, View, Pressable, ScrollView } from 'react-native';
@@ -87,7 +87,7 @@ const FilterItem = ({ size, label, placeHolder = "---", menuList }) => {
                     </Pressable>}>
                 <ScrollView style={styles.scroll}>
                     <Menu.Item onPress={() => {
-                        handleMenuPress("---");
+                        handleMenuPress(null);
                     }} title="---" />
                     {renderMenuItems()}
                 </ScrollView>
