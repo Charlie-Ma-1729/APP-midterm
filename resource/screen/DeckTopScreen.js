@@ -91,7 +91,7 @@ const DeckTopScreen = () => {
       console.log("牌組建立成功");
       dispatch(setEditingDeckId(response.data.id));
       dispatch(setEditingDeck(text));
-      addDeck(response.data.id);
+      dispatch(addDeck(response.data.id));
       navigation.navigate("牌組詳細", { id: response.data.id, name: text });
     } catch (error) {
       console.log("牌組建立失敗");

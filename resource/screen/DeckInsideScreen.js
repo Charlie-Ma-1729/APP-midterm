@@ -57,7 +57,7 @@ const DeckInsideScreen = ({ navigation, route }) => {
       },
     });
     dispatch(editOff());
-    deleteDeck(currentDeckId);
+    dispatch(deleteDeck(currentDeckId));
     navigation.navigate("牌組");
   }; //刪除牌組
   const choosetoEditthis = () => {
