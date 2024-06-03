@@ -8,7 +8,7 @@ import { useTheme } from "react-native-paper";
 import DeckInCard from "../DeckInCard";
 //import CardDataList from "../../../node/data.json";
 import { useNavigation } from "@react-navigation/native";
-const DeckIn = ({currentDeckId}) => {
+const DeckIn = ({ currentDeckId }) => {
   const navigation = useNavigation();
   const theme = useTheme();
   const [data, setData] = useState([]);
@@ -40,6 +40,9 @@ const DeckIn = ({currentDeckId}) => {
       for (let i = 0; i < cardIdArray.length; i++) {
         tcardObjectArray.push(d.find((item) => item.id == cardIdArray[i]));
       }
+      tcardObjectArray.forEach((obj, index) => {
+        obj["num"] = cardCountArray[index];
+      })
       setCardObjectArray(tcardObjectArray);
     } catch (error) {
       console.log("資料讀取失敗");
@@ -78,7 +81,7 @@ const DeckIn = ({currentDeckId}) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 0)}
-            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} />}
             horizontal={true}
           />
         </>
@@ -90,7 +93,7 @@ const DeckIn = ({currentDeckId}) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 1)}
-            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} />}
             horizontal={true}
           />
         </>
@@ -101,7 +104,7 @@ const DeckIn = ({currentDeckId}) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 2)}
-            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} />}
             horizontal={true}
           />
         </>
@@ -112,7 +115,7 @@ const DeckIn = ({currentDeckId}) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 3)}
-            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} />}
             horizontal={true}
           />
         </>
@@ -123,7 +126,7 @@ const DeckIn = ({currentDeckId}) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 4)}
-            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} />}
             horizontal={true}
           />
         </>
@@ -134,7 +137,7 @@ const DeckIn = ({currentDeckId}) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost == 5)}
-            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} />}
             horizontal={true}
           />
         </>
@@ -145,7 +148,7 @@ const DeckIn = ({currentDeckId}) => {
           <Text style={inlinestyle.Line} />
           <FlatList
             data={cardObjectArray.filter((item) => item.element.cost >= 6)}
-            renderItem={({ item }) => <DeckInCard picture={item.picture} />}
+            renderItem={({ item }) => <DeckInCard num={item.num} picture={item.picture} />}
             horizontal={true}
           />
         </>
