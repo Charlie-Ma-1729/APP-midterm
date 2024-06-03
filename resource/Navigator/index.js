@@ -8,6 +8,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+import { useSelector } from "react-redux";
+import { selectIsEdit } from "../redux/isEditSlice";
+import { useEffect } from "react";
 //導入素材
 import {
   Text,
@@ -33,6 +36,7 @@ import SearchFilterScreen from "../screen/SearchFilterScreen";
 import DeckTopScreen from "../screen/DeckTopScreen";
 import DeckInsideScreen from "../screen/DeckInsideScreen";
 import ConfigTopScreen from "../screen/ConfigTopScreen";
+import { use } from "i18next";
 //各頁面的堆疊
 const HomeStack = () => {
   const theme = useTheme(); //引入主題以使用主題
@@ -134,7 +138,15 @@ const DeckStack = () => {
   const { t } = useTranslation(); //引入語言以使用語言
   const theme = useTheme(); //引入主題以使用主題
   const [visible, setVisible] = React.useState(false);
-
+  const isEdit = useSelector(selectIsEdit);
+  useEffect(() => {
+    if (isEdit) {
+      setVisible(true);
+    }
+    if (!isEdit) {
+      setVisible(false);
+    }
+  }, [isEdit]);
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
@@ -192,12 +204,12 @@ const DeckStack = () => {
                 title="生成牌組代碼"
               />
               <Menu.Item
-                color="red"
                 onPress={() => {
                   navigation.setParams({ action: "deleteDeck" });
                   closeMenu();
                 }}
                 title="刪除牌組"
+                titleStyle={{ color: theme.colors.error }}
               />
             </Menu>
           ),
