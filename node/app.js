@@ -200,6 +200,7 @@ app.get("/updateCover", async (req, res) => {
     const { deckId,picture,costCount } = req.query;
     let deck = await Deck.findOne({ deckId: deckId });
     deck.picture = picture;
+    console.log(costCount)
     deck.costCount = costCount;
     await deck.save();
     res.json({ message: "封面更新成功" });
