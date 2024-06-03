@@ -47,6 +47,16 @@ import { use } from "i18next";
 const CarNumConfig = () => {
   //宣告主題
   const theme = useTheme();
+  //是否處於編輯模式(若否則隱藏)
+  const isEdit = useSelector(selectIsEdit);
+  const [isVisible, setIsVisible] = React.useState(true);
+  React.useEffect(() => {
+    if (isEdit == true) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, [isEdit])
   // 動畫用變數宣告
   const num = useSharedValue(0);
   const editingDeckId = useSelector(selectEditingDeckId);
@@ -71,7 +81,7 @@ const CarNumConfig = () => {
           runOnJS(editDeck)(num.value);
         }
       );
-      
+
     }
   };
   const minus1 = () => {
@@ -85,9 +95,9 @@ const CarNumConfig = () => {
           runOnJS(editDeck)(num.value);
         }
       );
-      
+
     }
-    
+
   };
   const sheetContent = useSelector(selectsheetContent);
   useEffect(() => {
@@ -131,31 +141,36 @@ const CarNumConfig = () => {
 
   return (
     <View style={styles.Box}>
-      <Pressable
-        onPress={() => {
-          minus1();
-        }}
-      >
-        <View
-          style={[styles.buttomBox, { backgroundColor: theme.colors.error }]}
+      {isVisible && (
+        <Pressable
+          onPress={() => {
+            minus1();
+          }}
         >
-          <Icon source="minus-thick" color={theme.colors.onError} size={25} />
-        </View>
-      </Pressable>
-      <View style={[styles.numBox, { backgroundColor: "#ffffff" }]}>
-        <ReText style={styles.textNum} text={animatedNum} />
-      </View>
-      <Pressable
-        onPress={() => {
-          plus1();
-        }}
-      >
-        <View
-          style={[styles.buttomBox, { backgroundColor: theme.colors.primary }]}
+          <View
+            style={[styles.buttomBox, { backgroundColor: theme.colors.error }]}
+          >
+            <Icon source="minus-thick" color={theme.colors.onError} size={25} />
+          </View>
+        </Pressable>
+      )}
+      {isVisible && (
+        <View style={[styles.numBox, { backgroundColor: "#ffffff" }]}>
+          <ReText style={styles.textNum} text={animatedNum} />
+        </View>)}
+      {isVisible && (
+        <Pressable
+          onPress={() => {
+            plus1();
+          }}
         >
-          <Icon source="plus-thick" color={theme.colors.onPrimary} size={25} />
-        </View>
-      </Pressable>
+          <View
+            style={[styles.buttomBox, { backgroundColor: theme.colors.primary }]}
+          >
+            <Icon source="plus-thick" color={theme.colors.onPrimary} size={25} />
+          </View>
+        </Pressable>)}
+
     </View>
   );
 };
