@@ -43,11 +43,6 @@ const DeckInsideScreen = ({ navigation, route }) => {
     if (route.params?.action == "deleteDeck") {
       navigation.setParams({ action: null });
         deleteDeck();
-    } else if (route.params?.action == "coin") {
-      flipCoin();
-      showCoinDialog();
-      console.log(route.params?.action);
-      navigation.setParams({ action: null });
     }
   }, [route.params?.action]);
   const deleteDeck = async () => {

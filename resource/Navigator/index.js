@@ -9,8 +9,9 @@ import { useNavigation } from "@react-navigation/native";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 import { useSelector } from "react-redux";
-import { selectIsEdit } from "../redux/isEditSlice";
+import { selectIsEdit , selectEditingDeckId} from "../redux/isEditSlice";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 //導入素材
 import {
   Text,
@@ -138,15 +139,6 @@ const DeckStack = () => {
   const { t } = useTranslation(); //引入語言以使用語言
   const theme = useTheme(); //引入主題以使用主題
   const [visible, setVisible] = React.useState(false);
-  const isEdit = useSelector(selectIsEdit);
-  useEffect(() => {
-    if (isEdit) {
-      setVisible(true);
-    }
-    if (!isEdit) {
-      setVisible(false);
-    }
-  }, [isEdit]);
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
