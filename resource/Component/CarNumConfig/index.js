@@ -30,17 +30,7 @@ import {
   setEditingDeckId,
   selectEditingDeckId,
 } from "../../redux/isEditSlice.js";
-//引入動畫用函式
-import Animated, {
-  useSharedValue,
-  withSpring,
-  withTiming,
-  useAnimatedStyle,
-  useDerivedValue,
-  Easing,
-  runOnJS,
-} from "react-native-reanimated";
-import { ReText } from "react-native-redash";
+import { selectIsTriger, trigerOff } from "../../redux/trigerRefreshSlice.js";
 
 import { selectsheetContent } from "../../redux/sheetContentSlice";
 import { use } from "i18next";
@@ -60,51 +50,33 @@ const CarNumConfig = () => {
       setIsVisible(false);
     }
   }, [isEdit])
+  //觸發
+  const isTriger = useSelector(selectIsTriger);
+
   // 動畫用變數宣告
-  const num = useSharedValue(0);
+  const [num, setNum] = React.useState(0);
   const editingDeckId = useSelector(selectEditingDeckId);
-  const isAnimating = React.useRef(false);
-  const animatedNum = useDerivedValue(() => {
-    return ` ${Math.floor(num.value)}`;
-  });
-  //播放動畫
-  const resetAnimating = () => {
-    isAnimating.current = false;
-  };
-
-  const plus1 = () => {
-    if (num.value >= 0 && num.value < 2 && !isAnimating.current) {
-      isAnimating.current = true;
-      num.value = withTiming(
-        num.value + 1,
-        { duration: 200, easing: Easing.linear },
-        () => {
-          runOnJS(resetAnimating)();
-          runOnJS(editDeck)(num.value);
-        }
-      );
-
+  //檢測tri觸發並改變num值
+  React.useEffect(() => {
+    if (isTriger) {
+      fetchData();
+      dispatch(trigerOff());
     }
-  };
-  const minus1 = () => {
-    if (num.value > 0 && num.value < 3 && !isAnimating.current) {
-      isAnimating.current = true;
-      num.value = withTiming(
-        num.value - 1,
-        { duration: 200, easing: Easing.linear },
-        () => {
-          runOnJS(resetAnimating)();
-          runOnJS(editDeck)(num.value);
-        }
-      );
-
-    }
-
-  };
+  }, [isTriger])
+  //內容改變就抓資料
   const sheetContent = useSelector(selectsheetContent);
   useEffect(() => {
     fetchData();
   }, [sheetContent.sheetContent]);
+  const updateNum = async (delta) => {
+    const newNum = num + delta;
+    if (newNum >= 0 && newNum <= 2) {
+      await setNum(newNum);
+      await editDeck(newNum); // 等待编辑操作完成
+      await dispatch(trigerOn());
+    }
+  };
+
 
   //使用store，將其帶入
   const fetchData = async () => {
@@ -118,7 +90,7 @@ const CarNumConfig = () => {
         },
       });
       console.log("數字讀取成功");
-      num.value = response.data.count;
+      setNum(response.data.count);
     } catch (error) {
       console.log("數字讀取失敗");
       console.log(error);
@@ -146,8 +118,7 @@ const CarNumConfig = () => {
       {isVisible && (
         <Pressable
           onPress={() => {
-            minus1();
-            dispatch(trigerOn());
+            updateNum(-1);
           }}
         >
           <View
@@ -159,13 +130,12 @@ const CarNumConfig = () => {
       )}
       {isVisible && (
         <View style={[styles.numBox, { backgroundColor: "#ffffff" }]}>
-          <ReText style={styles.textNum} text={animatedNum} />
+          <Text>{num}</Text>
         </View>)}
       {isVisible && (
         <Pressable
           onPress={() => {
-            plus1();
-            dispatch(trigerOn())
+            updateNum(1);
           }}
         >
           <View

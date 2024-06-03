@@ -20,17 +20,7 @@ import {
   setEditingDeckId,
   selectEditingDeckId,
 } from "../../redux/isEditSlice.js";
-//引入動畫用函式
-import Animated, {
-  useSharedValue,
-  withSpring,
-  withTiming,
-  useAnimatedStyle,
-  useDerivedValue,
-  Easing,
-  runOnJS,
-} from "react-native-reanimated";
-import { ReText } from "react-native-redash";
+import { selectIsTriger, trigerOn, trigerOff } from "../../redux/trigerRefreshSlice.js";
 
 import { use } from "i18next";
 
@@ -39,6 +29,8 @@ const CarNumConfigInDeck = ({ cardNum, cardId }) => {
   const theme = useTheme();
   //是否處於編輯模式(若否則隱藏)
   const isEdit = useSelector(selectIsEdit);
+  //觸發
+  const isTriger = useSelector(selectIsTriger);
   const [isVisible, setIsVisible] = React.useState(true);
   React.useEffect(() => {
     if (isEdit == true) {
@@ -48,55 +40,36 @@ const CarNumConfigInDeck = ({ cardNum, cardId }) => {
     }
   }, [isEdit]);
   // 動畫用變數宣告
-  const num = useSharedValue(cardNum);
+  const [num, setNum] = React.useState(cardNum);
   const editingDeckId = useSelector(selectEditingDeckId);
   const dispatch = useDispatch();
-  const isAnimating = React.useRef(false);
-  const animatedNum = useDerivedValue(() => {
-    return ` ${Math.floor(num.value)}`;
-  });
-  //播放動畫
-  const resetAnimating = () => {
-    isAnimating.current = false;
-  };
+  //檢測tri觸發並改變num值
+  React.useEffect(() => {
+    if (isTriger) {
+      setNum(cardNum);
+      dispatch(trigerOff());
+    }
+  }, [isTriger])
 
-  const plus1 = () => {
-    if (num.value >= 0 && num.value < 2 && !isAnimating.current) {
-      isAnimating.current = true;
-      num.value = withTiming(
-        num.value + 1,
-        { duration: 200, easing: Easing.linear },
-        () => {
-          runOnJS(resetAnimating)();
-          runOnJS(editDeck)(num.value);
-        }
-      );
+  const updateNum = async (delta) => {
+    const newNum = num + delta;
+    if (newNum >= 0 && newNum <= 2) {
+      await setNum(newNum);
+      await editDeck(newNum);
+      await dispatch(trigerOn());
     }
   };
-  const minus1 = () => {
-    if (num.value > 0 && num.value < 3 && !isAnimating.current) {
-      isAnimating.current = true;
-      num.value = withTiming(
-        num.value - 1,
-        { duration: 200, easing: Easing.linear },
-        () => {
-          runOnJS(resetAnimating)();
-          runOnJS(editDeck)(num.value);
-        }
-      );
-    }
-  };
-  const editDeck = async () => {
+  const editDeck = async (count) => {
     try {
       //await axios.get("http://localhost:3300/editDeck", {
       await axios.get("http://imatw.org:3300/editDeck", {
         params: {
           deckId: editingDeckId,
           cardId: cardId,
-          count: num.value,
+          count: count,
         },
       });
-      console.log("資料上傳ID"+cardId+"count"+num.value);
+      console.log("資料上傳ID" + cardId + "count" + count);
       console.log("資料上傳成功");
     } catch (error) {
       console.log("資料上傳失敗");
@@ -109,7 +82,7 @@ const CarNumConfigInDeck = ({ cardNum, cardId }) => {
       {isVisible && (
         <Pressable
           onPress={() => {
-            minus1();
+            updateNum(-1);
           }}
         >
           <View
@@ -121,12 +94,12 @@ const CarNumConfigInDeck = ({ cardNum, cardId }) => {
       )}
 
       <View style={[styles.numBox, { backgroundColor: "#ffffff" }]}>
-        <ReText style={styles.textNum} text={animatedNum} />
+        <Text>{num}</Text>
       </View>
       {isVisible && (
         <Pressable
           onPress={() => {
-            plus1();
+            updateNum(1);
           }}
         >
           <View
