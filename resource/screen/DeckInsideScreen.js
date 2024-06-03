@@ -26,6 +26,7 @@ import {
   setEditingDeckId,
   selectEditingDeckId,
 } from "../redux/isEditSlice.js";
+import { addDeck, deleteDeckInRedux } from "../redux/deckListSlice.js";
 
 const DeckInsideScreen = ({ navigation, route }) => {
   const currentDeckId = route.params.id;
@@ -47,7 +48,7 @@ const DeckInsideScreen = ({ navigation, route }) => {
   React.useEffect(() => {
     if (route.params?.action == "deleteDeck") {
       navigation.setParams({ action: null });
-        showdDialog();
+      showdDialog();
     }
   }, [route.params?.action]);
   const deleteDeck = async () => {
@@ -57,7 +58,7 @@ const DeckInsideScreen = ({ navigation, route }) => {
       },
     });
     dispatch(editOff());
-    dispatch(deleteDeck(currentDeckId));
+    dispatch(deleteDeckInRedux(currentDeckId));
     navigation.navigate("牌組");
   }; //刪除牌組
   const choosetoEditthis = () => {
