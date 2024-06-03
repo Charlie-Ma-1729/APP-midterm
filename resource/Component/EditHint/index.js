@@ -27,8 +27,8 @@ const EditHint = () => {
         <View style={styles.box}>
             {isVisible && (
                 <View style={[styles.contentBox, { backgroundColor: theme.colors.surfaceContainer }]}>
-                    <Text style={styles.text}>正在編輯</Text>
-                    <Text style={styles.text} numberOfLines={1} ellipsizeMode="tail">{editingDeck}</Text>
+                    <Text style={[styles.text, { color: theme.colors.onSurface }]}>正在編輯</Text>
+                    <Text style={[styles.text, { color: theme.colors.onSurface }]} numberOfLines={1} ellipsizeMode="tail">{editingDeck}</Text>
                 </View>
             )}
         </View>
