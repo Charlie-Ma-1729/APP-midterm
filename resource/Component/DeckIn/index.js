@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+//引入全域變數
+import { useSelector, useDispatch } from "react-redux";
+import { selectIsTriger, trigerOff } from "../../redux/trigerRefreshSlice.js";
 import { selectIsEdit } from "../../redux/isEditSlice";
 import { Avatar, Button, Card, Text } from "react-native-paper";
 import axios from "axios";
@@ -11,6 +13,8 @@ import DeckInCard from "../DeckInCard";
 //import CardDataList from "../../../node/data.json";
 import { useNavigation } from "@react-navigation/native";
 const DeckIn = ({ currentDeckId }) => {
+  //引入全域變數
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const theme = useTheme();
   const isEdit = useSelector(selectIsEdit);
@@ -20,9 +24,11 @@ const DeckIn = ({ currentDeckId }) => {
   let cardIdArray = [];
   let cardCountArray = [];
   let tcardObjectArray = [];
+  //抓triger以觸發fetchData
+  const isTriger = useSelector(selectIsTriger);
   useEffect(() => {
     fetchData();
-  }, [isEdit]);
+  }, [isEdit, isTriger]);
   const fetchData = async () => {
     // 從伺服器取得資料
     try {
@@ -50,6 +56,9 @@ const DeckIn = ({ currentDeckId }) => {
     } catch (error) {
       console.log("資料讀取失敗");
       console.log(error);
+    }
+    finally {
+      dispatch(trigerOff());
     }
   };
 

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         width: 114,
         height: 25,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "space-evenly"
     },
     numBox: {
         justifyContent: "center",

@@ -81,7 +81,6 @@ const CarNumConfig = () => {
         () => {
           runOnJS(resetAnimating)();
           runOnJS(editDeck)(num.value);
-          runOnJS(dispatch(trigerOn()))();
         }
       );
 
@@ -96,7 +95,6 @@ const CarNumConfig = () => {
         () => {
           runOnJS(resetAnimating)();
           runOnJS(editDeck)(num.value);
-          runOnJS(dispatch(trigerOn()))();
         }
       );
 
@@ -149,6 +147,7 @@ const CarNumConfig = () => {
         <Pressable
           onPress={() => {
             minus1();
+            dispatch(trigerOn());
           }}
         >
           <View
@@ -166,6 +165,7 @@ const CarNumConfig = () => {
         <Pressable
           onPress={() => {
             plus1();
+            dispatch(trigerOn())
           }}
         >
           <View
