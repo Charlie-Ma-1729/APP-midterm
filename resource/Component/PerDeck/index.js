@@ -9,7 +9,7 @@ import style from "./style.js";
 import { useTheme } from "react-native-paper";
 
 
-const PerDeck = ({ name, id, picture }) => {
+const PerDeck = ({ name, id, picture, costCount }) => {
   const theme = useTheme();
   const navigation = useNavigation();
   const inlinestyle = {
@@ -28,13 +28,15 @@ const PerDeck = ({ name, id, picture }) => {
       icon: { color: theme.colors.onPrimaryContainer },
     },
   };
+  costCount = JSON.parse(costCount);
   const data = [
-    { value: 10, label: "0" },
-    { value: 4, label: "1" },
-    { value: 2, label: "2" },
-    { value: 2, label: "3" },
-    { value: 0, label: "4" },
-    { value: 2, label: "5+" },
+    { value: costCount[0], label: "0" },
+    { value: costCount[1], label: "1" },
+    { value: costCount[2], label: "2" },
+    { value: costCount[3], label: "3" },
+    { value: costCount[4], label: "4" },
+    { value: costCount[5], label: "5" },
+    { value: costCount[6], label: "6+" },
   ];
   const yLabel = ["0", "2", "4", "6", "8", "10"];
   return (
@@ -60,7 +62,7 @@ const PerDeck = ({ name, id, picture }) => {
               <View style={style.chart}>
                 <BarChart
                   data={data}
-                  barWidth={10}
+                  barWidth={7}
                   height={80}
                   xAxisLabelsVerticalShift={-8}
                   yAxisLabelWidth={30}

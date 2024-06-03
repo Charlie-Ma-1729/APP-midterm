@@ -124,7 +124,7 @@ const DeckTopScreen = () => {
         data={data}
         numColumns={1}
         renderItem={({ item }) => (
-          <PerDeck name={item.name} id={item.deckId} picture={item.picture} />
+          <PerDeck name={item.name} id={item.deckId} picture={item.picture} costCount={item.costCount} />
         )}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.deckId}

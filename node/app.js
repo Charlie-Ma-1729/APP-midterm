@@ -102,6 +102,7 @@ app.get("/newDeck", async (req, res) => {
       cardId: [],
       count: [],
       owner: "admin", //這裡應該要改成登入的使用者
+      costCount: [0,0,0,0,0,0,0],
     });
     await newDeck.save();
     res.json({ id: did, message: "牌組新增成功" });
@@ -196,9 +197,10 @@ app.get("/api/deleteDeck", async (req, res) => {
 
 app.get("/updateCover", async (req, res) => {
   try {
-    const { deckId,picture } = req.query;
+    const { deckId,picture,costCount } = req.query;
     let deck = await Deck.findOne({ deckId: deckId });
     deck.picture = picture;
+    deck.costCount = costCount;
     await deck.save();
     res.json({ message: "封面更新成功" });
   } catch (error) {
