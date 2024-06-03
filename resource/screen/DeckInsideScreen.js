@@ -45,13 +45,39 @@ const DeckInsideScreen = ({ navigation, route }) => {
   const hidedDialog = () => {
     setdVisible(false);
   };
-
+  React.useEffect(() => {
+    updateCover();
+  }, [isEdit]);
   React.useEffect(() => {
     if (route.params?.action == "deleteDeck") {
       navigation.setParams({ action: null });
       showdDialog();
     }
   }, [route.params?.action]);
+  const updateCover = async () => {
+    try {
+      let highestCost = 0;
+      let highestCostPictureURL = "";
+      for (const object of tcardObjectArray) {
+        const currentCost = object.element.cost;
+        if (currentCost > highestCost) {
+          highestCost = currentCost;
+          highestCostPictureURL = object.picture;
+        }
+      }
+      console.log(highestCostPictureURL);
+      await axios.get("http://imatw.org:3300/updateCover", {
+        params: {
+          deckId: currentDeckId,
+          picture: highestCostPictureURL,
+        },
+      });
+      console.log("封面更新成功");
+    } catch (error) {
+      console.log("封面更新失敗");
+      console.log(error);
+    }
+  };
   const deleteDeck = async () => {
     await axios.get("http://imatw.org:3300/api/deleteDeck", {
       params: {
